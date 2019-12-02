@@ -15,12 +15,16 @@ Son necesarias las variables
   <head>
     <meta charset="utf-8">
     <title><?=$titulo?></title>
+    <link rel="stylesheet" href="/css/master.css">
   </head>
   <body>
-    <?php
-        require("$ROOT/resources/templates/navegacion.php");
-        require("$ROOT/resources/templates/contenido$ruta_contenido");
-        require("$ROOT/resources/templates/pie.php");
-     ?>
+    <div class="contenedor">
+      <?php
+          require("$ROOT/resources/templates/navegacion.php");
+          require("$ROOT/resources/templates/contenido$ruta_contenido");
+          require("$ROOT/resources/templates/pie.php");
+       ?>
+    </div>
+
   </body>
 </html>

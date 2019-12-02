@@ -1,0 +1,24 @@
+.contenedor{
+  width: 90%;
+  margin: auto;
+}
+.contenedor >footer{
+  width: 100%;
+  background-color: #c4c4c4;
+}
+
+.contenedor footer > nav ul {
+  width: 60%;
+  margin: auto;
+  list-style: none;
+  overflow: hidden;
+}
+.contenedor footer > nav ul li {
+  float: left;
+}
+.contenedor footer > nav ul li a {
+  text-decoration: none;
+  padding: 0.5em;
+  float: left;
+  color: #325541;/*color verde*/
+}
