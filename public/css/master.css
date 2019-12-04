@@ -2,11 +2,16 @@
   width: 90%;
   margin: auto;
 }
-.contenedor >footer{
+.contenedor header{
+      background-color: #ff8c00;
+      color:white;
+}
+
+
+.contenedor > footer{
   width: 100%;
   background-color: #c4c4c4;
 }
-
 .contenedor footer > nav ul {
   width: 60%;
   margin: auto;
