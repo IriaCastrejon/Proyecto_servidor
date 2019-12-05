@@ -32,5 +32,5 @@ if (preg_match('/\.(?:css|js|ico|png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"]))
     require_once("$ROOT/resources/templates/template.php");
 
 }
-
+// meter aqui sesiones
 ?>
