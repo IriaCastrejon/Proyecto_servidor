@@ -1,12 +1,12 @@
 <?php
 
 $config = [
-  'site' => 'Proyecto',
-  'title' => 'Estructura de proyecto web',
-  'content' => 'Estructura de proyecto web',
+  'site' => 'hipets',
+  'title' => 'hipets',
+  'content' => 'hipets',
   'content_text' => 'Información sacada del config',
-  'db_engine' => 'sqlite',
-  'db_file' => 'resources/test.sqlite3'
+  'db_engine' => 'mysql',
+  'db_file' => 'resources/db_hipets.sql'
 ];
 
 spl_autoload_register(function ($name){
