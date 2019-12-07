@@ -1,5 +1,5 @@
 <?php
-
+echo 'actividades <br>';
 $resultados = ActividadManager::obtenerActividadPorIdParticipante($id);
 
 foreach ($resultados as $fila) { ?>

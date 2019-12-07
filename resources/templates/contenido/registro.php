@@ -1,8 +1,21 @@
 <?php
+  echo '<pre>';
+  $_POST;
+  echo '</pre>';
+  $nombre='';
+  $email='';
+  $contraseña='';
+  $contraseña_V='';
+  $localidad='';
+  $cp='';
+  $Telefono='';
+  $foto='';
+  $descripcion='';
+  $nombre_dueno='';
 
  ?>
 
- <form class="formRegistro" action="registro.php" method="post">
+ <form class="registro" action="registro.php" method="post">
    <table>
      <tr>
        <td>Nombre </td>
@@ -36,8 +49,11 @@
        <td>Foto </td>
        <td><input type="image" name="foto" value=""> </td>
      </tr>
+     <tr>
+       <td><input type="submit" name="enviar" value="Registrame"></td>
+     </tr>
    </table>
-   <div class="cliente">
+   <!--<div class="cliente">
      <div>
        <p>Soy mascota</p>
        <input type="radio" name="usuario" value="mascota"><br><br>
@@ -48,6 +64,6 @@
        <label for="">Denominacion social</label> <input type="radio" name="denominacion" value="">
        <label for=""> CIF</label><input type="text" name="cif" value="">
      </div>
-   </div>
+   </div>-->
 
  </form>

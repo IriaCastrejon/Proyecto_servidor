@@ -1,2 +1,3 @@
-<h1>navegacion</h1>
-<a href="actividades.php">actividades</a>
+<nav class="menu">
+  <a href="actividades.php">actividades</a>
+</nav>

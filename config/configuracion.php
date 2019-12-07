@@ -3,10 +3,13 @@
 $config = [
   'site' => 'hipets',
   'title' => 'hipets',
-  'content' => 'hipets',
+  'content' => 'estructura  del proyecto web',
   'content_text' => 'Información sacada del config',
-  'db_engine' => 'mysql',
-  'db_file' => 'resources/db_hipets.sql'
+  'proyecto'=>'hipets',
+  'user'=>'admin',
+  'pass'=>'1234',
+  'db_engine' => 'sqlite',
+  'db_file' => 'resources/test.sqlite3'
 ];
 
 spl_autoload_register(function ($name){
