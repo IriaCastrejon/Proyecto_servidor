@@ -18,7 +18,7 @@
   $cif;
   $mascota=false;
   $empresa=false;
-  $errores;
+  $errores=[];
   if (isset($_POST['tipo_cliente'])) {
     $_SESSION['tipo_cliente']=$_POST['cliente'];
 
@@ -78,7 +78,7 @@
       $foto=clean_input($_POST['pass']);
     }
 // si es una mascota
-    if ($_SESSION[tipo_cliente]=='mascota') {
+    if ($_SESSION['tipo_cliente']=='mascota') {
       if (isset($_POST['dueño']) && $_POST['dueño'] != '') {
         $nombre_dueno=clean_input($_POST['dueño']);
       }else {
@@ -103,12 +103,25 @@
       }else {
       $errores['cif']='Debe rellenar este campo';
       }
+    }//else $_session[tipo_cliente]
+    //errores
+    if(count($errores)==0){
+      $db= DWESBaseDatos::obtenerInstancia();
+      $pass_encriptada= password_hash($contraseña, PASSWORD_DEFAULT);
+
+      if ($_SESSION['tipo_cliente']== 'mascota') {
+        echo 'dentro del if';
+        MascotaManager::insert($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$foto,$descripcion,$nombre_dueno);
+      }/*else{
+        EmpresaManager::insert($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$foto,$descripcion,$nombre_dueno);
+      }*/
+
+      $_SESSION['id']= $db->getLastId();
+      echo $_SESSION['id']. ' ultimo id insertado';
+
+    }// no ha errores
 
 
-      if(count($errores==0)){
-        echo 'no hay errores';
-      }
-    }
 
 
 
@@ -152,10 +165,10 @@
        <label for="">Repite contraseña</label><input type="text" name="passVer" value="<?=$contraseña_V ?>"><br><br>
 
 
-       <label for="">Localidad</label><input type="text" name="localidad" value=""><br><br>
-       <label for="">Codigo Postal </label><input type="number" name="cp" value=""><br><br>
-       <label for="">Telefono</label><input type="tel" name="telefono" value=""><br><br>
-       <label for="">Foto</label><input type="file" name="foto" value=""><br><br>
+       <label for="">Localidad</label><input type="text" name="localidad" value="<?= $localidad ?>"><br><br>
+       <label for="">Codigo Postal </label><input type="number" name="cp" value="<?= $cp ?>"><br><br>
+       <label for="">Telefono</label><input type="tel" name="telefono" value="<?= $Telefono ?>"><br><br>
+       <label for="">Foto</label><input type="file" name="foto" value="<?= $foto ?>"><br><br>
 
        <?php if ($empresa): ?>
 

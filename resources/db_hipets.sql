@@ -54,7 +54,7 @@ insert into factura(id,cliente_id,importe,iva) values (1,2,40,16);
 CREATE TABLE usuario (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   email VARCHAR(45) NULL,
-  pass VARCHAR(45) NULL,
+  pass VARCHAR(100) NULL,
   nombre VARCHAR(45) NULL,
   foto_perfil BLOB NULL,
   localidad VARCHAR(45) NULL,
