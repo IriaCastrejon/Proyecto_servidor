@@ -17,3 +17,10 @@ spl_autoload_register(function ($name){
   $class_file = "$ROOT/src/$name.php";
   require($class_file);
 });
+
+function clean_input($data){
+  $data=trim($data);
+  $data=stripslashes($data);
+  $data=htmlspecialchars($data);
+  return $data;
+}

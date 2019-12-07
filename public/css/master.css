@@ -20,6 +20,16 @@
   color: black;
   font-weight: bold;
 }
+/*formulario registro */
+.fomulario_registro{
+  margin: 1.5em;
+}
+.fomulario_registro label{
+  margin-right: 10px;
+}
+.registro .error{
+  color: red;
+}
 /* footer*/
 .contenedor.contenedor > footer{
   width: 100%;
