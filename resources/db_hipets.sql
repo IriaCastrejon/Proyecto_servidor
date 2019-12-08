@@ -131,3 +131,6 @@ CREATE TABLE participa (
   INDEX usuario_has_actividad_FKIndex1(usuario_id),
   INDEX usuario_has_actividad_FKIndex2(actividad_id)
 );
+
+insert into participa(usuario_id,actividad_id) values(1,1);
+insert into participa(usuario_id,actividad_id) values(1,2);
