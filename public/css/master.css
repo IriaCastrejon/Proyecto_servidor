@@ -21,6 +21,14 @@
   font-weight: bold;
 }
 /*formulario registro */
+.fomulario_registro .registro_tipo_cliente,.fomulario_registro  .registro{
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  border: dotted 2px #325541;
+  background-color: #c4c4c4;
+  padding: 1em 0;
+}
 .fomulario_registro{
   margin: 1.5em;
 }

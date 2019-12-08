@@ -2,7 +2,7 @@
 
   session_start();
   echo '<pre>';
-  print_r($_POST);
+  //print_r($_POST);
   echo '</pre>';
   $nombre='';
   $email='';
@@ -118,88 +118,90 @@
 
       $_SESSION['id']= $db->getLastId();
       echo $_SESSION['id']. ' ultimo id insertado';
-
-    }// no ha errores
+      header("location: login.php");
+      exit;
+    }// no hay errores
 
 
 
 
 
   }
-  echo $_SESSION['tipo_cliente'];
+  //echo $_SESSION['tipo_cliente'];
  ?>
 
  <div class="fomulario_registro">
    <?php if (!isset($_SESSION['tipo_cliente'])): ?>
-     <form class="registro_tipo_cliente" action="registro.php" method="post">
-         <label for="" class="rad_cliente">Soy mascota <input type="radio" name="cliente" value="mascota" <?=($_SESSION['tipo_cliente']== 'mascota')?'checked':'' ?> > </label>
-         <label for="" class="rad_cliente">Soy empresa <input type="radio" name="cliente" value="empresa" <?=($_SESSION['tipo_cliente']== 'empresa')?'checked':'' ?>> </label>
-         <br> <br><input type="submit" name="tipo_cliente" value="Enviar">
-     </form>
+  <form class="registro_tipo_cliente" action="registro.php" method="post">
+     <label for="" class="rad_cliente">Soy mascota <input type="radio" name="cliente" value="mascota" <?=($_SESSION['tipo_cliente']== 'mascota')?'checked':'' ?> > </label>
+     <label for="" class="rad_cliente">Soy empresa <input type="radio" name="cliente" value="empresa" <?=($_SESSION['tipo_cliente']== 'empresa')?'checked':'' ?>> </label>
+     <br> <br><input type="submit" name="tipo_cliente" value="Enviar">
+  </form>
   <?php endif; ?>
-   <?php if (isset($_SESSION['tipo_cliente'])): ?>
-     <form class="registro" action="registro.php" method="post">
-
-       <?php if (isset($errores['nombre'])): ?>
-         <span class="error">Debe introducir un nombre</span> <br>
-       <?php endif; ?>
-       <label for="">Nombre</label><input type="text" name="nombre" value=" <?= $nombre ?>"><br><br>
-
-       <?php if (isset($errores['email'])): ?>
-         <span class="error">Debe introducir un email</span> <br>
-       <?php endif; ?>
-       <label for="">Email</label><input type="email" name="email" value="<?= $email ?>"><br><br>
-
-       <?php if (isset($errores['pass'])): ?>
-         <span class="error">Debe introducir una contraseña</span> <br><br>
-       <?php endif; ?>
-       <label for="">Contraseña</label><input type="text" name="pass" value="<?=$contraseña?>"><br><br>
-
-       <?php if (isset($errores['passVer'])): ?>
-         <?php if ($errores['passVer']==='No_COINCIDEN'){ ?>
-           <span class="error">Las contraseñas no coinciden</span> <br><br>
-         <?php} else{?>
-            <span class="error">Debe introducir la contraseña nuevamente</span> <br><br>
-         <?php } ?>
-       <?php endif; ?>
-       <label for="">Repite contraseña</label><input type="text" name="passVer" value="<?=$contraseña_V ?>"><br><br>
-
-
-       <label for="">Localidad</label><input type="text" name="localidad" value="<?= $localidad ?>"><br><br>
-       <label for="">Codigo Postal </label><input type="number" name="cp" value="<?= $cp ?>"><br><br>
-       <label for="">Telefono</label><input type="tel" name="telefono" value="<?= $Telefono ?>"><br><br>
-       <label for="">Foto</label><input type="file" name="foto" value="<?= $foto ?>"><br><br>
-
-       <?php if ($empresa): ?>
-
-         <?php if (isset($errores['denominacion'])): ?>
-           <span class="error">Debe introducir una denominacion social</span> <br>
-         <?php endif; ?>
-         <label for="">Denominacion social</label> <input type="text" name="denominacion" value="<?= $denominacion ?>"><br><br>
-
-         <?php if (isset($errores['cif'])): ?>
-           <span class="error">Debe introducir un CIF</span> <br>
-         <?php endif; ?>
-         <label for=""> CIF</label><input type="text" name="cif" value="<?= $cif ?>"><br>
-
-       <?php endif; ?>
-
-       <?php if ($mascota): ?>
-         <?php if (isset($errores['dueño'])): ?>
-           <span class="error">Debes introducir un nombre</span> <br>
-         <?php endif; ?>
-         <label for="">Nombre dueño</label> <input type="text" name="dueño" value="<?= $nombre_dueno ?>"><br><br>
-
-         <?php if (isset($errores['descripcion'])): ?>
-           <span class="error">Debes introducir una descripcion</span> <br><
-         <?php endif; ?>
-         <label for=""> decripcion</label><input type="textarea" name="descripcion" value="<?= $descripcion ?>"><br>
-       <?php endif; ?>
-
-       <br><br> <input type="submit" name="enviar" value="Registrame">
-
-      </form>
+  <?php if (isset($_SESSION['tipo_cliente'])): ?>
+ <form class="registro" action="registro.php" method="post">
+   <!-- NOMBRE-->
+   <?php if (isset($errores['nombre'])): ?>
+     <span class="error">Debe introducir un nombre</span> <br>
    <?php endif; ?>
+   <label for="">Nombre</label><input type="text" name="nombre" value=" <?= $nombre ?>"><br><br>
+
+   <!-- EMAIL-->
+   <?php if (isset($errores['email'])): ?>
+     <span class="error">Debe introducir un email</span> <br>
+   <?php endif; ?>
+   <label for="">Email</label><input type="email" name="email" value="<?= $email ?>"><br><br>
+
+   <?php if (isset($errores['pass'])): ?>
+     <span class="error">Debe introducir una contraseña</span> <br><br>
+   <?php endif; ?>
+   <label for="">Contraseña</label><input type="text" name="pass" value="<?=$contraseña?>"><br><br>
+
+   <?php if (isset($errores['passVer'])): ?>
+     <?php if ($errores['passVer']==='No_COINCIDEN'){ ?>
+       <span class="error">Las contraseñas no coinciden</span> <br><br>
+     <?php} else{?>
+        <span class="error">Debe introducir la contraseña nuevamente</span> <br><br>
+     <?php } ?>
+   <?php endif; ?>
+   <label for="">Repite contraseña</label><input type="text" name="passVer" value="<?=$contraseña_V ?>"><br><br>
+
+
+   <label for="">Localidad</label><input type="text" name="localidad" value="<?= $localidad ?>"><br><br>
+   <label for="">Codigo Postal </label><input type="number" name="cp" value="<?= $cp ?>"><br><br>
+   <label for="">Telefono</label><input type="tel" name="telefono" value="<?= $Telefono ?>"><br><br>
+   <label for="">Foto</label><input type="file" name="foto" value="<?= $foto ?>"><br><br>
+
+   <?php if ($empresa): ?>
+
+     <?php if (isset($errores['denominacion'])): ?>
+       <span class="error">Debe introducir una denominacion social</span> <br>
+     <?php endif; ?>
+     <label for="">Denominacion social</label> <input type="text" name="denominacion" value="<?= $denominacion ?>"><br><br>
+
+     <?php if (isset($errores['cif'])): ?>
+       <span class="error">Debe introducir un CIF</span> <br>
+     <?php endif; ?>
+     <label for=""> CIF</label><input type="text" name="cif" value="<?= $cif ?>"><br>
+
+   <?php endif; ?>
+
+   <?php if ($mascota): ?>
+     <?php if (isset($errores['dueño'])): ?>
+       <span class="error">Debes introducir un nombre</span> <br>
+     <?php endif; ?>
+     <label for="">Nombre dueño</label> <input type="text" name="dueño" value="<?= $nombre_dueno ?>"> <br><br>
+
+     <?php if (isset($errores['descripcion'])): ?>
+       <span class="error">Debes introducir una descripcion</span> <br><
+     <?php endif; ?>
+     <label for=""> Decripcion</label> <input type="textarea" name="descripcion" value="<?= $descripcion ?>"> <br>
+   <?php endif; ?>
+
+   <br><br> <input type="submit" name="enviar" value="Registrame">
+
+  </form>
+  <?php endif; ?>
 
  </div>
 
