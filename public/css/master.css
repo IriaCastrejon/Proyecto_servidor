@@ -52,3 +52,16 @@
   float: left;
   color: #325541;/*color verde*/
 }
+
+.amigos{
+
+  width: 300px;
+  height: 100px;
+  border: 1px solid green;
+  margin:5px;
+  padding: 10px;
+}
+
+.actividades{
+
+}

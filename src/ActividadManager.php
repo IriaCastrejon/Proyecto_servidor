@@ -36,9 +36,9 @@ class ActividadManager implements IDWESEntidadManager{
 
   public static function obtenerActividadPorIdParticipante($id){
     $db = DWESBaseDatos::obtenerInstancia();
-    $parametros = [$id];
+  
     $db -> ejecuta("SELECT a.id, a.descripcion, a.fecha, a.n_participantes, a.lugar FROM actividad a WHERE id in
-      (SELECT p.actividad_id FROM participa p WHERE usuario_id = ? )",$parametros);
+      (SELECT p.actividad_id FROM participa p WHERE usuario_id = ? )",$id);
 
 //    if($db -> executed ){ // Se pudo ejecutar
 //        $datos = $db -> obtenDatos();

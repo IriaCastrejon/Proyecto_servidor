@@ -3,23 +3,25 @@
 class Usuarios {
 
   private $id;
-  private $nombre;
   private $email;
   private $contraseña;
+  private $nombre;
+  private $foto;
   private $localidad;
   private $cp;
   private $telefono;
-  private $foto;
 
-function __construct($id, $nombre, $email, $contraseña,$localidad = null,$cp = null,$telefono= null,$foto = null){
+
+function __construct($id, $email, $contraseña, $nombre, $foto = null,$localidad = null,$cp = null,$telefono= null){
     $this -> id = $id;
-    $this -> nombre = $nombre;
     $this -> email = $email;
     $this -> contraseña = $contraseña;
+    $this -> nombre = $nombre;
+    $this -> foto = $foto;
     $this -> localidad = $localidad;
     $this -> cp = $cp;
     $this -> telefono = $telefono;
-    $this -> foto = $foto;
+
   }
 
     /**
