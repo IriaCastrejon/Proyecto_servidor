@@ -43,10 +43,12 @@ if(isset($_POST["submit"])) {
             session_start();
             $_SESSION['email']=$email;
             $_SESSION['id']=$resultados['id'];
-          //  echo $_SESSION['email'].' Las claves coinciden y este es el email <br>';
-            //echo $_SESSION['id'].' Las id  es <br>';
+            echo $_SESSION['email'].' Las claves coinciden y este es el email <br>';
+            echo $_SESSION['id'].' Las id  es <br>';
             header('Location: actividades.php');
             exit;
+            
+
           }else{
             $errores[] = "Clave errónea";
           }
