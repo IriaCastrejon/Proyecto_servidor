@@ -1,6 +1,10 @@
 <?php
 
-$id=1;
+if( !isset($_SESSION['id']) ){
+    header('Location: login.php');
+    die();
+}
+$id=$_SESSION['id'];
 
 $resultados = ActividadManager::obtenerActividadPorIdParticipante($id);
 
