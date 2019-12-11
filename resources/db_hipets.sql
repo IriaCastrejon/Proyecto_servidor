@@ -53,9 +53,9 @@ insert into factura(id,cliente_id,importe,iva) values (1,2,40,16);
 
 CREATE TABLE usuario (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  email VARCHAR(45) NULL,
-  pass VARCHAR(100) NULL,
-  nombre VARCHAR(45) NULL,
+  email VARCHAR(45) NOT NULL,
+  pass VARCHAR(100) NOT NULL,
+  nombre VARCHAR(45) NOT NULL,
   foto_perfil BLOB NULL,
   localidad VARCHAR(45) NULL,
   cp INTEGER NULL,
@@ -64,9 +64,9 @@ CREATE TABLE usuario (
   nombre_dueno VARCHAR(45) NULL,
   PRIMARY KEY(id)
 );
-insert into usuario(id,email,pass,nombre) values(1,'bigotes@gmail,com','123','bigotes');
-insert into usuario(id,email,pass,nombre) values(2,'zero@gmail,com','123','zero');
-insert into usuario(id,email,pass,nombre) values(3,'coqui@gmail,com','123','coqui');
+insert into usuario(id,email,pass,nombre) values(1,'bigotes@gmail.com','123','bigotes');
+insert into usuario(id,email,pass,nombre) values(2,'zero@gmail.com','123','zero');
+insert into usuario(id,email,pass,nombre) values(3,'coqui@gmail.com','123','coqui');
 
 CREATE TABLE amigos (
   usuario_id INTEGER UNSIGNED NOT NULL,

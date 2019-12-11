@@ -27,7 +27,7 @@ class MascotaManager implements IDWESEntidadManager{
             return new Actividad($fila['id'], $fila['descripcion'], $fila['fecha'], $fila['n_participantes'], $fila['lugar']);
         }
     }*/
-    return $db->obtenDatos()['id'];
+    return $db->obtenDatos()[0]['id'];
   }
 
   public static function insert(...$campos){
@@ -49,7 +49,13 @@ class MascotaManager implements IDWESEntidadManager{
   public static function delete($id){
     // toDo
   }
+  public static function getByEmail($email){
+    $db = DWESBaseDatos::obtenerInstancia();
 
+    $db -> ejecuta("SELECT m.id, m.nombre, m.email, m.pass, m.localidad,m.cp, m.telefono, m.foto_perfil,m.descripcion, m.nombre_dueno
+                        FROM usuario m WHERE email= ?", $email);
+    return $db->obtenDatos()[0];
+  }
 
 
 
