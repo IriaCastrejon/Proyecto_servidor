@@ -33,7 +33,7 @@ if(isset($_POST["submit"])) {
 
     if (count($errores)===0) {
       $resultados= MascotaManager::getByEmail($email);
-
+      
       if(count($resultados) > 0 ){// si hay resultados
           // contraseña encriptada regresda para ese email
           $clave= $resultados['pass'];
@@ -47,7 +47,7 @@ if(isset($_POST["submit"])) {
             echo $_SESSION['id'].' Las id  es <br>';
             header('Location: actividades.php');
             exit;
-            
+
 
           }else{
             $errores[] = "Clave errónea";
