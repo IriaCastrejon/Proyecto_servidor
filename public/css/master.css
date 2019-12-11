@@ -1,17 +1,112 @@
+h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
+  box-sizing: border-box;
+}
 .contenedor{
-  width: 90%;
+  width: 100%;
   margin: auto;
 }
+/* header*/
 .contenedor header{
       background-color: #ff8c00;
       color:white;
+      overflow: hidden;
+}
+.contenedor header > h1,.contenedor header > img{
+  float: left;
+}
+/* menu*/
+.contenedor nav{
+  background-color: #e0e0e0;
+}
+.contenedor nav{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+/*contenedor del login*/
+.contenedor .contenedor_del_login h1{
+  color:#ff8c00;
+  text-align: center;
+}
+.contenedor_del_login .titulo{
+  position: absolute;
+  left:63%;
+  top: 40%;
+  width: 35%;
+  background-color: rgba(0,0,0,0.31);
+}
+.contenedor_del_login .titulo{
+  color:white;
+  padding: 5px 10px;
+}
+.contenedor_del_login  img{
+  width: 100%
+}
+.contenedor_del_login .titulo p{
+  font-weight: bold;
+  color:white;
+  font-size: 38px;
+  text-align: right;
+}
+/*Formulario Login*/
+.contenedor_del_login .login {
+  width: 40%;
+  margin: auto;
+  text-align: center;
+}
+.login input{
+  text-align: center;
+  border: 2px solid #219653;
+  height: 30px;
+}
+.login ::placeholder{
+  color:#ff8c00;
+  font-weight: bold;
+  font-size: 25px;
+}
+.login .login-submit .login-button{
+  background-color:#ff8c00;
+  border: none;
+  font-weight: bold;
+  font-size: 20px;
+  color:white;
+  width:100px;
+  height: 30px;
+}
+.contenedor_del_login p {
+  color:#023116;
+  text-align: center;
+}
+.contenedor_del_login  a {
+  text-decoration: none;
 }
 
+/*formulario registro */
+.fomulario_registro .registro_tipo_cliente,.fomulario_registro  .registro{
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  border: dotted 2px #325541;
+  background-color: #c4c4c4;
+  padding: 1em 0;
+}
 
-.contenedor > footer{
+.fomulario_registro{
+  margin: 1.5em;
+}
+.fomulario_registro label{
+  margin-right: 10px;
+}
+.error{
+  color: red;
+}
+/* footer*/
+.contenedor.contenedor > footer{
   width: 100%;
   background-color: #c4c4c4;
 }
+
+
 .contenedor footer > nav ul {
   width: 60%;
   margin: auto;
@@ -26,4 +121,17 @@
   padding: 0.5em;
   float: left;
   color: #325541;/*color verde*/
+}
+
+.amigos{
+
+  width: 300px;
+  height: 100px;
+  border: 1px solid green;
+  margin:5px;
+  padding: 10px;
+}
+
+.actividades{
+
 }
