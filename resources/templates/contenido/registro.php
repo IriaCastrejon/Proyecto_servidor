@@ -66,16 +66,16 @@
     }
     // Localidad
     if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
-      $localidad=clean_input($_POST['pass']);
+      $localidad=clean_input($_POST['localidad']);
     }
     if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
-      $cp=clean_input($_POST['pass']);
+      $cp=clean_input($_POST['cp']);
     }
     if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
-      $Telefono=clean_input($_POST['pass']);
+      $Telefono=clean_input($_POST['telefono']);
     }
     if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
-      $foto=clean_input($_POST['pass']);
+      $foto=clean_input($_POST['foto']);
     }
 // si es una mascota
     if ($_SESSION['tipo_cliente']=='mascota') {
