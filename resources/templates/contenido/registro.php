@@ -117,9 +117,9 @@
       }*/
 
       $_SESSION['id']= $db->getLastId();
-      echo $_SESSION['id']. ' ultimo id insertado';
-      header("location: login.php");
-      exit;
+      echo $_SESSION['id']. ' en registro ultimo id insertado';
+      //header("location: login.php");
+      //exit;
     }// no hay errores
 
 

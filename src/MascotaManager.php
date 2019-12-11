@@ -36,7 +36,7 @@ class MascotaManager implements IDWESEntidadManager{
 
     $db= DWESBaseDatos::obtenerInstancia();
 
-    if (count($campos)=== 9) {
+    if (count($campos)=== 9) {      
         $db-> ejecuta("INSERT INTO usuario(nombre,email,pass,localidad,cp,telefono,foto_perfil,descripcion,nombre_dueno) VALUES (?,?,?,?,?,?,?,?,?)",$campos);
         $insertado=true;
     }
