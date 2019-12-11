@@ -123,9 +123,6 @@
     }// no hay errores
 
 
-
-
-
   }
   //echo $_SESSION['tipo_cliente'];
  ?>
