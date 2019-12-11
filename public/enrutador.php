@@ -21,7 +21,7 @@ if (preg_match('/\.(?:css|js|ico|png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"]))
 
 
     if($fichero == "/"){
-      header("Location: pagina1.php");
+      header("Location: login.php");
       die();
     }
 
