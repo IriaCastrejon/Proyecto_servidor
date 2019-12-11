@@ -68,13 +68,13 @@
     if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
       $localidad=clean_input($_POST['localidad']);
     }
-    if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
+    if (isset($_POST['cp']) && $_POST['cp'] != '') {
       $cp=clean_input($_POST['cp']);
     }
-    if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
+    if (isset($_POST['telefono']) && $_POST['telefono'] != '') {
       $Telefono=clean_input($_POST['telefono']);
     }
-    if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
+    if (isset($_POST['foto']) && $_POST['foto'] != '') {
       $foto=clean_input($_POST['foto']);
     }
 // si es una mascota
@@ -118,12 +118,9 @@
 
       $_SESSION['id']= $db->getLastId();
       echo $_SESSION['id']. ' en registro ultimo id insertado';
-      //header("location: login.php");
-      //exit;
+      header("location: login.php");
+      exit;
     }// no hay errores
-
-
-
 
 
   }
