@@ -36,8 +36,8 @@ class AnuncioManager implements IDWESEntidadManager{
 
     $db= DWESBaseDatos::obtenerInstancia();
 
-    if (count($campos)=== 3) {
-        $db-> ejecuta("INSERT INTO anuncio(duracion,fecha_alta,foto) VALUES (?,?,?)",$campos);
+    if (count($campos)=== 2) {
+        $db-> ejecuta("INSERT INTO anuncio(cliente_id, imagen,fecha_alta, fecha_baja, url) VALUES (?,?,?,?,?,?)",$campos);
         $insertado=true;
     }
     return $insertado;

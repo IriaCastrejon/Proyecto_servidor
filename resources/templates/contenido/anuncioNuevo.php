@@ -2,13 +2,19 @@
 
   session_start();
   echo '<pre>';
-  //print_r($_POST);
+  print_r($_POST);
   echo '</pre>';
 
+  if( !isset($_SESSION['id']) ){
+      header('Location: login.php');
+      die();
+  }
+  $id = $_SESSION['id'];
   $duracion = '';
   $fecha_alta = '';
   $foto = '';
-
+  // $fecha_baja = fecha_alta + duracion;
+  $url= '';
   $mascota=false;
   $empresa=false;
 
@@ -33,6 +39,7 @@
     // duracion
     if (isset($_POST['duracion']) && $_POST['duracion'] != '') {
       $duracion=clean_input($_POST['duracion']);
+
     }else{
       $errores['duracion']= 'introduce una duración';
     }
@@ -52,9 +59,10 @@
     if (isset($_POST['fecha_alta']) && $_POST['fecha_alta'] != '') {
       if (validarFecha($fecha_alta)) {
         $fecha_alta=clean_input($_POST['fecha_alta']);
+        //$fecha_baja = $fecha_alta + durarion;
       }
     }else{
-      $errores['fecha_alta'] = 'Introduce una fecha de alta'
+      $errores['fecha_alta'] = 'Introduce una fecha de alta';
     }
 
     //foto
@@ -62,19 +70,20 @@
       $foto = clean_input($_POST['foto']);
     }
 
+    //url
+    if (isset($_POST['url']) && $_POST['url'] != '') {
+      $url = clean_input($_POST['url']);
+    }
     //errores
     if(count($errores)==0){
       $db = DWESBaseDatos::obtenerInstancia();
+      AnuncioManager::insert($id,$foto,$fecha_alta, $fecha_baja, $url);
 
-      if ($_SESSION['tipo_cliente'] == 'cliente') { //si tiene la sesion iniciada como cliente
-        // echo 'dentro del if';
-        AnuncioManager::insert($duracion, $fecha_alta, $foto);
-      }
 
       // $_SESSION['id']= $db->getLastId();
       // echo $_SESSION['id']. ' ultimo id insertado';
       //header("location: anuncio.php");
-      exit;
+
     }// no hay errores
 
   }
@@ -83,8 +92,8 @@
 
  <div class="form_anuncio">
 
-  <?php if (isset($_SESSION['comprar'])): ?>
- <form class="registro" action="anuncioNuevo.php" method="post">
+  <?php if (isset($_SESSION['id'])): ?>
+ <form class="registro" action="anuncioOk.php" method="post">
    <!-- Duracion-->
    <?php if (isset($errores['duracion'])): ?>
      <span class="error">Debe introducir una duración</span> <br>
