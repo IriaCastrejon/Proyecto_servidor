@@ -46,16 +46,15 @@ class AnuncioManager implements IDWESEntidadManager{
   public static function obtenerAnuncioPorIdCliente($id){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT c.id, c.cliente_id, c.imagen, c.fecha_alta, c.fecha_baja, c.url
-                    FROM cliente c
-                    WHERE id in
-      (SELECT a.anuncio_id FROM anuncio a WHERE cliente_id = ? )",$id);
+    $db -> ejecuta("SELECT a.id, a.imagen, a.fecha_alta, a.fecha_baja, a.url
+                    FROM anuncio a
+                    WHERE cliente_id = ?",$id);
 
 //    if($db -> executed ){ // Se pudo ejecutar
 //        $datos = $db -> obtenDatos();
 //        if(count($datos)>0) { // Hay datos
             return array_map(function($fila){
-                return new Anuncio($fila['id'], $fila['cliente_id'], $fila['imagen'], $fila['fecha_alta'], $fila['fecha_baja'], $fila['url']);
+                return new Anuncio($fila['id'], $fila['imagen'], $fila['fecha_alta'], $fila['fecha_baja'], $fila['url']);
             },$db -> obtenDatos());
 //        }
 //    }
