@@ -58,13 +58,17 @@ class MascotaManager implements IDWESEntidadManager{
   }
 
   public static function existeEmail($email){
+  //  echo 'dentro de existe email mascota  ' ;
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT count(*)
+    $db -> ejecuta("SELECT count(*) as cantidad
                         FROM usuario  WHERE email = ?", $email);
-    if ($db->obtenDatos()[0] ==0) {
+    $datos=  $db->obtenDatos();
+    if ($datos[0]['cantidad'] > 0) {
+      //echo 'true' .' es verdad';
       return true;
     }else{
+      //echo 'false' .' no existe';
       return false;
     }
 

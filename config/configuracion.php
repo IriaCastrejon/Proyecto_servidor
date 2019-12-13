@@ -9,7 +9,9 @@ $config = [
   'user'=>'admin',
   'pass'=>'1234',
   'db_engine' => 'sqlite',
-  'db_file' => 'resources/test.sqlite3'
+  'db_file' => 'resources/test.sqlite3',
+  'img_path' => '/resources/images',
+  'img_in_url' => '/images',
 ];
 
 spl_autoload_register(function ($name){

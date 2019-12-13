@@ -9,8 +9,8 @@
   $contraseña='';
   $contraseña_V='';
   $localidad='';
-  $cp='';
-  $Telefono='';
+  $cp=NULL;
+  $Telefono=NULL;
   $foto='';
   $descripcion='';
   $nombre_dueno='';
@@ -47,14 +47,8 @@
       if (filter_var($email, FILTER_VALIDATE_EMAIL)== false) {
         $errores['email']='Formato de email no valido';
       }else{
-        if ($_SESSION['tipo_cliente']=='mascota' && MascotaManager::existeEmail($email)) {
-          $errores['email']='Este correo electronico ya está registrado';
-        }
-        if($_SESSION['tipo_cliente']=='empresa'&& EmpresaManager::existeEmail($email)){
-          $a=EmpresaManager::getByEmail($email);
-          echo ' lo que vale a <pre>';
-          print_r($a);
-          echo '</pre>';
+        if (MascotaManager::existeEmail($email) || EmpresaManager::existeEmail($email)) {
+          //echo 'entra en el correo ya existe';
           $errores['email']='Este correo electronico ya está registrado';
         }
       }
@@ -135,6 +129,7 @@
 
       $_SESSION['id']= $db->getLastId();
       echo $_SESSION['id']. ' en registro ultimo id insertado';
+      session_destroy();
       header("location: login.php");
       exit;
     }// no hay errores
@@ -152,8 +147,10 @@
      <br> <br><input type="submit" name="tipo_cliente" value="Enviar">
   </form>
   <?php endif; ?>
+  <!--------------------------------------------------->
+  <!--                   2do formulario                           -->
   <?php if (isset($_SESSION['tipo_cliente'])): ?>
- <form class="registro" action="registro.php" method="post">
+ <form class="registro" action="registro.php" method="post" enctype="multipart/form-data">
    <!-- NOMBRE-->
    <?php if (isset($errores['nombre'])): ?>
      <span class="error"><?=$errores['nombre'] ?></span> <br>

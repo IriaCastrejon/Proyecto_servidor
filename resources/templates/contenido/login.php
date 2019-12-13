@@ -7,6 +7,7 @@ $email = "";
 $pass = "";
 $errores = [];
 $passEncriptada;
+$tabla='';
 
 if(isset($_POST["submit"])) {
 
@@ -32,8 +33,21 @@ if(isset($_POST["submit"])) {
     //creación del objeto con conexion a la BD
 
     if (count($errores)===0) {
-      $resultados= MascotaManager::getByEmail($email);
-      
+
+      if( MascotaManager::existeEmail($email) ){
+        echo 'etra e ascota <br>';
+        $resultados= MascotaManager::getByEmail($email);
+        $tabla='Mascota';
+      }elseif (EmpresaManager::existeEmail($email)) {
+        echo 'etra e epresa';
+        $resultados= EmpresaManager::getByEmail($email);
+        $tabla='Empresa';
+      }else {
+        echo 'etra e else';
+        $resultados=[];
+      }
+
+
       if(count($resultados) > 0 ){// si hay resultados
           // contraseña encriptada regresda para ese email
           $clave= $resultados['pass'];
@@ -41,13 +55,19 @@ if(isset($_POST["submit"])) {
 
           if (password_verify($password,$clave)) {
             session_start();
+            $_SESSION['tipo_cliente']=$tabla;
             $_SESSION['email']=$email;
             $_SESSION['id']=$resultados['id'];
             echo $_SESSION['email'].' Las claves coinciden y este es el email <br>';
             echo $_SESSION['id'].' Las id  es <br>';
-            header('Location: actividades.php');
-            exit;
 
+            if ($tabla=='Mascota') {
+              header('Location: actividades.php');
+              exit;
+            }elseif ($tabla=='Empresa') {
+              header('Location: inicioEmpresario.php');
+              exit;
+            }
 
           }else{
             $errores[] = "Clave errónea";
@@ -60,7 +80,7 @@ if(isset($_POST["submit"])) {
 
     }// if errores =0
 
-      echo count($errores).' errores <br>';
+    echo count($errores).' errores <br>';
     var_dump($resultados);
     echo '<br>';
     echo count($resultados).' Resultados <br>';
@@ -76,11 +96,7 @@ if(isset($_GET["error"])){
 }
 
 ?>
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" media="all" href="css/estilo.css">
-</head>
-<body>
+
 
   <div class="contenedor_del_login">
       <img src="../imgs/InicioFondo1.png" alt="Perritos abrazados">
@@ -117,7 +133,3 @@ if(isset($_GET["error"])){
         <p>Registrarme</p>
       </a>
   </div>
-
-
-</body>
-</html>
