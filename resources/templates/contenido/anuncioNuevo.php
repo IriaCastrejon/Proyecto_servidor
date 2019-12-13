@@ -5,11 +5,17 @@
   print_r($_POST);
   echo '</pre>';
 
+
+
   if( !isset($_SESSION['id']) ){
       header('Location: login.php');
       die();
   }
+
+define ("MB_2", 2097152); // Esto se puede y debe sacar al config
+
   $id = $_SESSION['id'];
+  $cliente = $_SESSION['tipo_cliente'];
   $duracion = '';
   $fecha_alta = '';
   $foto = '';
@@ -33,7 +39,11 @@
   //     $empresa=true;
   //   }
   // }
+/*
+if($cliente == 'empresa'){
 
+}
+*/
 // validacion del formulario
   if (isset($_POST['comprar'])) {
 
@@ -78,8 +88,33 @@
     }
 
     //foto
-    if (isset($_POST['foto']) && $_POST['foto'] != '') {
-      $foto = clean_input($_POST['foto']);
+
+    if(count($_FILES)>0) {
+        if($_FILES['imagen']['size'] < MB_2){
+            if($_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpeg"){
+                // Gestionamos la información del fichero
+                $fichero_tmp = $_FILES["imagen"]["tmp_name"];
+                $nombre_real = basename($_FILES["imagen"]["name"]);
+                $ruta_destino = $config['img_path']."/".$nombre_real;
+
+                echo "Depuración<br>";
+                echo "$fichero_tmp <br>$nombre_real <br>$ruta_destino <br>";
+
+                /*
+                Si existe lo machacamos. Tener en cuenta
+                if (file_exists($ruta_destino)) {
+                    // Procesar error
+                }
+                */
+
+            } else {
+                $errores[] = "Fichero no soportado";
+            }
+        } else {
+            $errores[] = "Fichero gigante";
+        }
+    } else {
+        $errores[] = "Sin imagen";
     }
 
     //url
@@ -88,8 +123,29 @@
     }
     //errores
     if(count($errores)==0){
-      $db = DWESBaseDatos::obtenerInstancia();
-      AnuncioManager::insert($id,$foto,$fecha_alta, $fecha_baja, $url);
+      $id = AnuncioManager::insert($id,$nombre_real,$fecha_alta, $fecha_baja, $url);
+
+      if($id){
+          if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
+            header('Location: anuncioOk.php');
+            die();
+          } else {
+              $errores[] = "Error moviendo fichero";
+              // Ojo!!!
+              $borrado = TemaManager::delete($id);
+
+              if(!$borrado) {
+                  // Ha ocurrido un error extraño
+                  // Debemos reportarlo y que un admin
+                  // Deje la información correcta
+                  // Hay un tema sin imagen
+                  // También podríamos usar transacciones de base de datos
+              }
+          }
+      } else {
+          $errores[] = "Error en la insercción";
+      }
+
 
 
       // $_SESSION['id']= $db->getLastId();
@@ -105,7 +161,7 @@
  <div class="form_anuncio">
 
   <?php if (isset($_SESSION['id'])): ?>
- <form class="registro" action="anuncioOk.php" method="post">
+ <form class="registro" action="anuncioNuevo.php" method="post">
    <!-- Duracion-->
    <?php if (isset($errores['duracion'])): ?>
      <span class="error">Debe introducir una duración</span> <br>
@@ -118,7 +174,7 @@
    <?php endif; ?>
    <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?= $fecha_alta ?>"><br><br>
 
-   <label for="">Foto</label><input type="file" name="foto" value="<?= $foto ?>"><br>
+   <label for="">Foto</label><input type="file" name="imagen"accept="image/png, image/jpeg"><br>
 
    <label for="">Url</label><input type="text" name="url" value="<?= $url ?>"><br><br>
 
