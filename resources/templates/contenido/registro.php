@@ -80,9 +80,37 @@
     if (isset($_POST['telefono']) && $_POST['telefono'] != '') {
       $Telefono=clean_input($_POST['telefono']);
     }
-    if (isset($_POST['foto']) && $_POST['foto'] != '') {
-      $foto=clean_input($_POST['foto']);
+
+
+    if(count($_FILES)>0) {
+        if($_FILES['imagen']['size'] < MB_2){
+            if($_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpeg"){
+                // Gestionamos la información del fichero
+                $fichero_tmp = $_FILES["imagen"]["tmp_name"];
+                $nombre_real = basename($_FILES["imagen"]["name"]);
+                $ruta_destino = $config['img_path']."/".$nombre_real;
+
+                echo "Depuración<br>";
+                echo "$fichero_tmp <br>$nombre_real <br>$ruta_destino <br>";
+
+                /*
+                Si existe lo machacamos. Tener en cuenta
+                if (file_exists($ruta_destino)) {
+                    // Procesar error
+                }
+                */
+
+            } else {
+                $errores[] = "Fichero no soportado";
+            }
+        } else {
+            $errores[] = "Fichero gigante";
+        }
+    } else {
+        $errores[] = "Sin imagen";
     }
+
+
 // si es una mascota
     if ($_SESSION['tipo_cliente']=='mascota') {
       if (isset($_POST['dueño']) && $_POST['dueño'] != '') {
@@ -177,7 +205,7 @@
    <label for="">Localidad</label><input type="text" name="localidad" value="<?= $localidad ?>"><br><br>
    <label for="">Codigo Postal </label><input type="number" name="cp" value="<?= $cp ?>"><br><br>
    <label for="">Telefono</label><input type="tel" name="telefono" value="<?= $Telefono ?>"><br><br>
-   <label for="">Foto</label><input type="file" name="foto" value="<?= $foto ?>"><br><br>
+   <label for="">Foto</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br><br>
 
    <?php if ($empresa): ?>
 
