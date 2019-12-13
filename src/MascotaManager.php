@@ -77,7 +77,7 @@ class MascotaManager implements IDWESEntidadManager{
   public static function getAllById($id){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT m.id, m.nombre, m.email, m.pass, m.localidad,m.cp, m.telefono, m.foto_perfil,m.descripcion, m.nombre_dueno
+    $db -> ejecuta("SELECT m.id, m.email, m.pass, m.nombre,m.foto_perfil, m.localidad,m.cp, m.telefono,m.descripcion, m.nombre_dueno
                         FROM usuario m WHERE id = ?", $id);
 
     /*if($db -> executed ){ // Se pudo ejecutar
@@ -88,7 +88,7 @@ class MascotaManager implements IDWESEntidadManager{
         }
     }*/
     return array_map(function($fila){
-      return new Mascota($fila['id'], $fila['nombre'], $fila['email'], $fila['pass'], $fila['localidad'],$fila['cp'],$fila['telefono'],$fila['foto_perfil'],$fila['descripcion'],$fila['nombre_dueno']);
+      return new Usuarios($fila['id'], $fila['email'], $fila['pass'], $fila['nombre'],$fila['foto_perfil'],$fila['localidad'],$fila['cp'],$fila['telefono'],$fila['descripcion'],$fila['nombre_dueno']);
     }, $db -> obtenDatos());
   }
 
