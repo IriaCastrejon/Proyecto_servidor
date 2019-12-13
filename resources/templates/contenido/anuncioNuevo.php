@@ -5,7 +5,7 @@
   print_r($_POST);
   echo '</pre>';
 
-  if( !isset($_SESSION['id']) ){
+  if( !isset($_SESSION['id']) && $_SESSION['tipo_cliente']!='Empresa'){
       header('Location: login.php');
       die();
   }
