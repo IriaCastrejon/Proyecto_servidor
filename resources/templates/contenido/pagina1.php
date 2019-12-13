@@ -14,6 +14,15 @@ $resultados = [
 
  ?>
 
+
+<?php
+// $hoy = getdate();
+// print_r($hoy);
+// $fechaHoy = $hoy['mday'].'/'.$hoy['mon'].'/'.$hoy['year'];
+// echo '<br>' . $fechaHoy;
+?>
+
+
 <h1>Pag1.</h1>
 <div class="">
   Contenido 1

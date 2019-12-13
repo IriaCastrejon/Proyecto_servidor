@@ -14,6 +14,7 @@
   $fecha_alta = '';
   $foto = '';
   // $fecha_baja = fecha_alta + duracion;
+  //$fecha_baja = strtotime($fecha_alta."+ ". $duracion." days");
   $url= '';
   $mascota=false;
   $empresa=false;
@@ -39,16 +40,25 @@
     // duracion
     if (isset($_POST['duracion']) && $_POST['duracion'] != '') {
       $duracion=clean_input($_POST['duracion']);
-
     }else{
       $errores['duracion']= 'introduce una duración';
     }
 
-    //Funcion para validar la fecha
+    //Funcion para validar la fecha que sea mayor a la actual
     function validarFecha($fecha){
-    	$valores = explode('/', $fecha);
-    	if(count($valores) == 3 && checkdate($valores[1], $valores[0], $valores[2])) {
-    		return true;
+    	// $valores = explode('/', $fecha);
+    	// if(count($valores) == 3 && checkdate($valores[1], $valores[0], $valores[2])) {
+    	// 	return true;
+      // }else{
+      //   return false;
+      // }
+      $hoy = getdate();
+      //print_r($hoy);
+      $fechaHoy = $hoy['mday'].'/'.$hoy['mon'].'/'.$hoy['year'];
+      echo '<br>' . $fechaHoy;
+
+      if ($fecha > $fechaHoy) {
+        return true;
       }else{
         return false;
       }
@@ -60,6 +70,8 @@
       if (validarFecha($fecha_alta)) {
         $fecha_alta=clean_input($_POST['fecha_alta']);
         //$fecha_baja = $fecha_alta + durarion;
+      }else{
+        $errores['fecha_alta'] = 'Introduce una fecha mayor a la actual';
       }
     }else{
       $errores['fecha_alta'] = 'Introduce una fecha de alta';
@@ -106,7 +118,9 @@
    <?php endif; ?>
    <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?= $fecha_alta ?>"><br><br>
 
-   <label for="">Foto</label><input type="file" name="foto" value="<?= $foto ?>"><br><br>
+   <label for="">Foto</label><input type="file" name="foto" value="<?= $foto ?>"><br>
+
+   <label for="">Url</label><input type="text" name="url" value="<?= $url ?>"><br><br>
 
    <br><br> <input type="submit" name="comprar" value="Comprar">
 
