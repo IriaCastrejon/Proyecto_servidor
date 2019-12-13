@@ -3,6 +3,7 @@
   session_start();
   echo '<pre>';
   print_r($_POST);
+  print_r($_FILES)."fileeeee";
   echo '</pre>';
   $nombre='';
   $email='';
@@ -11,7 +12,7 @@
   $localidad='';
   $cp=NULL;
   $Telefono=NULL;
-  $foto='';
+
   $descripcion='';
   $nombre_dueno='';
   $denominacion='';
@@ -20,6 +21,7 @@
   $empresa=false;
   $tipo_cliente;
   $errores=[];
+  define ("MB_2", 2097152); // Esto se puede y debe sacar al config
   if (isset($_POST['tipo_cliente'])) {
     $_SESSION['tipo_cliente']=$_POST['cliente'];
 
@@ -34,7 +36,7 @@
 // validacion del formulario
   if (isset($_POST['enviar'])) {
 
-    // nombre
+    // nombree es esto
     if (isset($_POST['nombre']) && $_POST['nombre'] != '') {
       $nombre=clean_input($_POST['nombre']);
     }else{
@@ -146,13 +148,31 @@
 
       if ($_SESSION['tipo_cliente']== 'mascota') {
         echo 'dentro del if de mascota en registro <br>';
-        MascotaManager::insert($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$foto,$descripcion,$nombre_dueno);
+        MascotaManager::insert($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno);
+
+        if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
+          header("location: login.php");
+          exit;
+        } else {
+            $errores[] = "Error moviendo fichero";
+            // Ojo!!!
+            $borrado = TemaManager::delete($id);
+
+            if(!$borrado) {
+                // Ha ocurrido un error extraño
+                // Debemos reportarlo y que un admin
+                // Deje la información correcta
+                // Hay un tema sin imagen
+                // También podríamos usar transacciones de base de datos
+            }
+        }
       }
       if ($_SESSION['tipo_cliente']== 'empresa') {
         echo 'dentro del if de empresa en registro <br>';
         //email,pass,foto,localidad,cp,cif,telefono
           echo $cp.' dentro del if de empresa en registro <br>';
         EmpresaManager::insert($email,$pass_encriptada,$foto,$localidad,$cp,$cif,$Telefono);
+
       }
 
       $_SESSION['id']= $db->getLastId();
