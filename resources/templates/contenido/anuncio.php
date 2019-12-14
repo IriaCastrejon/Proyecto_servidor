@@ -14,6 +14,7 @@ foreach ($resultados as $fila) { ?>
      <div class="anuncios">
        <h4><?=$fila->getFechaAlta()?></h4>
        <h4><?=$fila->getUrl()?></h4>
+       <img src="<?=$fila->getFoto()?>" alt="">
      </div>
 
 <?php } ?>

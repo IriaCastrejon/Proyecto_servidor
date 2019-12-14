@@ -8,7 +8,7 @@ if( !isset($_SESSION['id']) ){
 $id=$_SESSION['id'];
 
 $ruta='';
-
+$resultados = MascotaManager::getAllById($id);
 
 ?>
 <h1>
@@ -16,4 +16,8 @@ $ruta='';
 perfil de Mascota con id: <?= $id ?>
 
 </h1>
-<img src="<?=$ruta ?>" alt="">
+
+<?php foreach ($resultados as $fila) { ?>
+
+<img src="<?=$fila->getFoto()?>" alt="">
+<?php } ?>

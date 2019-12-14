@@ -196,7 +196,10 @@ function __construct($id, $email, $contraseña, $nombre, $foto = null,$localidad
      */
     public function getFoto()
     {
-        return $this->foto;
+
+      global $config;
+      return $config['img_in_url'] . "/". $this->foto;
+
     }
 
     /**

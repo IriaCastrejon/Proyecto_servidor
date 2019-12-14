@@ -51,7 +51,8 @@ class Anuncio extends Usuarios{
      */
     public function getFoto()
     {
-        return $this->foto;
+      global $config;
+      return $config['img_in_url'] . "/". $this->foto;
     }
 
     /**
