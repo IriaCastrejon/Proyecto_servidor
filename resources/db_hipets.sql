@@ -13,12 +13,12 @@ DROP TABLE IF EXISTS participa;
 
 CREATE TABLE cliente (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  email VARCHAR(45) NULL,
-  pass VARCHAR(45) NULL,
-  foto BLOB NULL,
+  email VARCHAR(45) NOT NULL,
+  pass VARCHAR(100) NOT NULL,
+  foto VARCHAR(255) NULL,
   localidad VARCHAR(45) NULL,
   cp INTEGER UNSIGNED NULL,
-  cif VARCHAR(20) NULL,
+  cif VARCHAR(20) NOT NULL,
   telefono INTEGER UNSIGNED NULL,
   PRIMARY KEY(id)
 );
@@ -28,7 +28,7 @@ insert into cliente(id,email,pass,localidad,cp,cif,telefono) values (2,'cliente2
 CREATE TABLE anuncio (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   cliente_id INTEGER UNSIGNED NOT NULL,
-  imagen BLOB NULL,
+  imagen VARCHAR(255) NULL,
   fecha_alta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   fecha_baja DATE NULL,
   url VARCHAR(255) NULL,
@@ -53,10 +53,10 @@ insert into factura(id,cliente_id,importe,iva) values (1,2,40,16);
 
 CREATE TABLE usuario (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  email VARCHAR(45) NULL,
-  pass VARCHAR(100) NULL,
-  nombre VARCHAR(45) NULL,
-  foto_perfil BLOB NULL,
+  email VARCHAR(45) NOT NULL,
+  pass VARCHAR(100) NOT NULL,
+  nombre VARCHAR(45) NOT NULL,
+  foto_perfil VARCHAR(255) NULL,
   localidad VARCHAR(45) NULL,
   cp INTEGER NULL,
   telefono INTEGER NULL,
@@ -64,9 +64,9 @@ CREATE TABLE usuario (
   nombre_dueno VARCHAR(45) NULL,
   PRIMARY KEY(id)
 );
-insert into usuario(id,email,pass,nombre) values(1,'bigotes@gmail,com','123','bigotes');
-insert into usuario(id,email,pass,nombre) values(2,'zero@gmail,com','123','zero');
-insert into usuario(id,email,pass,nombre) values(3,'coqui@gmail,com','123','coqui');
+insert into usuario(id,email,pass,nombre) values(1,'bigotes@gmail.com','123','bigotes');
+insert into usuario(id,email,pass,nombre) values(2,'zero@gmail.com','123','zero');
+insert into usuario(id,email,pass,nombre) values(3,'coqui@gmail.com','123','coqui');
 
 CREATE TABLE amigos (
   usuario_id INTEGER UNSIGNED NOT NULL,
@@ -85,7 +85,7 @@ insert into amigos(usuario_id,usuario_id2) values(3,2);
 CREATE TABLE publicacion (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   usuario_id INTEGER UNSIGNED NOT NULL,
-  imagen BLOB NULL,
+  imagen VARCHAR(255) NULL,
   texto VARCHAR(255) NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY(id, usuario_id),

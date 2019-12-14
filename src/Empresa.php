@@ -3,31 +3,17 @@
  *
  */
 class Empresa extends Usuarios{
-     private $denominacion_social;
-     private $cif;
+  private $cif;
 
-  function __construct($id, $nombre, $email, $contraseña,$localidad = null,$cp = null,$telefono= null,$foto = null,$denominacion_social,$cif) {
+  function __construct($id,$email, $contraseña,$foto = null,$localidad = null,$cp = null,$cif,$telefono= null) {
 
-    parent:: __construct($id, $nombre, $email, $contraseña,$localidad = null,$cp = null,$telefono= null,$foto = null);
-    $this->denominacion_social=$denominacion_social;
+    parent:: __construct($id,$email, $contraseña,$foto = null,$localidad = null,$cp = null,$telefono= null);
+
     $this->cif=$cif;
 
   }
 
 
-
-  public function getDenominacion_social()
-  {
-      return $this->denominacion_social;
-  }
-
-
-  public function setDenominacion_social($denominacion_social)
-  {
-      $this->denominacion_social = $denominacion_social;
-
-      return $this;
-  }
 
 
   public function getCif()

@@ -29,6 +29,8 @@ class AmigoManager implements IDWESEntidadManager{
     return null;
   }
 
+  //SELECT * from usuario WHERE id=(SELECT id_usuaio)
+
 
 
   public static function obtenerAmigos($id){

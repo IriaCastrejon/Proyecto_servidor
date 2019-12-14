@@ -1,15 +1,15 @@
 <?php
 
-class MascotaManager implements IDWESEntidadManager{
+class EmpresaManager implements IDWESEntidadManager{
 
   public static function getAll(){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT m.id, m.nombre, m.email, m.pass, m.localidad, m.cp, m.telefono, m.foto_perfil, m.descripcion, m.nombre_dueno
-                        FROM usuario m");
+    $db -> ejecuta("SELECT c.id, c.email, c.pass, c.foto, c.localidad, c.cp, c.cif, c.telefono
+                        FROM cliente c");
 
     return array_map(function($fila){
-      return new Mascota($fila['id'], $fila['nombre'], $fila['email'], $fila['pass'], $fila['localidad'],$fila['cp'],$fila['telefono'],$fila['foto_perfil'],$fila['descripcion'],$fila['nombre_dueno']);
+      return new Empresa($fila['id'], $fila['email'], $fila['pass'], $fila['foto'], $fila['localidad'],$fila['cp'],$fila['cif'],$fila['telefono']);
     }, $db -> obtenDatos());
   }
 
@@ -17,8 +17,8 @@ class MascotaManager implements IDWESEntidadManager{
   public static function getById($id){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT m.id, m.nombre, m.email, m.pass, m.localidad,m.cp, m.telefono, m.foto_perfil,m.descripcion, m.nombre_dueno
-                        FROM usuario m WHERE id = ?", $id);
+    $db -> ejecuta("SELECT c.id, c.email, c.pass, c.foto, c.localidad, c.cp, c.cif, c.telefono
+                        FROM cliente c WHERE id = ?", $id);
 
     /*if($db -> executed ){ // Se pudo ejecutar
         $datos = $db -> obtenDatos($id);
@@ -31,15 +31,13 @@ class MascotaManager implements IDWESEntidadManager{
   }
 
   public static function insert(...$campos){
-    echo '<br> dentro del insert ';
-    echo print_r($campos);
+    echo '<br> dentro del insert de cliente';
     $insertado=false;
 
     $db= DWESBaseDatos::obtenerInstancia();
 
-
-    if (count(...$campos)=== 9) {
-        $db-> ejecuta("INSERT INTO usuario(nombre,email,pass,localidad,cp,telefono,foto_perfil,descripcion,nombre_dueno) VALUES (?,?,?,?,?,?,?,?,?)",$campos);
+    if (count($campos)=== 7) {
+        $db-> ejecuta("INSERT INTO cliente(email,pass,foto,localidad,cp,cif,telefono) VALUES (?,?,?,?,?,?,?)",$campos);
         $insertado=true;
     }
     return $insertado;
@@ -54,27 +52,27 @@ class MascotaManager implements IDWESEntidadManager{
   public static function getByEmail($email){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT m.id, m.nombre, m.email, m.pass, m.localidad,m.cp, m.telefono, m.foto_perfil,m.descripcion, m.nombre_dueno
-                        FROM usuario m WHERE email= ?", $email);
+    $db -> ejecuta("SELECT c.id, c.email, c.pass, c.foto, c.localidad, c.cp, c.cif, c.telefono
+                        FROM cliente c WHERE email = ?", $email);
     return $db->obtenDatos()[0];
   }
 
   public static function existeEmail($email){
-  //  echo 'dentro de existe email mascota  ' ;
+    //echo 'dentro de existe email empresa   ';
     $db = DWESBaseDatos::obtenerInstancia();
 
     $db -> ejecuta("SELECT count(*) as cantidad
-                        FROM usuario  WHERE email = ?", $email);
+                        FROM cliente c WHERE email = ?", $email);
+
     $datos=  $db->obtenDatos();
     if ($datos[0]['cantidad'] > 0) {
-      //echo 'true' .' es verdad';
+      //  echo 'true' .' es verdad';
       return true;
     }else{
-      //echo 'false' .' no existe';
+      //  echo 'false' .' no existe';
       return false;
     }
-
-  }
+  }//existeEmail
 
 }
  ?>

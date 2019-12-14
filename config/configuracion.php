@@ -9,7 +9,9 @@ $config = [
   'user'=>'admin',
   'pass'=>'1234',
   'db_engine' => 'sqlite',
-  'db_file' => 'resources/test.sqlite3'
+  'db_file' => 'resources/test.sqlite3',
+  'img_path' => '/resources/images',
+  'img_in_url' => '/images',
 ];
 
 spl_autoload_register(function ($name){
@@ -23,4 +25,8 @@ function clean_input($data){
   $data=stripslashes($data);
   $data=htmlspecialchars($data);
   return $data;
+}
+function startsWith ($string, $startString) {
+    $len = strlen($startString);
+    return (substr($string, 0, $len) === $startString);
 }
