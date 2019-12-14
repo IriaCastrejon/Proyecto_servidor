@@ -13,13 +13,8 @@ DROP TABLE IF EXISTS participa;
 
 CREATE TABLE cliente (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-<<<<<<< HEAD
   email VARCHAR(45) NOT NULL,
   pass VARCHAR(100) NOT NULL,
-=======
-  email VARCHAR(45) NULL,
-  pass VARCHAR(45) NULL,
->>>>>>> 6ede3a7c2afafe2b6b9db2a0728dff82facc8e21
   foto VARCHAR(255) NULL,
   localidad VARCHAR(45) NULL,
   cp INTEGER UNSIGNED NULL,

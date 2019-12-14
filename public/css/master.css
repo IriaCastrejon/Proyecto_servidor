@@ -135,3 +135,8 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 .actividades{
 
 }
+
+.small-img {
+  width: 60px;
+  height: 60px;
+}

@@ -19,5 +19,5 @@ perfil de Mascota con id: <?= $id ?>
 
 <?php foreach ($resultados as $fila) { ?>
 
-<img src="<?=$fila->getFoto()?>" alt="">
+<img class="small-img" src="<?=$fila->getFoto()?>" alt="">
 <?php } ?>
