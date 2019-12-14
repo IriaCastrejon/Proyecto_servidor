@@ -30,7 +30,7 @@ class MascotaManager implements IDWESEntidadManager{
     return $db->obtenDatos()[0]['id'];
   }
 
-  public static function insert(...$campos){
+  public static function insert($campos){
     echo '<br> dentro del insert ';
     echo print_r($campos);
     $insertado=false;

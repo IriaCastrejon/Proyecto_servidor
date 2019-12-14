@@ -25,7 +25,7 @@ if (preg_match('/\.(?:css|js|ico|png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"]))
     $titulo = $config['title'];
     $fichero = $partes[0];
     if($fichero == "/"){
-      header("Location: listado_temas.php");
+      header("Location: login.php");
       die();
     }
     // Aquí es dónde la magia ocurre
