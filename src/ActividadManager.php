@@ -82,6 +82,8 @@ class ActividadManager implements IDWESEntidadManager{
   }
 
 
+  public static function update($id, ...$campos){}
+  public static function delete($id){}
 
 
 }

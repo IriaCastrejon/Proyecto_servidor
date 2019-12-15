@@ -61,5 +61,8 @@ class AnuncioManager implements IDWESEntidadManager{
 //    return null;
   }
 
+  public static function update($id, ...$campos){}
+  public static function delete($id){}
+
 }
  ?>

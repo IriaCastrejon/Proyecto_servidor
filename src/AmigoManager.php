@@ -89,6 +89,8 @@ class AmigoManager implements IDWESEntidadManager{
 
 
 
+  public static function update($id, ...$campos){}
+
 
 }
 
