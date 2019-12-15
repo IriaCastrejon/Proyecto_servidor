@@ -12,7 +12,10 @@ $resultados = AmigoManager::obtenerAmigos($id);
 
 foreach ($resultados as $fila) { ?>
      <div class="amigos">
-       <h4><?=$fila->getNombre()?></h4>
+       <figure>
+         <img src="<?=$fila->getFoto()?>" alt="">
+         <figcaption><?=$fila->getNombre()?></figcaption>
+       </figure>
      </div>
 
 <?php } ?>
