@@ -22,11 +22,13 @@
   $empresa=false;
   $tipo_cliente;
   $errores=[];
+
   define ("MB_2", 2097152); // Esto se puede y debe sacar al config
+
   if (isset($_POST['tipo_cliente'])) {
     $_SESSION['tipo_cliente']=$_POST['cliente'];
-
   }
+
   if (isset($_SESSION['tipo_cliente'])) {
     if ($_SESSION['tipo_cliente']== 'mascota') {
       $mascota=true;
@@ -34,6 +36,7 @@
       $empresa=true;
     }
   }
+  
 // validacion del formulario
   if (isset($_POST['enviar'])) {
 
@@ -157,7 +160,7 @@
         } else {
             $errores[] = "Error moviendo fichero";
             // Ojo!!!
-            $borrado = TemaManager::delete($id);
+            $borrado = MascotaManager::delete($id);
 
             if(!$borrado) {
                 // Ha ocurrido un error extraño
@@ -168,6 +171,7 @@
             }
         }
       }
+
       if ($_SESSION['tipo_cliente']== 'empresa') {
         echo 'dentro del if de empresa en registro <br>';
         //email,pass,foto,localidad,cp,cif,telefono

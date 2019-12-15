@@ -14,6 +14,8 @@ $config = [
   'img_in_url' => '/images',
 ];
 
+define ("MB_2", 2097152);
+
 spl_autoload_register(function ($name){
   global $ROOT;
   $class_file = "$ROOT/src/$name.php";

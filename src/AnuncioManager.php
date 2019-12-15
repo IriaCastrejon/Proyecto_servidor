@@ -31,13 +31,13 @@ class AnuncioManager implements IDWESEntidadManager{
   }
 
   public static function insert(...$campos){
-    //echo '<br> dentro del insert ';
+    echo '<br> dentro del insert ';
     $insertado=false;
 
     $db= DWESBaseDatos::obtenerInstancia();
 
-    if (count($campos)=== 2) {
-        $db-> ejecuta("INSERT INTO anuncio(cliente_id, imagen,fecha_alta, fecha_baja, url) VALUES (?,?,?,?,?,?)",$campos);
+    if (count($campos)=== 5) {
+        $db-> ejecuta("INSERT INTO anuncio(cliente_id, imagen,fecha_alta, fecha_baja, url) VALUES (?,?,?,?,?)",$campos);
         $insertado=true;
     }
     return $insertado;

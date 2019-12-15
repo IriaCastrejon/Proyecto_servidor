@@ -140,3 +140,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   width: 60px;
   height: 60px;
 }
+
+.tabla{
+  text-align: center;
+}

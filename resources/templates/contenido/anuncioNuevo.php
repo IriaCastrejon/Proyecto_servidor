@@ -1,9 +1,11 @@
 <?php
 
   session_start();
+  
   echo '<pre>';
   print_r($_POST);
   echo '</pre>';
+
 
 
 
@@ -12,38 +14,28 @@
       die();
   }
 
-define ("MB_2", 2097152); // Esto se puede y debe sacar al config
+  if($_SESSION['tipo_cliente'] == 'mascota'){
+    header('Location: accesoRestringido.php');
+    die();
+  }
 
   $id = $_SESSION['id'];
-  $cliente = $_SESSION['tipo_cliente'];
   $duracion = '';
   $fecha_alta = '';
   $foto = '';
-  // $fecha_baja = fecha_alta + duracion;
-  //$fecha_baja = strtotime($fecha_alta."+ ". $duracion." days");
+  $fecha_baja = '';
   $url= '';
   $mascota=false;
   $empresa=false;
 
   $errores=[];
 
-  // if (isset($_POST['tipo_cliente'])) {
-  //   $_SESSION['tipo_cliente']=$_POST['cliente'];
-  // }
+  define("ERROR_FECHA_MAYOR", 0);
+  define("ERROR_FECHA_NO", 1);
 
-  //Controlar que sea una empresa
-  // if (isset($_SESSION['tipo_cliente'])) {
-  //   if ($_SESSION['tipo_cliente'] == 'mascota') {
-  //     $mascota=true;
-  //   }else{
-  //     $empresa=true;
-  //   }
-  // }
-/*
-if($cliente == 'empresa'){
 
-}
-*/
+
+
 // validacion del formulario
   if (isset($_POST['comprar'])) {
 
@@ -51,40 +43,24 @@ if($cliente == 'empresa'){
     if (isset($_POST['duracion']) && $_POST['duracion'] != '') {
       $duracion=clean_input($_POST['duracion']);
     }else{
-      $errores['duracion']= 'introduce una duración';
+      $errores['duracion']= true;
     }
 
-    //Funcion para validar la fecha que sea mayor a la actual
-    function validarFecha($fecha){
-    	// $valores = explode('/', $fecha);
-    	// if(count($valores) == 3 && checkdate($valores[1], $valores[0], $valores[2])) {
-    	// 	return true;
-      // }else{
-      //   return false;
-      // }
-      $hoy = getdate();
-      //print_r($hoy);
-      $fechaHoy = $hoy['mday'].'/'.$hoy['mon'].'/'.$hoy['year'];
-      echo '<br>' . $fechaHoy;
 
-      if ($fecha > $fechaHoy) {
-        return true;
-      }else{
-        return false;
-      }
-    }
-    // validarFecha($fecha);
 
     // fecha_alta
     if (isset($_POST['fecha_alta']) && $_POST['fecha_alta'] != '') {
-      if (validarFecha($fecha_alta)) {
+      if (validarFecha($_POST['fecha_alta'])) {
         $fecha_alta=clean_input($_POST['fecha_alta']);
-        //$fecha_baja = $fecha_alta + durarion;
+        $fecha_baja = strtotime($fecha_alta. "+ $duracion days");
+
+        $fecha_baja = date('Y-m-d',$fecha_baja);
+
       }else{
-        $errores['fecha_alta'] = 'Introduce una fecha mayor a la actual';
+        $errores['fecha_alta'] = ERROR_FECHA_MAYOR;
       }
     }else{
-      $errores['fecha_alta'] = 'Introduce una fecha de alta';
+      $errores['fecha_alta'] = ERROR_FECHA_NO;
     }
 
     //foto
@@ -120,19 +96,24 @@ if($cliente == 'empresa'){
     //url
     if (isset($_POST['url']) && $_POST['url'] != '') {
       $url = clean_input($_POST['url']);
+    }else{
+      $errores['url']= true;
     }
     //errores
     if(count($errores)==0){
-      $id = AnuncioManager::insert($id,$nombre_real,$fecha_alta, $fecha_baja, $url);
+      $db= DWESBaseDatos::obtenerInstancia();
+      AnuncioManager::insert($id,$nombre_real,$fecha_alta, $fecha_baja, $url);
 
-      if($id){
+      header('Location: anuncio.php');
+      die();
+
           if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
-            header('Location: anuncioOk.php');
-            die();
+            header('Location: anuncio.php');
+            exit;
           } else {
               $errores[] = "Error moviendo fichero";
               // Ojo!!!
-              $borrado = TemaManager::delete($id);
+              $borrado = AnuncioManager::delete($id);
 
               if(!$borrado) {
                   // Ha ocurrido un error extraño
@@ -142,8 +123,7 @@ if($cliente == 'empresa'){
                   // También podríamos usar transacciones de base de datos
               }
           }
-      } else {
-          $errores[] = "Error en la insercción";
+
       }
 
 
@@ -154,33 +134,49 @@ if($cliente == 'empresa'){
 
     }// no hay errores
 
-  }
+
   //echo $_SESSION['tipo_cliente'];
  ?>
 
  <div class="form_anuncio">
 
   <?php if (isset($_SESSION['id'])): ?>
- <form class="registro" action="anuncioNuevo.php" method="post">
+ <form class="registro" action="anuncioNuevo.php" method="post"  enctype="multipart/form-data" >
    <!-- Duracion-->
    <?php if (isset($errores['duracion'])): ?>
      <span class="error">Debe introducir una duración</span> <br>
    <?php endif; ?>
-   <label for=""> Duración </label><input type="text" name="duracion" value=" <?= $duracion ?>"><br><br>
+   <label for=""> Duración </label><input type="text" name="duracion" value="<?=$duracion?>"><br><br>
 
-   <!-- EMAIL-->
-   <?php if (isset($errores['fecha_alta'])): ?>
-     <span class="error"> Debe introducir una fecha de alta </span> <br>
+   <!-- FECHA ALTA-->
+   <?php if (isset($errores['fecha_alta'])){
+           if ($errores['fecha_alta'] == ERROR_FECHA_MAYOR ){ ?>
+             <span class="error"> Introduce una fecha mayor a la actual </span> <br>
+           <?php }else if($errores['fecha_alta'] == ERROR_FECHA_NO){ ?>
+             <span class="error"> Introduce una fecha</span> <br>
+    <?php }
+         } ?>
+
+   <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?=$fecha_alta?>"><br><br>
+
+   <label for="">Foto</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
+
+   <?php if (isset($errores['url'])): ?>
+     <span class="error"> Debe introducir una url </span> <br>
    <?php endif; ?>
-   <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?= $fecha_alta ?>"><br><br>
-
-   <label for="">Foto</label><input type="file" name="imagen"accept="image/png, image/jpeg"><br>
-
-   <label for="">Url</label><input type="text" name="url" value="<?= $url ?>"><br><br>
+   <label for="">Url</label><input type="text" name="url" value="<?=$url?>"><br><br>
 
    <br><br> <input type="submit" name="comprar" value="Comprar">
 
   </form>
-  <?php endif; ?>
+  <?php endif;
+
+
+  echo '<pre>';
+  print_r($errores);
+  print_r($_FILES);
+  echo '</pre>';
+
+  ?>
 
  </div>

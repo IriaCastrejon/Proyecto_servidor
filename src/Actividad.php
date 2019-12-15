@@ -5,13 +5,14 @@ class Actividad {
   private $id;
   private $descripcion;
   private $fecha;
-  //private $n_participantes;
+  private $nombre;
   private $lugar;
 
 
 
-  function __construct($id, $descripcion, $fecha, $lugar){
+  function __construct($id, $nombre,$descripcion, $fecha, $lugar){
     $this -> id = $id;
+    $this -> nombre = $nombre;
     $this -> descripcion = $descripcion;
     $this -> fecha = $fecha;
 //    $this -> n_participantes = $n_participantes;
@@ -92,31 +93,6 @@ class Actividad {
 
 
     /**
-     * Get the value of n Participantes
-     *
-     * @return mixed
-     */
-/*    public function getNParticipantes()
-    {
-        return $this->n_participantes;
-    }
-
-    /**
-     * Set the value of n Participantes
-     *
-     * @param mixed $n_participantes
-     *
-     * @return self
-     */
-/*
-    public function setNParticipantes($n_participantes)
-    {
-        $this->n_participantes = $n_participantes;
-
-        return $this;
-    }
-
-    /**
      * Get the value of Lugar
      *
      * @return mixed
@@ -136,6 +112,31 @@ class Actividad {
     public function setLugar($lugar)
     {
         $this->lugar = $lugar;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Nombre
+     *
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set the value of Nombre
+     *
+     * @param mixed $nombre
+     *
+     * @return self
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
 
         return $this;
     }

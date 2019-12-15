@@ -99,7 +99,8 @@ insert into publicacion(id,usuario_id,texto) values(3,3,'paseito');
 
 CREATE TABLE actividad (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(20) NULL,
+  nombre VARCHAR(15) NOT NULL,
+  descripcion VARCHAR(45) NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   lugar VARCHAR(45) NULL,
   PRIMARY KEY(id)
