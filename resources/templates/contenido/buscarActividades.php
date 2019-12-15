@@ -17,10 +17,11 @@ $id=$_SESSION['id'];
 $resultados = ActividadManager::obtenerActividadNoParticipa($id);
 
 
+
 foreach ($resultados as $fila) { ?>
      <div class="actividades">
        <h4>
-         <a href="detalleActividad.php?idActividad=<?=$fila->getId()?>"><?=$fila->getNombre()?></a>
+         <a href="detalleActividad.php?participa=false&idActividad=<?=$fila->getId()?>"><?=$fila->getNombre()?></a>
 
        </h4>
      </div>

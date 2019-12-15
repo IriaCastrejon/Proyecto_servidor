@@ -11,9 +11,31 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
   die();
 }
 
+$idUsuario = $_SESSION['id'];
 $idActividad = $_GET['idActividad'];
+$participa = $_GET['participa'];
+
 $actividad = ActividadManager::getById($idActividad);
 $participantes = ActividadManager::numeroParticipantes($idActividad);
+
+if (isset($_POST['participar'])) {
+
+  $db= DWESBaseDatos::obtenerInstancia();
+  ParticipaManager::insert($idUsuario,$idActividad);
+  header('Location: buscarActividades.php');
+  die();
+
+}
+
+
+if (isset($_POST['desapuntarse'])) {
+
+  $db= DWESBaseDatos::obtenerInstancia();
+  ParticipaManager::delete($idUsuario,$idActividad);
+  header('Location: actividades.php');
+  die();
+
+}
 
 
 ?>
@@ -37,4 +59,21 @@ $participantes = ActividadManager::numeroParticipantes($idActividad);
     </tr>
   </tbody>
 </table>
+
+
+
+
+    <form class="" action="detalleActividad.php?idActividad=<?=$idActividad?>" method="post">
+      <?php if($participa == 'false'){ ?>
+              <input type="submit" name="participar" value="Participar">
+    <?php }else{ ?>
+              <input type="submit" name="desapuntarse" value="No Participar">
+
+    <?php } ?>
+    </form>
+
+
+
+
+
 </div>

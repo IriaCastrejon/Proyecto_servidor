@@ -45,8 +45,11 @@ class ParticipaManager implements IDWESEntidadManager{
   }
 
 
-  public static function delete($id){
-
+  public static function delete(...$campos){
+      $db= DWESBaseDatos::obtenerInstancia();
+      if (count($campos)=== 2) {
+        $db-> ejecuta("DELETE FROM participa WHERE usuario_id = ? AND actividad_id = ?",$campos);
+      }
   }
 
 
