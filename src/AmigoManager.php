@@ -29,7 +29,7 @@ class AmigoManager implements IDWESEntidadManager{
     return null;
   }
 
-  //SELECT * from usuario WHERE id=(SELECT id_usuaio)
+
 
 
 
@@ -39,16 +39,57 @@ class AmigoManager implements IDWESEntidadManager{
     $db -> ejecuta("SELECT u.id, u.email, u.pass, u.nombre, u.foto_perfil, u.localidad, u.cp, u.telefono FROM usuario u WHERE id IN
       (SELECT a.usuario_id2 FROM amigos a WHERE a.usuario_id = ?) ", $id);
 
+        return array_map(function($fila){
+          return new Usuarios($fila['id'], $fila['email'], $fila['pass'],$fila['nombre'], $fila['foto_perfil'], $fila['localidad'], $fila['cp'], $fila['telefono']);
+        },$db -> obtenDatos());
 
+  }
+
+
+
+  public static function obtenerSeguidores($id){
+    $db = DWESBaseDatos::obtenerInstancia();
+
+    $db -> ejecuta("SELECT u.id, u.email, u.pass, u.nombre, u.foto_perfil, u.localidad, u.cp, u.telefono FROM usuario u WHERE id IN
+      (SELECT a.usuario_id FROM amigos a WHERE a.usuario_id2 = ?) ", $id);
 
         return array_map(function($fila){
           return new Usuarios($fila['id'], $fila['email'], $fila['pass'],$fila['nombre'], $fila['foto_perfil'], $fila['localidad'], $fila['cp'], $fila['telefono']);
         },$db -> obtenDatos());
 
+  }
 
 
+  public static function obtenerNoAmigos($id){
+    $db = DWESBaseDatos::obtenerInstancia();
+
+    $db -> ejecuta("SELECT u.id, u.email, u.pass, u.nombre, u.foto_perfil, u.localidad, u.cp, u.telefono FROM usuario u WHERE id NOT IN
+      (SELECT a.usuario_id2 FROM amigos a WHERE a.usuario_id = ?) ", $id);
+
+        return array_map(function($fila){
+          return new Usuarios($fila['id'], $fila['email'], $fila['pass'],$fila['nombre'], $fila['foto_perfil'], $fila['localidad'], $fila['cp'], $fila['telefono']);
+        },$db -> obtenDatos());
 
   }
+
+  public static function insert(...$campos){
+    $db= DWESBaseDatos::obtenerInstancia();
+    if (count($campos)=== 2) {
+        $db-> ejecuta("INSERT INTO amigos (usuario_id,usuario_id2) VALUES (?,?)",$campos);
+
+    }
+  }
+
+  public static function delete(...$campos){
+      $db= DWESBaseDatos::obtenerInstancia();
+      if (count($campos)=== 2) {
+        $db-> ejecuta("DELETE FROM amigos WHERE usuario_id = ? AND usuario_id2 = ?",$campos);
+      }
+  }
+
+
+
+
 }
 
 

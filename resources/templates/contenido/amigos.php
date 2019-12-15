@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-  echo $_SESSION['id'].' Las id  es <br>';
+
 if( !isset($_SESSION['id']) ){
     header('Location: login.php');
     die();
@@ -13,15 +13,70 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 }
 
 $id=$_SESSION['id'];
+$id_dejar = $_GET['idDejar'];
 
-$resultados = AmigoManager::obtenerAmigos($id);
+if(isset($_POST['unfollow'])) {
+  $db= DWESBaseDatos::obtenerInstancia();
+  AmigoManager::delete($id,$id_dejar);
+  header('Location: amigos.php');
+  die();
 
-foreach ($resultados as $fila) { ?>
-     <div class="amigos">
-       <figure>
-         <img src="<?=$fila->getFoto()?>" alt="">
-         <figcaption><?=$fila->getNombre()?></figcaption>
-       </figure>
-     </div>
+}
 
-<?php } ?>
+?>
+
+
+<a href="buscarAmigos.php">Buscar Amigos</a>
+
+<?php
+
+$resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
+$resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
+
+?>
+<div class="amigos">
+
+
+   <table>
+     <thead>
+       <tr>
+         <th>SIGUIENDO</th>
+
+       </tr>
+     </thead>
+
+     <tbody>
+       <?php foreach ($resultadosSiguiendo as $fila) {
+
+         ?>
+         <tr>
+           <td>
+             <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
+             <form class="" action="amigos.php?idDejar=<?=$fila->getId()?>" method="post">
+               <input type="submit" name="unfollow" value="Dejar de seguir">
+             </form>
+           </td>
+         </tr>
+        <?php } ?>
+     </tbody>
+
+   </table>
+
+   <table>
+     <thead>
+       <tr>
+         <th>SEGUIDORES</th>
+
+       </tr>
+     </thead>
+
+     <tbody>
+       <?php foreach ($resultadosSeguidores as $fila) { ?>
+         <tr>
+           <td><img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?></td>
+         </tr>
+        <?php } ?>
+     </tbody>
+
+   </table>
+</div>
