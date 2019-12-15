@@ -106,9 +106,7 @@ CREATE TABLE actividad (
   PRIMARY KEY(id)
 );
 
-insert into actividad(id,descripcion,n_participantes,lugar) values(1,'ida al parqie',5,'madrid rio');
-insert into actividad(id,descripcion,n_participantes,lugar) values(2,'correr',3,'paseoDelicias');
-insert into actividad(id,descripcion,n_participantes,lugar) values(3,'ida al parqie',1,'retiro');
+
 
 CREATE TABLE comentario (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
