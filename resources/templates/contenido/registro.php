@@ -3,7 +3,8 @@
   session_start();
   echo '<pre>';
   print_r($_POST);
-  print_r($_FILES)."fileeeee";
+  print_r($_FILES);
+  print_r($_SESSION);
   echo '</pre>';
   $nombre='';
   $email='';
@@ -128,12 +129,12 @@
 
     }else {
       //denominacion
-      if (isset($_POST['denominacion']) && $_POST['denominacion'] != '') {
+      /*if (isset($_POST['denominacion']) && $_POST['denominacion'] != '') {
         $denominacion=clean_input($_POST['denominacion']);
       }else {
       $errores['denominacion']='Debe rellenar este campo';
-      }
-      // descripcion
+    }*/
+      // cif
       if (isset($_POST['cif']) && $_POST['cif'] != '') {
         $cif=clean_input($_POST['cif']);
       }else {
@@ -171,8 +172,24 @@
         echo 'dentro del if de empresa en registro <br>';
         //email,pass,foto,localidad,cp,cif,telefono
           echo $cp.' dentro del if de empresa en registro <br>';
-        EmpresaManager::insert($email,$pass_encriptada,$foto,$localidad,$cp,$cif,$Telefono);
+        EmpresaManager::insert($email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
 
+        if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
+          header("location: login.php");
+          exit;
+        } else {
+            $errores[] = "Error moviendo fichero";
+            // Ojo!!!
+            $borrado = EmpresaManager::delete($id);
+
+            if(!$borrado) {
+                // Ha ocurrido un error extraño
+                // Debemos reportarlo y que un admin
+                // Deje la información correcta
+                // Hay un tema sin imagen
+                // También podríamos usar transacciones de base de datos
+            }
+        }
       }
 
       $_SESSION['id']= $db->getLastId();
@@ -229,10 +246,12 @@
 
    <?php if ($empresa): ?>
 
+
      <?php if (isset($errores['denominacion'])): ?>
+
        <span class="error"><?=$errores['denominacion'] ?></span> <br>
      <?php endif; ?>
-     <label for="">Denominacion social</label> <input type="text" name="denominacion" value="<?= $denominacion ?>"><br><br>
+<!--     <label for="">Denominacion social</label> <input type="text" name="denominacion" value="<?= $denominacion ?>"><br><br>-->
 
      <?php if (isset($errores['cif'])): ?>
        <span class="error"><?=$errores['cif'] ?></span> <br>

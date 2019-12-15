@@ -37,11 +37,11 @@ if(isset($_POST["submit"])) {
       if( MascotaManager::existeEmail($email) ){
         echo 'etra e ascota <br>';
         $resultados= MascotaManager::getByEmail($email);
-        $tabla='Mascota';
+        $tabla='mascota';
       }elseif (EmpresaManager::existeEmail($email)) {
         echo 'etra e epresa';
         $resultados= EmpresaManager::getByEmail($email);
-        $tabla='Empresa';
+        $tabla='empresa';
       }else {
         echo 'etra e else';
         $resultados=[];
@@ -61,10 +61,10 @@ if(isset($_POST["submit"])) {
             echo $_SESSION['email'].' Las claves coinciden y este es el email <br>';
             echo $_SESSION['id'].' Las id  es <br>';
 
-            if ($tabla=='Mascota') {
+            if ($tabla=='mascota') {
               header('Location: actividades.php');
               exit;
-            }elseif ($tabla=='Empresa') {
+            }elseif ($tabla=='empresa') {
               header('Location: inicioEmpresario.php');
               exit;
             }

@@ -5,16 +5,16 @@ class Actividad {
   private $id;
   private $descripcion;
   private $fecha;
-  private $n_participantes;
+  //private $n_participantes;
   private $lugar;
 
 
 
-  function __construct($id, $descripcion, $fecha, $n_participantes, $lugar){
+  function __construct($id, $descripcion, $fecha, $lugar){
     $this -> id = $id;
     $this -> descripcion = $descripcion;
     $this -> fecha = $fecha;
-    $this -> n_participantes = $n_participantes;
+//    $this -> n_participantes = $n_participantes;
     $this -> lugar = $lugar;
   }
 
@@ -90,12 +90,13 @@ class Actividad {
         return $this;
     }
 
+
     /**
      * Get the value of n Participantes
      *
      * @return mixed
      */
-    public function getNParticipantes()
+/*    public function getNParticipantes()
     {
         return $this->n_participantes;
     }
@@ -107,6 +108,7 @@ class Actividad {
      *
      * @return self
      */
+/*
     public function setNParticipantes($n_participantes)
     {
         $this->n_participantes = $n_participantes;
