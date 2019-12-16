@@ -5,6 +5,7 @@ session_start();
   if($_SESSION['tipo_cliente'] == 'mascota'){ ?>
 
     <nav class="menu">
+       <a href="inicio.php">Inicio</a>    
       <a href="actividades.php">Mis actividades</a>
       <a href="amigos.php">Mis Amigos</a>
       <a href="perfil.php">Mi perfil</a>

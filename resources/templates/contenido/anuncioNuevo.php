@@ -25,7 +25,6 @@
   $foto = '';
   $fecha_baja = '';
   $url= '';
-  $mascota=false;
   $empresa=false;
 
   $precio= 0;
@@ -102,6 +101,9 @@
     } else {
         $errores[] = "Sin imagen";
     }
+    // else{
+    //   $errores['foto'] = 'Introduce una foto';
+    // }
 
 
     //errores
@@ -133,9 +135,9 @@
 
 
 
-      // $_SESSION['id']= $db->getLastId();
-      // echo $_SESSION['id']. ' ultimo id insertado';
-      //header("location: anuncio.php");
+      //$_SESSION['id']= $db->getLastId();
+      //echo $_SESSION['id']. ' ultimo id insertado';
+      header("location: anuncio.php");
 
     }// no hay errores
 
@@ -151,7 +153,7 @@
    <?php if (isset($errores['duracion'])): ?>
      <span class="error">Debe introducir una duración</span> <br>
    <?php endif; ?>
-   <label for=""> Duración </label><input type="number" name="duracion" value="<?=$duracion?>" min="1"><br><br>
+   <label for=""> Duración </label><input type="number" name="duracion" value="<?=$duracion?>" min="1" placeholder='Número de días'><br><br>
 
 
    <!-- URL-->
@@ -171,7 +173,7 @@
   <?php } ?>
    <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?=$fecha_alta?>"><br><br>
 
-   <label for="">Foto</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
+   <br><br>
 
     <h4> Total a pagar:
       <?php if (isset($_POST['calcular'])): ?>

@@ -266,3 +266,139 @@ text-align: center;
 .tabla{
   text-align: center;
 }
+
+/*============================= INICIO ============================*/
+.contendor_inicio{
+  overflow: hidden;
+}
+/*======== ANUNCIO NUEVO - FORMULARIO =======*/
+.form_anuncio {
+    color: #FF8C00; /*naranja*/
+    font-size: 1em;
+    width: 35em;
+    /* border: solid; */
+    margin: auto;
+    margin-bottom: 5em;
+    background-color: #E0E0E0; /*gris claro*/
+    padding: 4em;
+}
+  .form_anuncio input:first-of-type {
+      border: 0.2em solid #27AE60; /*verde*/
+  }
+  .form_anuncio input:nth-of-type(2) {
+    border: 0.2em solid #27AE60;
+  }
+  .form_anuncio h4, span{
+    color: black;
+  }
+  /* .form_anuncio input:nth-of-type(3) {
+      background-color: #27AE60;
+      color: white;
+      border: #27AE60 solid;
+  }
+  .form_anuncio input[type="file"] {
+      background-color: #27AE60;
+      color: white;
+      border: #27AE60 solid;
+  } */
+  .botones{
+    width: 11.89em;
+    /* border: solid; */
+    margin: auto;
+  }
+  .botones input:first-of-type {
+      background-color: #FF8C00; /*verde*/
+      color: white;
+      border-color: #FF8C00 ;
+      border-radius: 3px;
+      padding: 5px 15px;
+  }
+  .botones input:last-of-type{
+      background-color: #27AE60; /*verde*/
+      color: white;
+      border-color: #27AE60 ;
+      border-radius: 3px;
+      padding: 5px 15px;
+  }
+
+/*======== ANUNCIOS =======*/
+.contenedor_anuncios {
+    width: 90%;
+    /* outline: solid; */
+    margin: 0 auto;
+    overflow: auto;
+    margin-bottom: 3em;
+}
+  .contenedor_anuncios h1 {
+      text-align: center;
+      color: #27AE60; /*verde*/
+  }
+  .anuncios {
+    width: 30%;
+    border: solid 0.3em #FF8C00; /*naranja*/
+    float: left;
+    margin: 0 1.6%;
+    margin-bottom: 1em;
+  }
+  .anuncios h5 {
+    float: left;
+    /* outline: solid; */
+    margin: 1em;
+    text-align: center;
+  }
+  .anuncios h5:nth-of-type(2) {
+      padding: 0 1.3em;
+  }
+  .anuncios img{
+    width: 100%;
+  }
+
+/*======== INICIO =======*/
+.contendor_inicio div{
+  /* outline: dotted red; */
+  float: left;
+}
+.c_publicaciones{
+  width: 73%;
+  height: 35em;
+  margin-right: 2%;
+}
+.c_publicaciones img {
+  width: 56em;
+  margin: 0 1em 0 2em;
+  height: 18em;
+}
+.c_actividad{
+  width: 25%;
+  height: 15em;
+  background-color: #E0E0E0; /*gris claro*/
+  margin-bottom: 1em;
+}
+  .c_actividad img{ width: 100%; }
+  .c_actividad .actividadInicio{
+    width: 90%;
+    margin: 0 auto;
+    margin-left: 5%;
+  }
+  .c_actividad p{
+    text-align: center;
+    font-size: 15px;
+  }
+  .c_actividad p:nth-of-type(2){
+    text-align: justify;
+    margin: 0 1em 1em;
+  }
+.c_anuncios{
+  width: 25%;
+  background-color: #E0E0E0; /*gris claro*/
+}
+  .c_anuncios img{ width: 100%; }
+  .c_anuncios .anuncioInicio{
+    width: 90%;
+    margin: 0 auto;
+    margin-left: 5%;
+  }
+  .c_anuncios p{
+    text-align: center;
+    font-size: 15px;
+  }

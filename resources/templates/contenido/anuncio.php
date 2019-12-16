@@ -6,6 +6,7 @@ if( !isset($_SESSION['id']) ){
     header('Location: login.php');
     die();
 }
+
 $id=$_SESSION['id'];
 define("PRECIO_DIA", 25);
 
