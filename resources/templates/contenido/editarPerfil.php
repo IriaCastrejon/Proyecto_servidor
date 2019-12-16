@@ -1,6 +1,6 @@
 <?php
 
-print_r($_POST);
+//print_r($_POST);
 $imagen='';
 $errores=[];
 
@@ -56,8 +56,9 @@ if ($_POST['enviar']=="Realizar cambios") {
  ?>
 
  <div class="cambiar_foto">
+   <h2>Modificar foto de perfil </h2>
    <form class="" action="editarPerfil.php" method="post" enctype="multipart/form-data">
-     <label for="">Cambiar foto de perfil</label><input type="file" name="imagen" value="Cambiar"><br>
-     <input type="submit" name="enviar" value="Realizar cambios">
+     <h3>Subir nueva foto</h3><input type="file" name="imagen" value=""><br><br>
+     <input class="enviar" type="submit" name="enviar" value="Cambiar"><br><br>
    </form>
  </div>

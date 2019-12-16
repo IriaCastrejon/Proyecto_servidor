@@ -13,7 +13,7 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 $errores=[];
 $imagen_nombre='';
 $contenido='';
-print_r($_POST);
+//print_r($_POST);
 
 if ($_POST['enviar']== 'Publicar') {
 
@@ -111,11 +111,15 @@ if (count($errores)==0) {
 }
 
  ?>
- <form class="" action="publicacion.php" method="post" enctype="multipart/form-data">
-   <label for=""> Texto </label> <input type="textarea" name="contenido" value="<?= $contenido ?>"> <br>
-   <label for="">Subir foto</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br><br>
-   <?php foreach ($errores as $key => $value): ?>
-     <span class="error"><?=$value ?></span>
-   <?php endforeach; ?>
-   <br><input type="submit" name="enviar" value="Publicar">
- </form>
+ <div class="nuevaPublicacion">
+
+   <form  action="publicacion.php" method="post" enctype="multipart/form-data">
+    <h2>Comparte lo que piensas</h2>
+     <input type="textarea" name="contenido" value="<?= $contenido ?>"> <br>
+      <h3>Agrega una imagen</h3><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
+     <?php foreach ($errores as $key => $value): ?>
+       <span class="error"><?=$value ?></span>
+     <?php endforeach; ?>
+     <br><br><input class="enviar" type="submit" name="enviar" value="Publicar"><br><br>
+   </form>
+ </div>
