@@ -1,8 +1,9 @@
 <nav class="menu">
-  <a href="actividades.php">actividades</a>
-  <a href="amigos.php">amigos</a>
-  <a href="registro.php">registro</a>
-  <a href="anuncio.php">anuncio</a>
+  <a href="actividades.php">Actividades</a>
+  <a href="amigos.php">Amigos</a>
+  <a href="registro.php">Registro</a>
+  <a href="anuncio.php">Anuncio</a>
   <a href="anuncioNuevo.php">Anuncio NUEVO</a>
   <a href="perfil.php">Mi perfil</a>
+  <a href="inicio.php">Inicio</a>
 </nav>

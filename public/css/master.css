@@ -144,15 +144,20 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 .actividades{
 
 }
-
+/*============================= INICIO ============================*/
+.contendor_inicio{
+  overflow: hidden;
+}
 /*======== ANUNCIO NUEVO - FORMULARIO =======*/
 .form_anuncio {
     color: #FF8C00; /*naranja*/
     font-size: 1em;
-    width: 30em;
+    width: 35em;
     /* border: solid; */
     margin: auto;
     margin-bottom: 5em;
+    background-color: #E0E0E0; /*gris claro*/
+    padding: 4em;
 }
   .form_anuncio input:first-of-type {
       border: 0.2em solid #27AE60; /*verde*/
@@ -223,4 +228,54 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   }
   .anuncios img{
     width: 100%;
+  }
+
+/*======== INICIO =======*/
+.contendor_inicio div{
+  /* outline: dotted red; */
+  float: left;
+}
+.c_publicaciones{
+  width: 73%;
+  height: 35em;
+  margin-right: 2%;
+}
+.c_publicaciones img {
+  width: 56em;
+  margin: 0 1em 0 2em;
+  height: 18em;
+}
+.c_actividad{
+  width: 25%;
+  height: 15em;
+  background-color: #E0E0E0; /*gris claro*/
+  margin-bottom: 1em;
+}
+  .c_actividad img{ width: 100%; }
+  .c_actividad .actividadInicio{
+    width: 90%;
+    margin: 0 auto;
+    margin-left: 5%;
+  }
+  .c_actividad p{
+    text-align: center;
+    font-size: 15px;
+  }
+  .c_actividad p:nth-of-type(2){
+    text-align: justify;
+    margin: 0 1em 1em;
+  }
+.c_anuncios{
+  width: 25%;
+  background-color: #E0E0E0; /*gris claro*/
+}
+  .c_anuncios img{ width: 100%; }
+  .c_anuncios .anuncioInicio{
+    width: 90%;
+    margin: 0 auto;
+    margin-left: 5%;
+  }
+  .c_anuncios p{
+    text-align: center;
+    font-size: 15px;
   }
