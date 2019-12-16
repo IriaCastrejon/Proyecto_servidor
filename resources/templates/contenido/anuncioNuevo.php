@@ -93,13 +93,13 @@
                 */
 
             } else {
-                $errores[] = "Fichero no soportado";
+                $errores['foto'] = "Fichero no soportado";
             }
         } else {
-            $errores[] = "Fichero gigante";
+            $errores['foto'] = "Fichero gigante";
         }
     } else {
-        $errores[] = "Sin imagen";
+        $errores['foto'] = "Sin imagen";
     }
     // else{
     //   $errores['foto'] = 'Introduce una foto';
@@ -173,6 +173,10 @@
   <?php } ?>
    <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?=$fecha_alta?>"><br><br>
 
+   <?php if (isset($errores['foto'])): ?>
+        <span class="error"><?= $errores['foto']?> </span> <br><br>
+   <?php endif; ?>
+   <label for=""> Foto </label><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
    <br><br>
 
     <h4> Total a pagar:

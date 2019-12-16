@@ -25,6 +25,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   padding: 10px;
   color: black;
   font-weight: bold;
+  border-right: 4px solid white;
 }
 .contenedor nav a:visited,.contenedor nav a:link{
   color: black;
@@ -226,9 +227,8 @@ text-align: center;
 .contenedor > footer{
   width: 100%;
   background-color: #c4c4c4;
+  clear: both;
 }
-
-
 .contenedor footer > nav ul {
   width: 60%;
   margin: auto;
@@ -275,6 +275,7 @@ text-align: center;
 .form_anuncio {
     color: #FF8C00; /*naranja*/
     font-size: 1em;
+    font-weight: bold;
     width: 35em;
     /* border: solid; */
     margin: auto;
@@ -282,12 +283,13 @@ text-align: center;
     background-color: #E0E0E0; /*gris claro*/
     padding: 4em;
 }
-  .form_anuncio input:first-of-type {
-      border: 0.2em solid #27AE60; /*verde*/
+  .form_anuncio input {
+      border: 0.15em solid #27AE60; /*verde*/
   }
-  .form_anuncio input:nth-of-type(2) {
-    border: 0.2em solid #27AE60;
+  .form_anuncio input:last-of-type {
+      border: 0.15em solid transparent; /*verde*/
   }
+
   .form_anuncio h4, span{
     color: black;
   }
@@ -321,6 +323,12 @@ text-align: center;
       padding: 5px 15px;
   }
 
+::-webkit-input-placeholder { color: green; }
+:-ms-input-placeholder { color: green; }
+:-moz-placeholder { /* Firefox 18- */ color: green; }
+::-moz-placeholder { /* Firefox 19+ */ color: green; }
+
+
 /*======== ANUNCIOS =======*/
 .contenedor_anuncios {
     width: 90%;
@@ -346,8 +354,11 @@ text-align: center;
     margin: 1em;
     text-align: center;
   }
-  .anuncios h5:nth-of-type(2) {
-      padding: 0 1.3em;
+  /* .anuncios h5:nth-of-type(2) {
+      padding: 0 0.5em;
+  } */
+  .anuncios span{
+    color: gray;
   }
   .anuncios img{
     width: 100%;
@@ -401,4 +412,8 @@ text-align: center;
   .c_anuncios p{
     text-align: center;
     font-size: 15px;
+  }
+  .anuncio_img{
+    width: 100%;
+    height: 15em;
   }

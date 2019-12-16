@@ -28,10 +28,10 @@ $precioDia = PRECIO_DIA;
   <h1> Mis anuncios </h1>
   <?php foreach ($resultados as $fila) { ?>
        <div class="anuncios">
-         <h5> Fecha alta <br><?=substr($fila->getFechaAlta(),0,10) ?></h5>
-         <h5> Fecha baja <br><?=$fila->getFechaBaja()?></h5>
-         <h5> Precio <br><?php echo dias_pasados($fila->getFechaBaja(),$fila->getFechaAlta()) * $precioDia . ' €'?></h5>
-         <img class="small-img" src="<?=$fila->getFoto()?>" alt="">
+         <h5> Fecha alta <br> <span><?=substr($fila->getFechaAlta(),0,10) ?></span></h5>
+         <h5> Fecha baja <br> <span><?=$fila->getFechaBaja()?> </span></h5>
+         <h5> Precio <br> <span><?php echo dias_pasados($fila->getFechaBaja(),$fila->getFechaAlta()) * $precioDia . ' €'?> </span></h5>
+         <img class="anuncio_img" src="<?=$fila->getFoto()?>" alt="">
        </div>
 
   <?php } ?>
