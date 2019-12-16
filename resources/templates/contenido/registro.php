@@ -23,7 +23,7 @@
   $tipo_cliente;
   $errores=[];
 
-  define ("MB_2", 2097152); // Esto se puede y debe sacar al config
+   // Esto se puede y debe sacar al config
 
   if (isset($_POST['tipo_cliente'])) {
     $_SESSION['tipo_cliente']=$_POST['cliente'];
@@ -36,7 +36,7 @@
       $empresa=true;
     }
   }
-  
+
 // validacion del formulario
   if (isset($_POST['enviar'])) {
 
@@ -89,7 +89,7 @@
 
 
     if(count($_FILES)>0) {
-        if($_FILES['imagen']['size'] < MB_2){
+        if($_FILES['imagen']['size'] < $config['MB_2']){
             if($_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpeg"){
                 // Gestionamos la información del fichero
                 $fichero_tmp = $_FILES["imagen"]["tmp_name"];
@@ -155,8 +155,8 @@
         MascotaManager::insert($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno);
 
         if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
-          header("location: login.php");
-          exit;
+        //  header("location: login.php");
+          //exit;
         } else {
             $errores[] = "Error moviendo fichero";
             // Ojo!!!
@@ -179,8 +179,8 @@
         EmpresaManager::insert($email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
 
         if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
-          header("location: login.php");
-          exit;
+        //  header("location: login.php");
+          //exit;
         } else {
             $errores[] = "Error moviendo fichero";
             // Ojo!!!
@@ -195,9 +195,6 @@
             }
         }
       }
-
-      $_SESSION['id']= $db->getLastId();
-      echo $_SESSION['id']. ' en registro ultimo id insertado';
       session_destroy();
       header("location: login.php");
       exit;

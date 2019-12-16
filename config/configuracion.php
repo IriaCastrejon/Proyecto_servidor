@@ -12,9 +12,9 @@ $config = [
   'db_file' => 'resources/test.sqlite3',
   'img_path' => '/resources/images',
   'img_in_url' => '/images',
+  'MB_2'=>2097152,
+  'pagina_inicio'=>'login.php',
 ];
-
-define ("MB_2", 2097152);
 
 spl_autoload_register(function ($name){
   global $ROOT;

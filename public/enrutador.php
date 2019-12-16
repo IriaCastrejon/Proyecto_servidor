@@ -10,7 +10,7 @@ if (preg_match('/\.(?:css|js|ico|png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"]))
 
       // Solo aceptamos PNG
       header('Content-Type: image/png');
-      
+
       // Quitamos subir de directorio
       $file_path = str_replace("..","",$_SERVER["REQUEST_URI"]);
       // Quitamos el prefijo de la petición
@@ -43,7 +43,7 @@ if (preg_match('/\.(?:css|js|ico|png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"]))
 
 
     if($fichero == "/"){
-      header("Location: login.php");
+      header("Location: " . $config['pagina_inicio']);
       die();
     }
 

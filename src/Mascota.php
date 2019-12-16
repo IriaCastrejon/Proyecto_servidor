@@ -8,14 +8,14 @@ class Mascota extends Usuarios{
 
   function __construct($id, $nombre, $email, $contraseña,$localidad = null,$cp = null,$telefono= null,$foto = null,$descripcion,$nombre_dueno) {
 
-    parent:: __construct($id, $nombre, $email, $contraseña,$localidad = null,$cp = null,$telefono= null,$foto = null);
+    parent:: __construct($id, $nombre, $email, $contraseña,$localidad,$cp,$telefono,$foto);
     $this->descripcion=$descripcion;
     $this->nombre_dueno=$nombre_dueno;
 
   }
 
 
-  
+
   public function getDescripcion()
   {
       return $this->descripcion;

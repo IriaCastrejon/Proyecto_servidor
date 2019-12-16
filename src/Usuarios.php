@@ -198,6 +198,8 @@ function __construct($id, $email, $contraseña, $nombre, $foto = null,$localidad
     {
 
       global $config;
+      //echo $config['img_in_url'] . "/". $this->foto;
+
       return $config['img_in_url'] . "/". $this->foto;
 
     }
