@@ -1,10 +1,11 @@
 <?php
 
 //print_r($_POST);
+//print_r($_FILES);
 $imagen='';
 $errores=[];
 
-if ($_POST['enviar']=="Realizar cambios") {
+if ($_POST['enviar']=="Cambiar") {
   if(count($_FILES)>0) {
     if($_FILES['imagen']['size'] < $config['MB_2']){
 
@@ -26,9 +27,8 @@ if ($_POST['enviar']=="Realizar cambios") {
     $errores[] = "Sin imagen";
   }
 
-
   if (count($errores)==0) {
-
+    
     MascotaManager::update($_SESSION['id'], $imagen_nombre);
     $db = DWESBaseDatos::obtenerInstancia();
     $ultimoId= $db->getLastId();

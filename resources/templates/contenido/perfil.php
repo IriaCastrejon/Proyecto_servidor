@@ -39,11 +39,13 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
         <form class="miPerfil_publicacionNueva" action="publicacion.php" method="post">
           <input class="enviar" type="submit" name="crearPublicacion" value="Nueva Publicacion">
         </form>
-
+        <form class="miPerfil_actividades" action="actividades.php" method="post">
+          <input class="enviar" type="submit" name="actiidad" value="Actividades">
+        </form>
       </div>
       <div class="datosAmigos">
-        <h3>Seguidores <br> <span><?=$resultadosSeguidores ?></span> </h3>
-        <h3>Siguiendo<br> <span><?=$resultadosSiguiendo ?></span> </h3>
+        <h3><a href="amigos.php">Seguidores</a> <br> <span><?=$resultadosSeguidores ?></span> </h3>
+        <h3><a href="amigos.php">Seguidores</a><br> <span><?=$resultadosSiguiendo ?></span> </h3>
       </div>
 
   </div>
@@ -61,7 +63,7 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
         <div class="publicacionInfo2">
           <img src="<?=$fila->getImagen() ?>" alt="publicacion">
           <p><?=$fila->getTexto() ?></p>
-          <a href="#">Me gusta</a><a href="#">Comentar</a><a href="#">Compartir</a><a href="#">Comentario</a>
+          <a href="#">Me gusta</a><a href="perfil.php?">Comentar</a><a href="#">Compartir</a><a href="#">Comentarios</a>
         </div>
     </div>
     <?php endforeach; ?>

@@ -35,7 +35,7 @@ if(isset($_POST["submit"])) {
     if (count($errores)===0) {
 
       if( MascotaManager::existeEmail($email) ){
-        echo 'etra e ascota <br>';
+        echo 'entra en mascota <br>';
         $resultados= MascotaManager::getByEmail($email);
         $tabla='mascota';
       }elseif (EmpresaManager::existeEmail($email)) {
@@ -43,7 +43,7 @@ if(isset($_POST["submit"])) {
         $resultados= EmpresaManager::getByEmail($email);
         $tabla='empresa';
       }else {
-        echo 'etra e else';
+        echo 'entra en else';
         $resultados=[];
       }
 
@@ -101,9 +101,9 @@ if(isset($_GET["error"])){
   <div class="contenedor_del_login">
       <img src="../imgs/InicioFondo1.png" alt="Perritos abrazados">
       <div class="titulo">
-        <p>La red social de mascotas mas grande del mundo</p>
+        <p>La red social de mascotas más grande del mundo</p>
       </div>
-      <h1>Conoce a las mascotas que estan cerca de ti</h1>
+      <h1>Conoce a las mascotas que están cerca de ti</h1>
 
 
         <form action="login.php" method="post" class="login" >
