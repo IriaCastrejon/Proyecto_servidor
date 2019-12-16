@@ -22,6 +22,14 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   text-decoration: none;
   color: black;
   font-weight: bold;
+  padding: 0.5em 0;
+}
+.menu a {
+    text-decoration: none;
+    /* outline: dotted red; */
+    padding: 0.5em 1em;
+    color: black;
+    border-right: 3px solid white;
 }
 /*contenedor del login*/
 .contenedor .contenedor_del_login h1{
