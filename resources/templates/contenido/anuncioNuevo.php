@@ -6,10 +6,7 @@
   print_r($_POST);
   echo '</pre>';
 
-
-
-
-  if( !isset($_SESSION['id']) ){
+  if( !isset($_SESSION['id']) && $_SESSION['tipo_cliente']!='Empresa'){
       header('Location: login.php');
       die();
   }
@@ -25,10 +22,12 @@
   $foto = '';
   $fecha_baja = '';
   $url= '';
-  $mascota=false;
   $empresa=false;
 
-  $errores=[];
+  $precio= 0;
+  $precioDia = 25;
+
+  $errores = [];
 
   define("ERROR_FECHA_MAYOR", 0);
   define("ERROR_FECHA_NO", 1);
@@ -40,7 +39,7 @@
   if (isset($_POST['comprar'])) {
 
     // duracion
-    if (isset($_POST['duracion']) && $_POST['duracion'] != '') {
+    if (isset($_POST['duracion']) && $_POST['duracion'] != 0) {
       $duracion=clean_input($_POST['duracion']);
     }else{
       $errores['duracion']= true;
@@ -92,6 +91,9 @@
     } else {
         $errores[] = "Sin imagen";
     }
+    // else{
+    //   $errores['foto'] = 'Introduce una foto';
+    // }
 
     //url
     if (isset($_POST['url']) && $_POST['url'] != '') {
@@ -128,9 +130,9 @@
 
 
 
-      // $_SESSION['id']= $db->getLastId();
-      // echo $_SESSION['id']. ' ultimo id insertado';
-      //header("location: anuncio.php");
+      //$_SESSION['id']= $db->getLastId();
+      //echo $_SESSION['id']. ' ultimo id insertado';
+      header("location: anuncio.php");
 
     }// no hay errores
 
@@ -146,27 +148,44 @@
    <?php if (isset($errores['duracion'])): ?>
      <span class="error">Debe introducir una duración</span> <br>
    <?php endif; ?>
-   <label for=""> Duración </label><input type="text" name="duracion" value="<?=$duracion?>"><br><br>
+   <label for=""> Duración </label><input type="number" name="duracion" value=" <?= $duracion ?>" placeholder='Número de días'><br><br>
 
-   <!-- FECHA ALTA-->
-   <?php if (isset($errores['fecha_alta'])){
-           if ($errores['fecha_alta'] == ERROR_FECHA_MAYOR ){ ?>
-             <span class="error"> Introduce una fecha mayor a la actual </span> <br>
-           <?php }else if($errores['fecha_alta'] == ERROR_FECHA_NO){ ?>
-             <span class="error"> Introduce una fecha</span> <br>
-    <?php }
-         } ?>
-
-   <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?=$fecha_alta?>"><br><br>
-
-   <label for="">Foto</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
-
+   <!-- URL-->
    <?php if (isset($errores['url'])): ?>
-     <span class="error"> Debe introducir una url </span> <br>
+     <span class="error">Debe introducir la URL de su empresa</span> <br>
    <?php endif; ?>
-   <label for="">Url</label><input type="text" name="url" value="<?=$url?>"><br><br>
+  <label for=""> Url </label><input type="url" name="url" value="<?= $url ?>" placeholder='http://www.ejemplo.com'><br><br>
 
-   <br><br> <input type="submit" name="comprar" value="Comprar">
+   <!-- EMAIL-->
+   <?php if (isset($errores['fecha_alta'])): ?>
+     <span class="error"> Debe introducir una fecha de alta </span> <br>
+   <?php endif; ?>
+   <?php if (isset($errores['fecha_alta_menor'])): ?>
+     <span class="error"> Debe introducir una fecha de alta mayor a la actual </span> <br>
+   <?php endif; ?>
+   <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?= $fecha_alta ?>"><br><br>
+
+   <!-- FOTO-->
+   <!-- <?php //if (isset($errores['foto'])): ?>
+     <span class="error"> Debe introducir una foto para el anuncio </span> <br>
+   <?php //endif; ?> -->
+   <label for=""> Foto </label><input type="file" name="foto" value="<?= $foto ?>"><br>
+
+   <h4> Total a pagar:
+     <?php if (isset($_POST['calcular'])): ?>
+       <span ><?php $precio = $precioDia * $_POST['duracion']; echo $precio . ' €';?></span> <br>
+    <?php else: ?>
+      <span ><?= $precio ?></span> <br>
+     <?php endif; ?>
+     </h4>
+
+   <br><br>
+
+   <div class="botones">
+     <input type="submit" name="calcular" value="Calcular">
+     <input type="submit" name="comprar" value="Comprar">
+   </div>
+
 
   </form>
   <?php endif;
