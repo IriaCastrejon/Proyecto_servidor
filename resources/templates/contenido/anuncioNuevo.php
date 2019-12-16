@@ -1,7 +1,7 @@
 <?php
 
   session_start();
-  
+
   echo '<pre>';
   print_r($_POST);
   echo '</pre>';
@@ -9,7 +9,7 @@
 
 
 
-  if( !isset($_SESSION['id']) ){
+  if( !isset($_SESSION['id']) && $_SESSION['tipo_cliente']!='Empresa'){
       header('Location: login.php');
       die();
   }
@@ -28,24 +28,34 @@
   $mascota=false;
   $empresa=false;
 
+  $precio= 0;
+
+
   $errores=[];
 
+  define("PRECIO_DIA", 25);
   define("ERROR_FECHA_MAYOR", 0);
   define("ERROR_FECHA_NO", 1);
 
-
-
+  $precioDia = PRECIO_DIA;
+   $precio = $precioDia * $_POST['duracion'];
 
 // validacion del formulario
   if (isset($_POST['comprar'])) {
 
     // duracion
-    if (isset($_POST['duracion']) && $_POST['duracion'] != '') {
+    if (isset($_POST['duracion']) && $_POST['duracion'] > 0) {
       $duracion=clean_input($_POST['duracion']);
     }else{
       $errores['duracion']= true;
     }
 
+    //url
+    if (isset($_POST['url']) && $_POST['url'] != '') {
+      $url = clean_input($_POST['url']);
+    }else{
+      $errores['url']= true;
+    }
 
 
     // fecha_alta
@@ -66,7 +76,7 @@
     //foto
 
     if(count($_FILES)>0) {
-        if($_FILES['imagen']['size'] < MB_2){
+        if($_FILES['imagen']['size'] < $config['MB_2']){
             if($_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpeg"){
                 // Gestionamos la información del fichero
                 $fichero_tmp = $_FILES["imagen"]["tmp_name"];
@@ -93,12 +103,7 @@
         $errores[] = "Sin imagen";
     }
 
-    //url
-    if (isset($_POST['url']) && $_POST['url'] != '') {
-      $url = clean_input($_POST['url']);
-    }else{
-      $errores['url']= true;
-    }
+
     //errores
     if(count($errores)==0){
       $db= DWESBaseDatos::obtenerInstancia();
@@ -146,7 +151,15 @@
    <?php if (isset($errores['duracion'])): ?>
      <span class="error">Debe introducir una duración</span> <br>
    <?php endif; ?>
-   <label for=""> Duración </label><input type="text" name="duracion" value="<?=$duracion?>"><br><br>
+   <label for=""> Duración </label><input type="number" name="duracion" value="<?=$duracion?>" min="1"><br><br>
+
+
+   <!-- URL-->
+   <?php if (isset($errores['url'])): ?>
+     <span class="error">Debe introducir la URL de su empresa</span> <br>
+   <?php endif; ?>
+  <label for=""> Url </label><input type="url" name="url" value="<?= $url ?>" placeholder='http://www.ejemplo.com'><br><br>
+
 
    <!-- FECHA ALTA-->
    <?php if (isset($errores['fecha_alta'])){
@@ -154,19 +167,26 @@
              <span class="error"> Introduce una fecha mayor a la actual </span> <br>
            <?php }else if($errores['fecha_alta'] == ERROR_FECHA_NO){ ?>
              <span class="error"> Introduce una fecha</span> <br>
-    <?php }
-         } ?>
-
+    <?php  } ?>
+  <?php } ?>
    <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?=$fecha_alta?>"><br><br>
 
    <label for="">Foto</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
 
-   <?php if (isset($errores['url'])): ?>
-     <span class="error"> Debe introducir una url </span> <br>
-   <?php endif; ?>
-   <label for="">Url</label><input type="text" name="url" value="<?=$url?>"><br><br>
+    <h4> Total a pagar:
+      <?php if (isset($_POST['calcular'])): ?>
+        <span ><?php echo $precio . ' €';?></span> <br>
+     <?php else: ?>
+       <span ><?= $precio ?></span> <br>
+      <?php endif; ?>
+      </h4>
 
-   <br><br> <input type="submit" name="comprar" value="Comprar">
+    <br><br>
+
+    <div class="botones">
+      <input type="submit" name="calcular" value="Calcular">
+      <input type="submit" name="comprar" value="Comprar">
+    </div>
 
   </form>
   <?php endif;

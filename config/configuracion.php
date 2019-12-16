@@ -36,16 +36,24 @@ function startsWith ($string, $startString) {
 }
 
 //Funcion para validar la fecha que sea mayor a la actual
-function validarFecha($fecha){
+// function validarFecha($fecha){
+//
+//   $hoy = strtotime(date("d-m-Y H:i:00",time()));
+//   $fecha = strtotime(date($fecha));
+//   if ($fecha > $hoy) {
+//     return true;
+//   }else{
+//     return false;
+//   }
+function validarFecha($fecha_alta){
+  $fecha_actual = date("Y-m-d");
 
-
-  $hoy = strtotime(date("d-m-Y H:i:00",time()));
-  $fecha = strtotime(date($fecha));
-  if ($fecha > $hoy) {
+  if($fecha_alta > $fecha_actual) {
     return true;
-  }else{
+  }else	{
     return false;
   }
+
 
 
 }
