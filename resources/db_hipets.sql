@@ -27,7 +27,7 @@ insert into cliente(id,email,pass,localidad,cp,cif,telefono) values (2,'cliente2
 
 CREATE TABLE anuncio (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  cliente_id INTEGER UNSIGNED NOT NULL,
+  cliente_id INTEGER NOT NULL,
   imagen VARCHAR(255) NULL,
   fecha_alta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   fecha_baja DATE NULL,

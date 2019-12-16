@@ -104,6 +104,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 .contenedor.contenedor > footer{
   width: 100%;
   background-color: #c4c4c4;
+  clear: both;
 }
 
 
@@ -135,3 +136,83 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 .actividades{
 
 }
+
+/*======== ANUNCIO NUEVO - FORMULARIO =======*/
+.form_anuncio {
+    color: #FF8C00; /*naranja*/
+    font-size: 1em;
+    width: 30em;
+    /* border: solid; */
+    margin: auto;
+    margin-bottom: 5em;
+}
+  .form_anuncio input:first-of-type {
+      border: 0.2em solid #27AE60; /*verde*/
+  }
+  .form_anuncio input:nth-of-type(2) {
+    border: 0.2em solid #27AE60;
+  }
+  .form_anuncio h4, span{
+    color: black;
+  }
+  /* .form_anuncio input:nth-of-type(3) {
+      background-color: #27AE60;
+      color: white;
+      border: #27AE60 solid;
+  }
+  .form_anuncio input[type="file"] {
+      background-color: #27AE60;
+      color: white;
+      border: #27AE60 solid;
+  } */
+  .botones{
+    width: 11.89em;
+    /* border: solid; */
+    margin: auto;
+  }
+  .botones input:first-of-type {
+      background-color: #FF8C00; /*verde*/
+      color: white;
+      border-color: #FF8C00 ;
+      border-radius: 3px;
+      padding: 5px 15px;
+  }
+  .botones input:last-of-type{
+      background-color: #27AE60; /*verde*/
+      color: white;
+      border-color: #27AE60 ;
+      border-radius: 3px;
+      padding: 5px 15px;
+  }
+
+/*======== ANUNCIOS =======*/
+.contenedor_anuncios {
+    width: 90%;
+    /* outline: solid; */
+    margin: 0 auto;
+    overflow: auto;
+    margin-bottom: 3em;
+}
+  .contenedor_anuncios h1 {
+      text-align: center;
+      color: #27AE60; /*verde*/
+  }
+  .anuncios {
+    width: 30%;
+    border: solid 0.3em #FF8C00; /*naranja*/
+    float: left;
+    margin: 0 1.6%;
+    margin-bottom: 1em;
+  }
+  .anuncios h5 {
+    float: left;
+    /* outline: solid; */
+    margin: 1em;
+    text-align: center;
+  }
+  .anuncios h5:nth-of-type(2) {
+      padding: 0 1.3em;
+  }
+  .anuncios img{
+    width: 100%;
+  }
