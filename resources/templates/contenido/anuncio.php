@@ -7,6 +7,11 @@ if( !isset($_SESSION['id']) ){
     die();
 }
 
+if($_SESSION['tipo_cliente'] == 'mascota'){
+  header('Location: accesoRestringido.php');
+  die();
+}
+
 $id=$_SESSION['id'];
 define("PRECIO_DIA", 25);
 

@@ -41,27 +41,19 @@ $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
      <!--
      <thead>
        <tr>
-         <th>SIGUIENDO</th>
+         <th>SEGUIDORES</th>
 
        </tr>
      </thead>
    -->
-     <tbody>
-       <?php foreach ($resultadosSiguiendo as $fila) {
 
-         ?>
+     <tbody>
+       <?php foreach ($resultadosSeguidores as $fila) { ?>
          <tr>
-           <td>
-             <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
-             <form class="" action="amigos.php?idDejar=<?=$fila->getId()?>" method="post">
-               <input type="submit" name="unfollow" value="Dejar de seguir">
-             </form>
-           </td>
+           <td><img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?></td>
          </tr>
         <?php } ?>
      </tbody>
 
    </table>
-
-
 </div>
