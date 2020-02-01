@@ -30,7 +30,7 @@ if(isset($_POST['unfollow'])) {
 
 <?php
 
-$resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
+
 $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
 
 ?>
