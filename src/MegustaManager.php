@@ -46,6 +46,7 @@ class MegustaManager implements IDWESEntidadManager{
   public static function getById($id){}
 
 
+
 }
 
 
