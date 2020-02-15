@@ -9,6 +9,7 @@ $id=$_SESSION['id'];
 
 
 $resultados = AnuncioManager::getAll();
+print_r($resultados);
 
 //generar random para que aparezcan solo 2 anuncios
 ?>
