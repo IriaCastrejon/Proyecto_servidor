@@ -15,8 +15,7 @@ $id=$_SESSION['id'];
 
 $ruta='';
 $resultados = MascotaManager::getById($id);
-//print_r($resultados);
-$publicaciones= PublicacionesManager::getById($id);
+$id_publicacion = PublicacionesManager::getById($id);
 $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
 $resultadosSiguiendo = count($resultadosSiguiendo);
 $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
@@ -42,10 +41,11 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
           <input class="enviar" type="submit" name="crearPublicacion" value="Nueva Publicacion">
         </a>
 
-      <a href="actividades.php">
+        <a href="actividades.php">
           <input class="enviar" type="submit" name="actiidad" value="Actividades">
         </a>
       </div>
+
       <div class="datosAmigos">
         <h3><a href="amigos.php">Siguiendo</a> <br> <span><?=$resultadosSiguiendo ?></span> </h3>
         <h3><a href="seguidores.php">Seguidores</a><br> <span><?=$resultadosSeguidores ?></span> </h3>
@@ -64,6 +64,10 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
       <div class="cuerpoPerfil">
         <div class="publicacionInfo">
           <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
+          <a href="eliminarPublicacion.php?idPub=<?=$fila->getId()?>">
+            Eliminar
+
+          </a>
           <h2><?=$resultados[0]->getNombre() ?></h2><br>
           <h4> <?=$fila->getFecha() ?></h4>
         </div>

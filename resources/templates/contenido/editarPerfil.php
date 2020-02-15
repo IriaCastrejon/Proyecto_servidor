@@ -1,7 +1,5 @@
 <?php
 
-//print_r($_POST);
-//print_r($_FILES);
 $imagen='';
 $errores=[];
 
@@ -14,7 +12,7 @@ if ($_POST['enviar']=="Cambiar") {
             $fichero_tmp = $_FILES["imagen"]["tmp_name"];
             $imagen_nombre = basename($_FILES["imagen"]["name"]);
             $ruta_destino = $config['img_path']."/";
-          
+
 
         } else {
             $errores[] = "Fichero no soportado";

@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS cliente;
 DROP TABLE IF EXISTS anuncio;
 DROP TABLE IF EXISTS factura;
@@ -7,9 +6,11 @@ DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS amigos;
 DROP TABLE IF EXISTS publicacion;
 DROP TABLE IF EXISTS actividad;
-DROP TABLE IF EXISTS comentario;
+DROP TABLE IF EXISTS comentario_actividad;
+DROP TABLE IF EXISTS comentario_publicacion;
 DROP TABLE IF EXISTS participa;
 DROP TABLE IF EXISTS megusta;
+
 
 CREATE TABLE cliente (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -23,8 +24,8 @@ CREATE TABLE cliente (
   telefono INTEGER UNSIGNED NULL,
   PRIMARY KEY(id)
 );
-insert into cliente(id,nombre,email,pass,localidad,cp,cif,telefono) values (1,'empresa1','cliente1@gmial.com','1234','madrid',28045,'cif-1',11111);
-insert into cliente(id,nombre,email,pass,localidad,cp,cif,telefono) values (2,'empresa2','cliente2@gmial.com','1234','madrid',28045,'cif-2',22222);
+insert into cliente(id,nombre,email,pass,localidad,cp,cif,telefono) values (1,'empresa1','cliente1@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','madrid',28045,'cif-1',11111);
+insert into cliente(id,nombre,email,pass,localidad,cp,cif,telefono) values (2,'empresa2','cliente2@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','madrid',28045,'cif-2',22222);
 
 CREATE TABLE anuncio (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -34,7 +35,7 @@ CREATE TABLE anuncio (
   fecha_baja DATE NULL,
   url VARCHAR(255) NULL,
   PRIMARY KEY(id, cliente_id),
-  INDEX anuncio_FKIndex1(cliente_id)
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 insert into anuncio(id,cliente_id,url) values (1,2,'www.anuncio_1');
@@ -47,7 +48,7 @@ CREATE TABLE factura (
   importe INTEGER UNSIGNED NULL,
   iva INTEGER UNSIGNED NULL,
   PRIMARY KEY(id, cliente_id),
-  INDEX factura_FKIndex1(cliente_id)
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 insert into factura(id,cliente_id,importe,iva) values (1,1,20,16);
 insert into factura(id,cliente_id,importe,iva) values (1,2,40,16);
@@ -65,16 +66,16 @@ CREATE TABLE usuario (
   nombre_dueno VARCHAR(45) NULL,
   PRIMARY KEY(id)
 );
-insert into usuario(id,email,pass,nombre) values(1,'bigotes@gmail.com','123','bigotes');
-insert into usuario(id,email,pass,nombre) values(2,'zero@gmail.com','123','zero');
-insert into usuario(id,email,pass,nombre) values(3,'coqui@gmail.com','123','coqui');
+insert into usuario(id,email,pass,nombre) values(1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','bigotes');
+insert into usuario(id,email,pass,nombre) values(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','zero');
+insert into usuario(id,email,pass,nombre) values(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','coqui');
 
 CREATE TABLE amigos (
   usuario_id INTEGER UNSIGNED NOT NULL,
   usuario_id2 INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(usuario_id, usuario_id2),
-  INDEX usuario_has_usuario_FKIndex1(usuario_id),
-  INDEX usuario_has_usuario_FKIndex2(usuario_id)
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 insert into amigos(usuario_id,usuario_id2) values(1,2);
 insert into amigos(usuario_id,usuario_id2) values(1,3);
@@ -90,7 +91,7 @@ CREATE TABLE publicacion (
   texto VARCHAR(255) NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY(id, usuario_id),
-  INDEX publicacion_FKIndex1(usuario_id)
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 insert into publicacion(id,usuario_id,texto) values(1,1,'cansada');
@@ -105,36 +106,68 @@ CREATE TABLE actividad (
   lugar VARCHAR(45) NULL,
   PRIMARY KEY(id)
 );
+insert into actividad(id,nombre,descripcion,fecha,lugar) values(1,"Salir a pasear","sjgfasgfhdgfhjgfsj","2020-02-15",'madrid');
+insert into actividad(id,nombre,descripcion,fecha,lugar) values(2,"Actividad2","descripcion2222","2020-02-15",'madrid');
+insert into actividad(id,nombre,descripcion,fecha,lugar) values(3,"Actividad3","descripcion3333","2020-02-14",'alicante');
+insert into actividad(id,nombre,descripcion,fecha,lugar) values(4,"Actividad4","descripcion4444","2020-01-15",'zaragoza');
 
-
-
-CREATE TABLE comentario (
+CREATE TABLE comentario_actividad (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   usuario_id INTEGER UNSIGNED NOT NULL,
-  publicacion_usuario_id INTEGER UNSIGNED NOT NULL,
   publicacion_id INTEGER UNSIGNED NOT NULL,
+  texto VARCHAR(255) NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (publicacion_id) REFERENCES publicacion(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+insert into comentario_actividad(id,usuario_id,publicacion_id,texto) values(1,1,1,'Comentario1');
+insert into comentario_actividad(id,usuario_id,publicacion_id,texto) values(2,2,1,'Comentario2');
+insert into comentario_actividad(id,usuario_id,publicacion_id,texto) values(3,1,2,'Comentario3');
+insert into comentario_actividad(id,usuario_id,publicacion_id,texto) values(4,3,3,'Comentario4');
+insert into comentario_actividad(id,usuario_id,publicacion_id,texto) values(5,1,3,'Comentario5');
+
+
+
+
+CREATE TABLE comentario_publicacion(
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  usuario_id INTEGER UNSIGNED NOT NULL,
   actividad_id INTEGER UNSIGNED NOT NULL,
   texto VARCHAR(255) NULL,
-  PRIMARY KEY(id, usuario_id, publicacion_usuario_id, publicacion_id, actividad_id),
-  INDEX comentario_FKIndex1(usuario_id),
-  INDEX comentario_FKIndex2(publicacion_id, publicacion_usuario_id),
-  INDEX comentario_FKIndex3(actividad_id)
+  PRIMARY KEY(id),
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (actividad_id) REFERENCES actividad (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+insert into comentario_publicacion(id,usuario_id,actividad_id,texto) values(1,1,1,'Comentario1');
+insert into comentario_publicacion(id,usuario_id,actividad_id,texto) values(2,2,1,'Comentario2');
+insert into comentario_publicacion(id,usuario_id,actividad_id,texto) values(3,1,2,'Comentario3');
+insert into comentario_publicacion(id,usuario_id,actividad_id,texto) values(4,3,3,'Comentario4');
+insert into comentario_publicacion(id,usuario_id,actividad_id,texto) values(5,1,3,'Comentario5');
+
 
 CREATE TABLE megusta (
   usuario_id INTEGER UNSIGNED NOT NULL,
   publicacion_id INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(usuario_id, publicacion_id),
-  INDEX usuario_has_publicacion_FKIndex1(usuario_id),
-  INDEX usuario_has_publicacion_FKIndex2(publicacion_id)
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (publicacion_id) REFERENCES publicacion (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+insert into megusta(usuario_id,publicacion_id) values(1,1);
+insert into megusta(usuario_id,publicacion_id) values(1,2);
+insert into megusta(usuario_id,publicacion_id) values(1,3);
+insert into megusta(usuario_id,publicacion_id) values(2,1);
+insert into megusta(usuario_id,publicacion_id) values(2,2);
+insert into megusta(usuario_id,publicacion_id) values(2,3);
 
 CREATE TABLE participa (
   usuario_id INTEGER UNSIGNED NOT NULL,
   actividad_id INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(usuario_id, actividad_id),
-  INDEX usuario_has_actividad_FKIndex1(usuario_id),
-  INDEX usuario_has_actividad_FKIndex2(actividad_id)
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (actividad_id) REFERENCES actividad (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 insert into participa(usuario_id,actividad_id) values(1,1);
