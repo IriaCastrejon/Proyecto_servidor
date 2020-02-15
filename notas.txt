@@ -1,0 +1,8 @@
+cargar bd
+/Escritorio/repositorioLocal/Proyecto_servidor/resources>
+$ sudo mysql < permisos.sql
+mysql -u admin -p hipets < db_hipets.sql
+
+
+cargar servicio
+bin/ruerver.sh
