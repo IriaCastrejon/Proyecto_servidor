@@ -126,7 +126,13 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   background-color: #fff0c2;
   margin-bottom: 2em;
 }
- .cuerpoPerfil .publicacionInfo > img{
+.c_publicaciones {
+  width: 73%;
+  /*height: 35em;*/
+  background-color: #fff0c2;
+  margin-right: 2%;
+}
+.cuerpoPerfil .publicacionInfo > img{
   display: inline-block;
   float: left;
   width: 15%;
@@ -369,11 +375,6 @@ text-align: center;
   /* outline: dotted red; */
   float: left;
 }
-.c_publicaciones{
-  width: 73%;
-  /*height: 35em;*/
-  margin-right: 2%;
-}
 .c_publicaciones img {
   width: 56em;
   margin: 0 1em 0 2em;
@@ -381,21 +382,23 @@ text-align: center;
 }
 .c_actividad{
   width: 25%;
-  height: 15em;
+  /* height: 15em; */
   background-color: #E0E0E0; /*gris claro*/
   margin-bottom: 1em;
+  overflow: auto;
 }
-  .c_actividad img{ width: 100%; }
+
   .c_actividad .actividadInicio{
     width: 90%;
     margin: 0 auto;
     margin-left: 5%;
   }
+  .c_actividad h4{ margin: 1em; padding: 0;}
   .c_actividad p{
     text-align: center;
     font-size: 15px;
   }
-  .c_actividad p:nth-of-type(2){
+  .c_actividad p{
     text-align: justify;
     margin: 0 1em 1em;
   }

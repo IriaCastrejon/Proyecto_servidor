@@ -53,7 +53,7 @@ class AnuncioManager implements IDWESEntidadManager{
 //        $datos = $db -> obtenDatos();
 //        if(count($datos)>0) { // Hay datos
             return array_map(function($fila){
-                return new Anuncio($fila['id'], $fila['imagen'], $fila['fecha_alta'], $fila['fecha_baja'], $fila['url']);
+                return new Anuncio($fila['id'],$fila['id_cliente'], $fila['imagen'], $fila['fecha_alta'], $fila['fecha_baja'], $fila['url']);
             },$db -> obtenDatos());
 //        }
 //    }
