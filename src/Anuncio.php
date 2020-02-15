@@ -6,14 +6,16 @@
 class Anuncio extends Usuarios{
 
   private $id;
+  private $id_cliente;
   private $foto;
   private $fecha_alta;
   private $fecha_baja;
   private $url;
   //PRECIO??
 
-  function __construct($id, $foto = null, $fecha_alta, $fecha_baja=null, $url) {
+  function __construct($id,$id_cliente, $foto = null, $fecha_alta, $fecha_baja=null, $url) {
     $this -> id = $id;
+    $this -> id_cliente = $id_cliente;
     $this -> foto = $foto;
     $this -> fecha_alta = $fecha_alta;
     $this -> fecha_baja = $fecha_baja;
@@ -137,6 +139,31 @@ class Anuncio extends Usuarios{
     public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Id Cliente
+     *
+     * @return mixed
+     */
+    public function getIdCliente()
+    {
+        return $this->id_cliente;
+    }
+
+    /**
+     * Set the value of Id Cliente
+     *
+     * @param mixed $id_cliente
+     *
+     * @return self
+     */
+    public function setIdCliente($id_cliente)
+    {
+        $this->id_cliente = $id_cliente;
 
         return $this;
     }

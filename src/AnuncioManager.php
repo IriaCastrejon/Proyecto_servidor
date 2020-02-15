@@ -5,8 +5,7 @@ class AnuncioManager implements IDWESEntidadManager{
   public static function getAll(){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT a.id, a.cliente_id, a.imagen, a.fecha_alta, a.fecha_baja, a.url
-                        FROM anuncio a");
+    $db -> ejecuta("SELECT * FROM anuncio");
 
     return array_map(function($fila){
       return new Anuncio($fila['id'], $fila['cliente_id'], $fila['imagen'], $fila['fecha_alta'], $fila['fecha_baja'], $fila['url']);
