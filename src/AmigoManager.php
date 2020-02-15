@@ -19,7 +19,6 @@ class AmigoManager implements IDWESEntidadManager{
     $db -> ejecuta("SELECT a.usuario_id, a.usuario_id2
                         FROM amigos a WHERE usuario_id = ? ");
 
-    if($db -> executed ){ // Se pudo ejecutar
     if($db -> executed() ){ // Se pudo ejecutar
         $datos = $db -> obtenDatos();
         if(count($datos)>0) { // Hay datos
