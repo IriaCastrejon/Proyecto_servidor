@@ -163,6 +163,11 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   margin: 1.5em auto;
   margin-bottom: 1.5em;
 }
+.c_publicaciones .cuerpoPerfil > .publicacionInfo2{
+  width: 80%;
+  margin: 1.5em auto;
+  margin-bottom: 1.5em;
+}
 .cuerpoPerfil > .publicacionInfo2 img{
   width: 100%;
   margin: auto;
