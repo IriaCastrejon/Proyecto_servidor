@@ -62,7 +62,21 @@ class MascotaManager implements IDWESEntidadManager{
     }
 
   }
+  public static function buscar($dato){
+    echo 'dentro de buscar en mascota manager';
+    $dato= "%".$dato."%";
+    $db = DWESBaseDatos::obtenerInstancia();
 
+    $db -> ejecuta("SELECT *
+                        FROM usuario m WHERE m.nombre like ?", $dato);
+
+
+    return array_map(function($fila){
+      return new Usuarios($fila['id'], $fila['email'], $fila['pass'],$fila['nombre'], $fila['foto_perfil'], $fila['localidad'], $fila['cp'], $fila['telefono']);
+    },$db -> obtenDatos());
+
+
+  }
   public static function getById($id){
     $db = DWESBaseDatos::obtenerInstancia();
 

@@ -30,7 +30,13 @@ class AmigoManager implements IDWESEntidadManager{
   }
 
 
+  public static function compruebaAmistad(...$campos){
+    $db = DWESBaseDatos::obtenerInstancia();
 
+    $db -> ejecuta("SELECT count(*) as n FROM amigos a WHERE a.usuario_id = ? and a.usuario_id2= ? ) ", $campos);
+
+    return n[0];
+  }
 
 
   public static function obtenerAmigos($id){

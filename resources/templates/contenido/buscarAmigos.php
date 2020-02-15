@@ -13,9 +13,8 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 }
 
 $id=$_SESSION['id'];
-$id_seguir = $_GET['seguir'];
-
-if(isset($_POST['seguir'])) {
+$id_seguir = $_GET['id'];
+if(isset($_GET['seguir'])) {
   $db= DWESBaseDatos::obtenerInstancia();
   AmigoManager::insert($id,$id_seguir);
   header('Location: amigos.php');
@@ -36,9 +35,9 @@ foreach ($resultados as $fila) { ?>
   <div class="amigos">
     <h4>
       <?=$fila->getNombre()?>
-      <form class="" action="buscarAmigos.php?seguir=<?=$fila->getId()?>" method="post">
-        <input type="submit" name="seguir" value="Seguir">
-      </form>
+      <a href="buscarAmigos.php?seguir=true&id=<?=$fila->getId()?>">
+        <button> Seguir<button>
+      </a>
 
     </h4>
   </div>

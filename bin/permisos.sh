@@ -1,1 +1,1 @@
-sudo mysql < src/permisos.sql
+sudo mysql -u root -p marbelys < resources/permisos.sql
