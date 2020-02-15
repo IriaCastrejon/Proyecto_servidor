@@ -1,3 +1,23 @@
+<?php
+
+session_start();
+
+if( !isset($_SESSION['id']) ){
+    header('Location: login.php');
+    die();
+}
+
+if($_SESSION['tipo_cliente'] == 'empresa'){
+  header('Location: accesoRestringido.php');
+  die();
+}
+
+$id=$_SESSION['id'];
+$idActividad = $_GET['idActividad'];
+$participa = $_GET['participa'];
+
+?>
+
 <a href="nuevaActividad.php">Crear nueva Actividad</a>
 <a href="buscarActividades.php">Buscar Actividad</a>
 
@@ -9,7 +29,7 @@ if (isset($_GET['participar'])) {
 
   $db= DWESBaseDatos::obtenerInstancia();
   ParticipaManager::insert($id,$idActividad);
-  header('Location: actividades.php');
+  header('Location: actividades2.php');
   die();
 
 }
@@ -19,7 +39,7 @@ if (isset($_GET['desapuntarse'])) {
 
   $db= DWESBaseDatos::obtenerInstancia();
   ParticipaManager::delete($id,$idActividad);
-  header('Location: actividades.php');
+  header('Location: actividades2.php');
   die();
 
 }
@@ -43,7 +63,7 @@ foreach ($resultados as $fila) {
          <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
          <h5> Participantes <br> <span><?=$participantes?> </span></h5>
          <h5>
-           <a href="actividades.php?participa=true&idActividad=<?=$fila->getId()?>">
+           <a href="actividades2.php?participa=true&idActividad=<?=$fila->getId()?>">
              <?php if($participa == 'false'){ ?>
                      <input type="submit" name="participar" value="Participar">
            <?php }else{ ?>

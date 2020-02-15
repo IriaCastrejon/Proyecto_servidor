@@ -7,6 +7,7 @@ session_start();
     <nav class="menu">
        <a href="inicio.php">Inicio</a>
       <a href="actividades.php">Mis actividades</a>
+      <a href="actividades2.php">Mis actividades2 (pruebas)</a>
       <a href="amigos.php">Mis Amigos</a>
       <a href="perfil.php">Mi perfil</a>
       <a href="logout.php">Logout</a>
