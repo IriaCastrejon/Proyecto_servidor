@@ -23,14 +23,6 @@ if(isset($_POST['unfollow'])) {
 
 }
 
-?>
-
-
-<a href="buscarAmigos.php">Buscar Amigos</a>
-
-<?php
-
-
 $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
 
 ?>
