@@ -152,7 +152,7 @@ CREATE TABLE megusta (
   publicacion_id INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(usuario_id, publicacion_id),
   FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (publicacion_id2) REFERENCES publicacion (id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (publicacion_id) REFERENCES publicacion (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 insert into megusta(usuario_id,publicacion_id) values(1,1);
