@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-  echo $_SESSION['id'].' Las id  es <br>';
+  //echo $_SESSION['id'].' Las id  es <br>';
 if( !isset($_SESSION['id']) ){
     header('Location: login.php');
     die();
