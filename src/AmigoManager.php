@@ -20,6 +20,7 @@ class AmigoManager implements IDWESEntidadManager{
                         FROM amigos a WHERE usuario_id = ? ");
 
     if($db -> executed ){ // Se pudo ejecutar
+    if($db -> executed() ){ // Se pudo ejecutar
         $datos = $db -> obtenDatos();
         if(count($datos)>0) { // Hay datos
             $fila = $datos[0];

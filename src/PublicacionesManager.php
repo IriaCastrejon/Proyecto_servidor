@@ -41,6 +41,7 @@ class PublicacionesManager implements IDWESEntidadManager{
     $db= DWESBaseDatos::obtenerInstancia();
 
     $db->ejecuta("DELETE FROM publicacion WHERE id =?",$id);
+    $db->ejecuta("DELETE FROM publicacion WHERE id = ?",$id);
   }
 
   public static function getByIdDeMascota($id){
