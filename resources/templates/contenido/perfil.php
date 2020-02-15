@@ -18,9 +18,9 @@ $resultados = MascotaManager::getById($id);
 //print_r($resultados);
 $publicaciones= PublicacionesManager::getById($id);
 $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
-$resultadosSiguiendo=count($resultadosSiguiendo);
+$resultadosSiguiendo = count($resultadosSiguiendo);
 $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
-$resultadosSeguidores=count($resultadosSeguidores);
+$resultadosSeguidores = count($resultadosSeguidores);
 
 $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 
@@ -55,9 +55,8 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 
 
     <?php foreach ($publicaciones as $fila):
-        $verifica= MegustaManager::verificarMegustas($id,$fila->getId());
         $num_megustas= MegustaManager::contadorMegustas($fila->getId());
-      ?>
+    ?>
       <div class="cuerpoPerfil">
         <div class="publicacionInfo">
           <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
@@ -67,7 +66,7 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
         <div class="publicacionInfo2">
           <img src="<?=$fila->getImagen() ?>" alt="publicacion">
           <p><?=$fila->getTexto() ?></p>
-          <a href="#"><span><?= $num_megustas ?></span><?php ($verifica) ? 'No me gusta' : 'me gusta' ?></a><a href="perfil.php?">Comentar</a><a href="#">Compartir</a><a href="#">Comentarios</a>
+          <a href="#"><span><?=$num_megustas ?></span><?=($num_megustas) ? " No me gusta" : " Me gusta" ?></a><a href="perfil.php?">Comentar</a><a href="#">Compartir</a><a href="#">Comentarios</a>
         </div>
     </div>
     <?php endforeach; ?>
