@@ -371,7 +371,7 @@ text-align: center;
 }
 .c_publicaciones{
   width: 73%;
-  height: 35em;
+  /*height: 35em;*/
   margin-right: 2%;
 }
 .c_publicaciones img {
