@@ -45,8 +45,8 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
         </form>
       </div>
       <div class="datosAmigos">
-        <h3><a href="amigos.php">Siguiendo</a> <br> <span><?=$resultadosSeguidores ?></span> </h3>
-        <h3><a href="seguidores.php">Seguidores</a><br> <span><?=$resultadosSiguiendo ?></span> </h3>
+        <h3><a href="amigos.php">Siguiendo</a> <br> <span><?=$resultadosSiguiendo ?></span> </h3>
+        <h3><a href="seguidores.php">Seguidores</a><br> <span><?=$resultadosSeguidores ?></span> </h3>
       </div>
 
   </div>
