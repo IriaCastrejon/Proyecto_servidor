@@ -14,8 +14,7 @@ if ($_POST['enviar']=="Cambiar") {
             $fichero_tmp = $_FILES["imagen"]["tmp_name"];
             $imagen_nombre = basename($_FILES["imagen"]["name"]);
             $ruta_destino = $config['img_path']."/";
-            echo "Depuración<br>";
-            echo "$fichero_tmp <br>$imagen_nombre <br>$ruta_destino <br>";
+          
 
         } else {
             $errores[] = "Fichero no soportado";
@@ -28,13 +27,13 @@ if ($_POST['enviar']=="Cambiar") {
   }
 
   if (count($errores)==0) {
-    
+
     MascotaManager::update($_SESSION['id'], $imagen_nombre);
     $db = DWESBaseDatos::obtenerInstancia();
     $ultimoId= $db->getLastId();
 
     if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino.$imagen_nombre)) {
-      echo 'moviendo fichero <br>';
+
     } else {
         $errores[] = "Error moviendo fichero";
 
@@ -48,6 +47,8 @@ if ($_POST['enviar']=="Cambiar") {
             // También podríamos usar transacciones de base de datos
         }
     }
+    header('Location: perfil.php');
+    die();
   }
 
 

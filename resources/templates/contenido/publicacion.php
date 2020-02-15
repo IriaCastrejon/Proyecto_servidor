@@ -63,9 +63,6 @@ if ($_POST['enviar']== 'Publicar') {
               $ruta_destino = $config['img_path']."/";
 
 
-              echo "Depuración<br>";
-              echo "$fichero_tmp <br>$imagen_nombre <br>$ruta_destino <br>";
-
               /*
               Si existe lo machacamos. Tener en cuenta
               if (file_exists($ruta_destino)) {
@@ -90,7 +87,7 @@ if (count($errores)==0) {
   $ultimoId= $db->getLastId();
 
   if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino.$imagen_nombre)) {
-    echo 'moviendo fichero <br>';
+
   } else {
       $errores[] = "Error moviendo fichero";
 
@@ -104,6 +101,8 @@ if (count($errores)==0) {
           // También podríamos usar transacciones de base de datos
       }
   }
+  header('Location: perfil.php');
+  die();
 }
 
 
