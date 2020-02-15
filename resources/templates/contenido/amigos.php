@@ -26,19 +26,21 @@ print_r($_GET);
 echo '</pre>';
 if(isset($_GET['seguir'])) {
   $id_seguir = (int)$_GET['idSeguir'];
+  $buscar=$_GET['busca'];
   AmigoManager::insert($id,$id_seguir);
-  header("Location: amigos.php");
+  header("Location: amigos.php?busca=$buscar");
   die();
 }
 if (isset($_GET['busca']) && $_GET['busca'] != "") {
-  $salidaBuscador=MascotaManager::buscar($_GET['busca']);
+  $buscar=$_GET['busca'];
+  $salidaBuscador=MascotaManager::buscar($buscar);
 
 }
 
 ?>
 <div>
   <form class="" action="amigos.php" method="get" >
-    <input type="text" name="busca" value="<?= $buscar?>" placeholder="Buscar amigo">
+    <input type="text" name="busca" value="<?= $buscar?>" placeholder="Busca">
     <input type="submit" name="enviar" value="Buscar">
   </form>
 </div>
@@ -48,6 +50,7 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
 ?>
 <?php if (!isset($_GET['busca'])): ?>
 <div class="amigos">
+  <caption>Mis amigos</caption>
   <table>
     <tbody>
       <?php foreach ($resultadosSiguiendo as $fila) {
@@ -67,6 +70,7 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
 <?php endif; ?>
 
 <div class="resultadosBuscador">
+  <caption>Resultados de la busqueda</caption>
    <table>
      <tbody>
        <?php foreach ($salidaBuscador as $fila) { ?>
@@ -78,7 +82,7 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
                     <button>Dejar de seguir</button>
                   </a>
                <?php }else{ ?>
-                 <a href="amigos.php?seguir=true&idSeguir=<?=$fila->getId()?>">
+                 <a href="amigos.php?busca=<?=$buscar?>&seguir=true&idSeguir=<?=$fila->getId()?>">
                   <button>Seguir</button>
                 </a>
                 <?php } ?>
