@@ -24,8 +24,8 @@ CREATE TABLE cliente (
   telefono INTEGER UNSIGNED NULL,
   PRIMARY KEY(id)
 );
-insert into cliente(id,nombre,email,pass,localidad,cp,cif,telefono) values (1,'empresa1','cliente1@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','madrid',28045,'cif-1',11111);
-insert into cliente(id,nombre,email,pass,localidad,cp,cif,telefono) values (2,'empresa2','cliente2@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','madrid',28045,'cif-2',22222);
+insert into cliente(id,nombre,email,pass,foto,localidad,cp,cif,telefono) values (1,'empresa1','cliente1@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','empresa.png','madrid',28045,'cif-1',11111);
+insert into cliente(id,nombre,email,pass,foto,localidad,cp,cif,telefono) values (2,'empresa2','cliente2@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','empresa2.png','madrid',28045,'cif-2',22222);
 
 CREATE TABLE anuncio (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -38,9 +38,9 @@ CREATE TABLE anuncio (
   FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-insert into anuncio(id,cliente_id,imagen,url) values (1,2,'empresa','www.anuncio_1');
-insert into anuncio(id,cliente_id,imagen,url) values (2,2,'empresa2','www.anuncio_2');
-insert into anuncio(id,cliente_id,imagen,url) values (3,1,'juego_bola','www.anuncio_3');
+insert into anuncio(id,cliente_id,imagen,url) values (1,2,'empresa.png','www.anuncio_1');
+insert into anuncio(id,cliente_id,imagen,url) values (2,2,'empresa2.png','www.anuncio_2');
+insert into anuncio(id,cliente_id,imagen,url) values (3,1,'juego_bola.png','www.anuncio_3');
 
 CREATE TABLE factura (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -66,9 +66,9 @@ CREATE TABLE usuario (
   nombre_dueno VARCHAR(45) NULL,
   PRIMARY KEY(id)
 );
-insert into usuario(id,email,pass,foto_perfil,nombre) values(1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','01_DescargaWP','bigotes');
-insert into usuario(id,email,pass,foto_perfil,nombre) values(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','2','zero');
-insert into usuario(id,email,pass,foto_perfil,nombre) values(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','gatito','coqui');
+insert into usuario(id,email,pass,foto_perfil,nombre) values(1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','01_DescargaWP.png','bigotes');
+insert into usuario(id,email,pass,foto_perfil,nombre) values(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','2.png','zero');
+insert into usuario(id,email,pass,foto_perfil,nombre) values(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','gatito.png','coqui');
 
 CREATE TABLE amigos (
   usuario_id INTEGER UNSIGNED NOT NULL,
@@ -94,9 +94,9 @@ CREATE TABLE publicacion (
   FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-insert into publicacion(id,usuario_id,imagen,texto) values(1,1,'2','cansada');
-insert into publicacion(id,usuario_id,imagen,texto) values(2,2,'jugando_cat','paseando por madrid');
-insert into publicacion(id,usuario_id,imagen,texto) values(3,3,'rick_and_morty','paseito');
+insert into publicacion(id,usuario_id,imagen,texto) values(1,1,'2.png','cansada');
+insert into publicacion(id,usuario_id,imagen,texto) values(2,2,'jugando_cat.png','paseando por madrid');
+insert into publicacion(id,usuario_id,imagen,texto) values(3,3,'rick_and_morty.png','paseito');
 
 CREATE TABLE actividad (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
