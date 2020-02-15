@@ -38,9 +38,9 @@ CREATE TABLE anuncio (
   FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-insert into anuncio(id,cliente_id,url) values (1,2,'www.anuncio_1');
-insert into anuncio(id,cliente_id,url) values (2,2,'www.anuncio_2');
-insert into anuncio(id,cliente_id,url) values (3,1,'www.anuncio_3');
+insert into anuncio(id,cliente_id,imagen,url) values (1,2,'empresa','www.anuncio_1');
+insert into anuncio(id,cliente_id,imagen,url) values (2,2,'empresa2','www.anuncio_2');
+insert into anuncio(id,cliente_id,imagen,url) values (3,1,'juego_bola','www.anuncio_3');
 
 CREATE TABLE factura (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -66,9 +66,9 @@ CREATE TABLE usuario (
   nombre_dueno VARCHAR(45) NULL,
   PRIMARY KEY(id)
 );
-insert into usuario(id,email,pass,nombre) values(1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','bigotes');
-insert into usuario(id,email,pass,nombre) values(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','zero');
-insert into usuario(id,email,pass,nombre) values(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','coqui');
+insert into usuario(id,email,pass,foto_perfil,nombre) values(1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','01_DescargaWP','bigotes');
+insert into usuario(id,email,pass,foto_perfil,nombre) values(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','2','zero');
+insert into usuario(id,email,pass,foto_perfil,nombre) values(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','gatito','coqui');
 
 CREATE TABLE amigos (
   usuario_id INTEGER UNSIGNED NOT NULL,
@@ -94,9 +94,9 @@ CREATE TABLE publicacion (
   FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-insert into publicacion(id,usuario_id,texto) values(1,1,'cansada');
-insert into publicacion(id,usuario_id,texto) values(2,2,'paseando por madrid');
-insert into publicacion(id,usuario_id,texto) values(3,3,'paseito');
+insert into publicacion(id,usuario_id,imagen,texto) values(1,1,'2','cansada');
+insert into publicacion(id,usuario_id,imagen,texto) values(2,2,'jugando_cat','paseando por madrid');
+insert into publicacion(id,usuario_id,imagen,texto) values(3,3,'rick_and_morty','paseito');
 
 CREATE TABLE actividad (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
