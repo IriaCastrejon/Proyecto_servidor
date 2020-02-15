@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS publicacion;
 DROP TABLE IF EXISTS actividad;
 DROP TABLE IF EXISTS comentario;
 DROP TABLE IF EXISTS participa;
-
+DROP TABLE IF EXISTS megusta;
 
 CREATE TABLE cliente (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -121,7 +121,13 @@ CREATE TABLE comentario (
   INDEX comentario_FKIndex3(actividad_id)
 );
 
-
+CREATE TABLE megusta (
+  usuario_id INTEGER UNSIGNED NOT NULL,
+  publicacion_id INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(usuario_id, publicacion_id),
+  INDEX usuario_has_publicacion_FKIndex1(usuario_id),
+  INDEX usuario_has_publicacion_FKIndex2(publicacion_id)
+);
 
 CREATE TABLE participa (
   usuario_id INTEGER UNSIGNED NOT NULL,
