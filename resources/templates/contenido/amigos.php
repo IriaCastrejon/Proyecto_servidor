@@ -9,27 +9,30 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
   die();
 }
 
-
-
-
 $buscar='';
 $id=$_SESSION['id'];
-$id_dejar = $_GET['idDejar'];
-$id_seguir = $_GET['idSeguir'];
-if(isset($_POST['unfollow'])) {
+$id_dejar = '';
+$id_seguir = '';
+
+if(isset($_GET['unfollow'])) {
+  $id_dejar = (int)$_GET['idDejar'];
   $db= DWESBaseDatos::obtenerInstancia();
   AmigoManager::delete($id,$id_dejar);
   header('Location: amigos.php');
   die();
 }
-
+echo '<pre>';
+print_r($_GET);
+echo '</pre>';
 if(isset($_GET['seguir'])) {
-  $db= DWESBaseDatos::obtenerInstancia();
+  echo 'estoy en seguir';
+  $id_seguir = (int)$_GET['idSeguir'];
+  echo $id;
+  echo $id_seguir;
   AmigoManager::insert($id,$id_seguir);
-  //header('Location: amigos.php');
-  //die();
+  header('Location: amigos.php');
+  die();
 }
-var_dump($_GET);
 if (isset($_GET['busca']) && $_GET['busca'] != "") {
   echo 'dentro del det en perfil <br>';
   echo $_GET['busca'];
@@ -50,26 +53,27 @@ if (isset($_GET['busca']) && $_GET['busca'] != "") {
 <?php
 $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
 ?>
-
-<div class="amigos">
-   <table>
-     <tbody>
-       <?php foreach ($resultadosSiguiendo as $fila) {
-
-         ?>
-         <tr>
-           <td>
-             <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
-             <form class="" action="amigos.php?idDejar=<?=$fila->getId()?>" method="post">
-               <input type="submit" name="unfollow" value="Dejar de seguir">
-             </form>
-           </td>
-         </tr>
-        <?php } ?>
-     </tbody>
-
-   </table>
+<?php if (!isset($_GET['busca'])): ?>
+  <table>
+    <tbody>
+      <?php foreach ($resultadosSiguiendo as $fila) {
+        ?>
+        <tr>
+          <td>
+            <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
+            <a href="amigos.php?unfollow=true&idDejar=<?=$fila->getId()?>">
+              <button >Dejar de Seguir</button>
+            </a>
+          </td>
+        </tr>
+       <?php } ?>
+    </tbody>
+  </table>
 </div>
+
+<?php endif; ?>
+  <div class="amigos">
+
 <div class="resultadosBuscador">
   <br><br><br>  <br><br><br>
    <table>
@@ -78,8 +82,15 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
          <tr>
            <td>
              <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
-             <a href="amigos.php?seguir=true&idSeguir=<?=$fila->getId()?>">
-              <?php print_r(AmigoManager::compruebaAmistad($id,$fila->getId())) ?>
+               <?php if (AmigoManager::compruebaAmistad($id,$fila->getId())) { ?>
+                  <a href="amigos.php?unfollow=true&idDejar=<?=$fila->getId()?>">
+                    <button>Dejar de seguir</button>
+                  </a>
+               <?php }else{ ?>
+                 <a href="amigos.php?seguir=true&idSeguir=<?=$fila->getId()?>">
+                  <button>Seguir</button>
+                </a>
+                <?php } ?>
              </a>
            </td>
          </tr>

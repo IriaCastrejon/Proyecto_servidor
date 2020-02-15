@@ -32,11 +32,13 @@ class AmigoManager implements IDWESEntidadManager{
 
 
   public static function compruebaAmistad(...$campos){
+    echo 'en comprueba amistad';
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT count(*) as n FROM amigos a WHERE a.usuario_id = ? and a.usuario_id2= ? ) ", $campos);
-
-    return n[0];
+    $db -> ejecuta("SELECT count(*) as n FROM amigos a WHERE a.usuario_id = ? and a.usuario_id2= ?", $campos);
+    $resultado = $db -> obtenDatos();
+    echo '<br>'.$resultado[0]['n'];
+    return $resultado[0]['n'];
   }
 
 
@@ -80,8 +82,10 @@ class AmigoManager implements IDWESEntidadManager{
   }
 
   public static function insert(...$campos){
+    print_r($campos);
     $db= DWESBaseDatos::obtenerInstancia();
     if (count($campos)=== 2) {
+      echo 'ststst';
         $db-> ejecuta("INSERT INTO amigos (usuario_id,usuario_id2) VALUES (?,?)",$campos);
 
     }
