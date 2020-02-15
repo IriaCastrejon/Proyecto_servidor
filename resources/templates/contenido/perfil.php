@@ -67,7 +67,7 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
         <div class="publicacionInfo2">
           <img src="<?=$fila->getImagen() ?>" alt="publicacion">
           <p><?=$fila->getTexto() ?></p>
-          <a href="#"><span><?= $num_megustas ?></span><?php if($verifica)? 'No megusta' : 'me gusta' ?></a><a href="perfil.php?">Comentar</a><a href="#">Compartir</a><a href="#">Comentarios</a>
+          <a href="#"><span><?= $num_megustas ?></span><?php ($verifica) ? 'No me gusta' : 'me gusta' ?></a><a href="perfil.php?">Comentar</a><a href="#">Compartir</a><a href="#">Comentarios</a>
         </div>
     </div>
     <?php endforeach; ?>
