@@ -425,3 +425,37 @@ text-align: center;
     width: 100%;
     height: 15em;
   }
+
+  .contenedor_actividades {
+      width: 90%;
+      /* outline: solid; */
+      margin: 0 auto;
+      overflow: auto;
+      margin-bottom: 3em;
+  }
+    .contenedor_actividades h1 {
+        text-align: center;
+        color: #27AE60; /*verde*/
+    }
+    .actividades {
+      width: 30%;
+      border: solid 0.3em #FF8C00; /*naranja*/
+      float: left;
+      margin: 0 1.6%;
+      margin-bottom: 1em;
+    }
+    .actividades h5 {
+      float: left;
+      /* outline: solid; */
+      margin: 1em;
+      text-align: center;
+    }
+    /* .anuncios h5:nth-of-type(2) {
+        padding: 0 0.5em;
+    } */
+    .actividades span{
+      color: gray;
+    }
+    .actividades img{
+      width: 100%;
+    }
