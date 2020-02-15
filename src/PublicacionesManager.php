@@ -22,7 +22,7 @@ class PublicacionesManager implements IDWESEntidadManager{
 
 
   public static function insert(...$campos){
-    echo '<br> dentro del insert publicaciones';
+
     $insertado=false;
 
     $db= DWESBaseDatos::obtenerInstancia();

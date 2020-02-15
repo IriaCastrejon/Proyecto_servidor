@@ -79,7 +79,7 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
            <td>
              <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
              <a href="amigos.php?seguir=true&idSeguir=<?=$fila->getId()?>">
-              <button> Seguir</button>
+              <?php print_r(AmigoManager::compruebaAmistad($id,$fila->getId())) ?>
              </a>
            </td>
          </tr>

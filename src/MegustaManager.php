@@ -2,63 +2,56 @@
 
 class MegustaManager implements IDWESEntidadManager{
 
-  public static function verificarMegustas($id_usuario, $id_publicacion){
-    $db = DWESBaseDatos::obtenerInstancia();
-
-    $db -> ejecuta("SELECT count(*)
-                        FROM megusta WHERE usuario_id = ? and publicacion_id= ?");
-
-    if($db -> executed ){ // Se pudo ejecutar
-        $datos = $db -> obtenDatos();
-        if (datos===0) {
-          return false;
-        }else{
-          return true;
-        }
-    }
-    return null;
-  }
   public static function contadorMegustas($id_publicacion){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT count(*)
-                        FROM megusta WHERE publicacion_id= ?");
+    $db -> ejecuta("SELECT count(*) as nMeGusta FROM megusta WHERE publicacion_id = ?", $id_publicacion);
 
-    if($db -> executed ){ // Se pudo ejecutar
-        $datos = $db -> obtenDatos();
+    $resultado = $db -> obtenDatos();
 
-        return $datos;
-    }
-    return null;
+    return $resultado[0]['nMeGusta'];
+
+  }
+
+  public static function verificarMeGusta(...$campos){
+    $db = DWESBaseDatos::obtenerInstancia();
+
+    $db -> ejecuta("SELECT count(*) as nMeGusta FROM megusta WHERE usuario_id = ? AND publicacion_id = ?", $campos);
+
+    $resultado = $db -> obtenDatos();
+
+
+    return $resultado[0]['nMeGusta'];
+
   }
 
   public static function insert(...$campos){
     $db= DWESBaseDatos::obtenerInstancia();
     if (count($campos)=== 2) {
-        $db-> ejecuta("INSERT INTO megusta(usuario_id,publicacion_id) VALUES (?,?)",$campos);
+        $db-> ejecuta("INSERT INTO megusta (usuario_id,publicacion_id) VALUES (?,?)",$campos);
 
     }
   }
 
-
-  public static function update($id, ...$campos){
-
-  }
-
-
   public static function delete(...$campos){
-      $db= DWESBaseDatos::obtenerInstancia();
-      if (count($campos)=== 2) {
-        $db-> ejecuta("DELETE FROM megusta WHERE usuario_id = ? AND publicacion_id = ?",$campos);
-      }
+    $db= DWESBaseDatos::obtenerInstancia();
+    if (count($campos)=== 2) {
+      $db-> ejecuta("DELETE FROM megusta WHERE usuario_id = ? AND publicacion_id = ?",$campos);
+    }
   }
 
+<<<<<<< HEAD
   public static function getAll(){
 
   }
   public static function getById($id){
 
   }
+=======
+  public static function update($id, ...$campos){}
+  public static function getAll(){}
+  public static function getById($id){}
+>>>>>>> 698e6c84534ab8680fddc39f83d384c77daa066e
 
 }
 
