@@ -22,10 +22,6 @@ if(isset($_GET['seguir'])) {
 
 }
 
-
-
-
-
 $resultados = AmigoManager::obtenerNoAmigos($id);
 
 
@@ -36,7 +32,7 @@ foreach ($resultados as $fila) { ?>
     <h4>
       <?=$fila->getNombre()?>
       <a href="buscarAmigos.php?seguir=true&id=<?=$fila->getId()?>">
-        <button> Seguir<button>
+        <button> Seguir</button>
       </a>
 
     </h4>

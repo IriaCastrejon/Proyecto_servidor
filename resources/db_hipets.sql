@@ -75,7 +75,7 @@ CREATE TABLE amigos (
   usuario_id2 INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(usuario_id, usuario_id2),
   FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (usuario_id2) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 insert into amigos(usuario_id,usuario_id2) values(1,2);
 insert into amigos(usuario_id,usuario_id2) values(1,3);
