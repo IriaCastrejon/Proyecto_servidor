@@ -80,5 +80,15 @@ class PublicacionesManager implements IDWESEntidadManager{
     }, $db -> obtenDatos());
   }
 
+  public static function getAllPublicaciones($id)
+  {
+    $db = DWESBaseDatos::obtenerInstancia();
+
+    $db -> ejecuta( "SELECT * FROM publicacion WHERE usuario_id = ? OR usuario_id IN(SELECT usuario_id2 FROM amigos WHERE usuario_id = ? ) ORDER BY fecha DESC", $id, $id);
+
+    return array_map(function($fila){
+      return new Publicaciones($fila['id'], $fila['usuario_id'], $fila['imagen'], $fila['texto'],$fila['fecha']);
+    }, $db -> obtenDatos());
+  }
 }
  ?>

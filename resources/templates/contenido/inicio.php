@@ -7,38 +7,19 @@ if( !isset($_SESSION['id']) ){
 }
 $id = $_SESSION['id'];
 
-$resAnuncio = AnuncioManager::getAll();
-$resPublicaciones = PublicacionesManager::getAll();
 $resActividades = ActividadManager::getAll();
-$publicaciones=PublicacionesManager::getByIdDeMascota($id);
-$resultados = MascotaManager::getById($id);
+$resAnuncio = AnuncioManager::getAll();
+$resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
 
-// foreach $resultadosSiguiendo as $otra
-//   $otra->getId
-//   $pubki= PublicacionesManager::GETBYID()
-$resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
-foreach ($resultadosSiguiendo as $filaAmigo) {
-  $idAmigo = $filaAmigo->getId();
-  $publicacionById = PublicacionesManager::getById($idAmigo);
-  ?>
-  <pre>
-  <?php print_r($publicacionById);?>
-  </pre>
-  <?php
-  //$idAmigo = $filaAmigo->getById();
-  //$publicacionById = PublicacionesManager::getById($idAmigo);
-
-}
 ?>
 
 
-
 <div class="contendor_inicio">
-  <h1> Inicio de Mascota con id: <?= $id ?> </h1>
-
+  <br><br>
   <div class="c_publicaciones">
 
-    <?php foreach ($publicaciones as $fila):
+    <?php foreach ($resPublicaciones as $fila):
+        $resultados = MascotaManager::getById($fila->getId_usuario());
         $num_megustas = MegustaManager::contadorMegustas($fila->getId());
         $verificar = MegustaManager::verificarMeGusta($id, $fila->getId());
 

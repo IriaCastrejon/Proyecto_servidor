@@ -22,7 +22,9 @@ $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
 $resultadosSeguidores = count($resultadosSeguidores);
 
 $publicaciones=PublicacionesManager::getByIdDeMascota($id);
-
+echo "<pre>";
+print_r($publicaciones);
+echo "</pre>";
 
 ?>
 <div class="contenedorPerfilMascota">
