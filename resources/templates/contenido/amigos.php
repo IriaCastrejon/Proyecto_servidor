@@ -25,21 +25,14 @@ echo '<pre>';
 print_r($_GET);
 echo '</pre>';
 if(isset($_GET['seguir'])) {
-  echo 'estoy en seguir';
   $id_seguir = (int)$_GET['idSeguir'];
-  echo $id;
-  echo $id_seguir;
   AmigoManager::insert($id,$id_seguir);
-  header('Location: amigos.php');
+  header("Location: amigos.php");
   die();
 }
 if (isset($_GET['busca']) && $_GET['busca'] != "") {
-  echo 'dentro del det en perfil <br>';
-  echo $_GET['busca'];
-
   $salidaBuscador=MascotaManager::buscar($_GET['busca']);
-  echo '<br>';
- // var_dump($salidaBuscador);
+
 }
 
 ?>
@@ -54,6 +47,7 @@ if (isset($_GET['busca']) && $_GET['busca'] != "") {
 $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
 ?>
 <?php if (!isset($_GET['busca'])): ?>
+<div class="amigos">
   <table>
     <tbody>
       <?php foreach ($resultadosSiguiendo as $fila) {
@@ -70,12 +64,9 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
     </tbody>
   </table>
 </div>
-
 <?php endif; ?>
-  <div class="amigos">
 
 <div class="resultadosBuscador">
-  <br><br><br>  <br><br><br>
    <table>
      <tbody>
        <?php foreach ($salidaBuscador as $fila) { ?>
@@ -96,6 +87,5 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
          </tr>
         <?php } ?>
      </tbody>
-
    </table>
 </div>

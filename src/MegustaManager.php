@@ -40,7 +40,6 @@ class MegustaManager implements IDWESEntidadManager{
     }
   }
 
-
   public static function update($id, ...$campos){}
   public static function getAll(){}
   public static function getById($id){}
