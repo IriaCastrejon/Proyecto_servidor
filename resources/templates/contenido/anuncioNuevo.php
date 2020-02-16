@@ -1,10 +1,7 @@
 <?php
 
   session_start();
-  //
-  // echo '<pre>';
-  // print_r($_POST);
-  // echo '</pre>';
+
 
   if( !isset($_SESSION['id']) && $_SESSION['tipo_cliente']!='Empresa'){
       header('Location: login.php');
@@ -221,14 +218,6 @@
     </div>
 
   </form>
-  <?php endif;
-
-
-  echo '<pre>';
-  print_r($errores);
-  print_r($_FILES);
-  echo '</pre>';
-
-  ?>
+  <?php endif; ?>
 
  </div>

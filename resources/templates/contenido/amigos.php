@@ -21,9 +21,7 @@ if(isset($_GET['unfollow'])) {
   header('Location: amigos.php');
   die();
 }
-// echo '<pre>';
-// print_r($_GET);
-// echo '</pre>';
+
 if(isset($_GET['seguir'])) {
   $id_seguir = (int)$_GET['idSeguir'];
   AmigoManager::insert($id,$id_seguir);

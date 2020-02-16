@@ -1,10 +1,5 @@
 <?php
-/*
-echo '<pre>';
-print_r($_POST);
-print_r($_FILES);
-echo '</pre>';
-*/
+
 $nombre='';
 $email='';
 $contraseña='';
@@ -102,8 +97,7 @@ if (isset($_POST['enviar'])) {
               $nombre_real = basename($_FILES["imagen"]["name"]);
               $ruta_destino = $config['img_path']."/".$nombre_real;
 
-              echo "Depuración<br>";
-              echo "$fichero_tmp <br>$nombre_real <br>$ruta_destino <br>";
+
 
               /*
               Si existe lo machacamos. Tener en cuenta
@@ -176,9 +170,7 @@ if (isset($_POST['enviar'])) {
 
     if ($empresa) {
 
-      echo 'dentro del if de empresa en registro <br>';
-      //email,pass,foto,localidad,cp,cif,telefono
-        echo $cp.' dentro del if de empresa en registro <br>';
+
       EmpresaManager::insert($email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
 
       if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {

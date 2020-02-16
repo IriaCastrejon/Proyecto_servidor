@@ -1,8 +1,4 @@
 <?php
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
-echo '<br>';
 
 $email = "";
 $pass = "";
@@ -37,15 +33,12 @@ if(isset($_POST["submit"])) {
     if (count($errores)===0) {
 
       if( MascotaManager::existeEmail($email) ){
-        echo 'entra en mascota <br>';
         $resultados= MascotaManager::getByEmail($email);
         $tabla='mascota';
       }elseif (EmpresaManager::existeEmail($email)) {
-        echo 'etra e epresa';
         $resultados= EmpresaManager::getByEmail($email);
         $tabla='empresa';
       }else {
-        echo 'entra en else';
         $resultados=[];
       }
 
@@ -60,12 +53,10 @@ if(isset($_POST["submit"])) {
             $_SESSION['tipo_cliente']=$tabla;
             $_SESSION['email']=$email;
             $_SESSION['id']=$resultados['id'];
-            echo   $_SESSION['tipo_cliente'];
-            echo $_SESSION['email'].' Las claves coinciden y este es el email <br>';
-            echo $_SESSION['id'].' Las id  es <br>';
+
 
             if(isset($_POST["recuerdame"]) && $_POST['recuerdame']== 'si' ){
-              echo "dentro recuerdame";
+
               $token = bin2hex(random_bytes(10));
               echo $token;
               echo $_SESSION['id'];
@@ -98,14 +89,6 @@ if(isset($_POST["submit"])) {
 
     }// if errores =0
 
-    echo count($errores).' errores <br>';
-    var_dump($resultados);
-    echo '<br>';
-    echo count($resultados).' Resultados <br>';
-
-
-
-
 }
 
 
@@ -114,7 +97,7 @@ if(isset($_POST["submit"])) {
 if(isset($_COOKIE['recuerdame'])){
   $token = $_COOKIE['recuerdame'];
   $resultado_token = TokenManager::getIdyTipo($token);
-  print_r($resultado_token) ;
+
   session_start();
   $_SESSION['id']=$resultado_token['usuario_id'];
   $_SESSION['tipo_cliente'] = $resultado_token['tipo'];

@@ -7,14 +7,15 @@ $_SESSION['buscar']='';
     <nav class="menu">
        <a href="inicio.php">Inicio</a>
       <a href="actividades.php">Mis actividades</a>
-      <a href="actividades2.php">Mis actividades2 (pruebas)</a>
       <a href="amigos.php">Mis Amigos</a>
       <a href="perfil.php">Mi perfil</a>
-      <a href="logout.php">Logout</a>
+
       <form class="" action="buscarAmigos.php" method="get" >
         <input type="text" name="busca" value="<?= $_SESSION['buscar']?>" placeholder="Buscar nuevos amigos">
         <input type="submit" name="enviar" value="Buscar">
       </form>
+      <a href="logout.php">Logout</a>
+
     </nav>
 
   <?php }else if ($_SESSION['tipo_cliente'] == 'empresa'){ ?>
