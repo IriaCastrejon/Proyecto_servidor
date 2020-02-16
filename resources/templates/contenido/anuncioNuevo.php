@@ -102,7 +102,7 @@
 
     if(count($_FILES)>0) {
         if($_FILES['imagen']['size'] < $config['MB_2']){
-            if($_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpeg"){
+            if($_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/jpg" ){
                 // Gestionamos la información del fichero
                 $fichero_tmp = $_FILES["imagen"]["tmp_name"];
                 $nombre_real = basename($_FILES["imagen"]["name"]);
