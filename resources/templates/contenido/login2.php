@@ -3,14 +3,30 @@ echo '<pre>';
 var_dump($_POST);
 echo '</pre>';
 echo '<br>';
-
+if($_POST["recuerdame"]){
+  echo "hola";
+}
 $email = "";
 $pass = "";
 $errores = [];
 $passEncriptada;
 $tabla='';
 
+if(isset($_COOKIE['recuerdame'])){
+  $token = $_COOKIE['recuerdame'];
+  $resultado_token = TokenManager::getIdyTipo($token);
+  session_start();
+  $_SESSION['id']=$resultado_token['usuario_id'];
+  $_SESSION['tipo_cliente'] = $resultado_token['tipo'];
+  if($resultado_token['tipo'] === 'mascota'){
+     header('Location: inicio.php');
+       exit;
+  }else{
+    header('Location: inicioEmpresario.php');
+    exit;
+  }
 
+}
 
 if(isset($_POST["submit"])) {
 
@@ -60,18 +76,13 @@ if(isset($_POST["submit"])) {
             $_SESSION['tipo_cliente']=$tabla;
             $_SESSION['email']=$email;
             $_SESSION['id']=$resultados['id'];
-            echo   $_SESSION['tipo_cliente'];
             echo $_SESSION['email'].' Las claves coinciden y este es el email <br>';
             echo $_SESSION['id'].' Las id  es <br>';
 
             if(isset($_POST["recuerdame"]) && $_POST['recuerdame']== 'si' ){
               echo "dentro recuerdame";
               $token = bin2hex(random_bytes(10));
-              echo $token;
-              echo $_SESSION['id'];
-              echo $_SESSION['tipo_cliente'];
               setCookie("recuerdame",$token,time()+(3600*24*30));
-
 
               TokenManager::delete($_SESSION['id'],$_SESSION['tipo_cliente']);
               TokenManager::insert($_SESSION['id'],$token,$_SESSION['tipo_cliente']);
@@ -108,25 +119,6 @@ if(isset($_POST["submit"])) {
 
 }
 
-
-
-
-if(isset($_COOKIE['recuerdame'])){
-  $token = $_COOKIE['recuerdame'];
-  $resultado_token = TokenManager::getIdyTipo($token);
-  print_r($resultado_token) ;
-  session_start();
-  $_SESSION['id']=$resultado_token['usuario_id'];
-  $_SESSION['tipo_cliente'] = $resultado_token['tipo'];
-  if($resultado_token['tipo'] == "mascota"){
-     header('Location: inicio.php');
-       exit;
-  }else{
-    header('Location: inicioEmpresario.php');
-    exit;
-  }
-
-}
 
 if(isset($_GET["error"])){
     $errores[] = $_GET["error"];
