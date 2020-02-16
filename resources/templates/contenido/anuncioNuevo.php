@@ -1,13 +1,10 @@
 <?php
 
   session_start();
-
-  echo '<pre>';
-  print_r($_POST);
-  echo '</pre>';
-
-
-
+  //
+  // echo '<pre>';
+  // print_r($_POST);
+  // echo '</pre>';
 
   if( !isset($_SESSION['id']) && $_SESSION['tipo_cliente']!='Empresa'){
       header('Location: login.php');
@@ -37,11 +34,43 @@
   define("ERROR_FECHA_NO", 1);
 
   $precioDia = PRECIO_DIA;
-   $precio = $precioDia * $_POST['duracion'];
+  $precio = $precioDia * $_POST['duracion'];
+
+  //Calculo
+  if (isset($_POST['calcular'])) {
+    // duracion
+    if (isset($_POST['duracion']) && $_POST['duracion'] > 0) {
+      $duracion=clean_input($_POST['duracion']);
+    }else{
+      $errores['duracion']= true;
+    }
+
+    //url
+    if (isset($_POST['url']) && $_POST['url'] != '') {
+      $url = clean_input($_POST['url']);
+    }else{
+      $errores['url']= true;
+    }
+
+    // fecha_alta
+    if (isset($_POST['fecha_alta']) && $_POST['fecha_alta'] != '') {
+      if (validarFecha($_POST['fecha_alta'])) {
+        $fecha_alta=clean_input($_POST['fecha_alta']);
+        $fecha_baja = strtotime($fecha_alta. "+ $duracion days");
+
+        $fecha_baja = date('Y-m-d',$fecha_baja);
+
+      }else{
+        $errores['fecha_alta'] = ERROR_FECHA_MAYOR;
+      }
+    }else{
+      $errores['fecha_alta'] = ERROR_FECHA_NO;
+    }
+  }
+
 
 // validacion del formulario
   if (isset($_POST['comprar'])) {
-
     // duracion
     if (isset($_POST['duracion']) && $_POST['duracion'] > 0) {
       $duracion=clean_input($_POST['duracion']);
@@ -105,12 +134,10 @@
     //   $errores['foto'] = 'Introduce una foto';
     // }
 
-
     //errores
-    if(count($errores)==0){
+    if(count($errores) == 0){
       $db= DWESBaseDatos::obtenerInstancia();
       AnuncioManager::insert($id,$nombre_real,$fecha_alta, $fecha_baja, $url);
-
       header('Location: anuncio.php');
       die();
 
@@ -133,16 +160,10 @@
 
       }
 
+      //header("location: anuncio.php");
 
+    }
 
-      //$_SESSION['id']= $db->getLastId();
-      //echo $_SESSION['id']. ' ultimo id insertado';
-      header("location: anuncio.php");
-
-    }// no hay errores
-
-
-  //echo $_SESSION['tipo_cliente'];
  ?>
 
  <div class="form_anuncio">
@@ -180,18 +201,23 @@
    <br><br>
 
     <h4> Total a pagar:
-      <?php if (isset($_POST['calcular'])): ?>
+      <?php if (isset($_POST['calcular']) && count($errores) === 0): ?>
         <span ><?php echo $precio . ' €';?></span> <br>
      <?php else: ?>
-       <span ><?= $precio ?></span> <br>
+       <span ><?= $precio = 0 ?></span> <br>
       <?php endif; ?>
       </h4>
-
     <br><br>
 
+
+
     <div class="botones">
+
       <input type="submit" name="calcular" value="Calcular">
       <input type="submit" name="comprar" value="Comprar">
+
+      <!-- <button type="submit" name="calcular" class="login-button">Calcular</button>
+      <button type="submit" name="comprar" class="login-button">Comprar</button> -->
     </div>
 
   </form>
