@@ -20,10 +20,18 @@ $resultados = ActividadManager::obtenerActividadNoParticipa($id);
 
 foreach ($resultados as $fila) { ?>
      <div class="actividades">
-       <h4>
-         <a href="detalleActividad.php?participa=false&idActividad=<?=$fila->getId()?>"><?=$fila->getNombre()?></a>
+      <h5> Actividad <br>
+        <span><?=$fila->getNombre()?></span>
+      </h5>
+       <h5> Fecha<br> <span><?=$fila->getFecha()?> </span></h5>
+       <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
 
-       </h4>
+       <h5>
+         <form class="" action="actividades2.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
+               <input type="submit" name="participar" value="Participar">
+         </form>
+
+       </h5>
      </div>
 
 <?php } ?>

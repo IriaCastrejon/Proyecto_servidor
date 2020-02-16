@@ -11,8 +11,21 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
   die();
 }
 
+
 $id = $_SESSION['id'];
 
+
+if(isset($_GET['meGusta'])) {
+  $idPublicacion = $_GET['idPublicacion'];
+  MegustaManager::insert($id,$idPublicacion);
+
+}
+
+if(isset($_GET['noMegusta'])) {
+  $idPublicacion = $_GET['idPublicacion'];
+  MegustaManager::delete($id,$idPublicacion);
+
+}
 $resActividades = ActividadManager::getAll();
 $resAnuncio = AnuncioManager::getAll();
 $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
@@ -45,15 +58,15 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
           <p><?=$fila->getTexto() ?></p>
           <span><?=$num_megustas ?></span>
           <a href="perfil.php">
-            <?php
-                if($verificar){
-                  echo " No me gusta";
-                  MegustaManager::delete($id, $fila->getId());
-                }else{
-                  echo " Me gusta";
-                  MegustaManager::insert($id, $fila->getId());
-                }
-            ?>
+            <?php if ($verificar) { ?>
+               <a href="inicio2.php?noMegusta=true&idPublicacion=<?=$fila->getId()?>">
+                   No me gusta
+               </a>
+            <?php }else{ ?>
+              <a href="inicio2.php?meGusta=true&idPublicacion=<?=$fila->getId()?>">
+                   Me gusta
+             </a>
+             <?php } ?>
           </a>
           <a href="#">Comentar</a>
           <a href="#">Compartir</a>

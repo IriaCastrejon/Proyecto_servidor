@@ -13,25 +13,68 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 }
 
 $id=$_SESSION['id'];
+$idActividad = $_GET['idActividad'];
+$participa = $_GET['participa'];
 
 ?>
 
 <a href="nuevaActividad.php">Crear nueva Actividad</a>
-<a href="buscarActividades.php">Buscar Actividad</a>
+<a href="buscarActividades2.php">Buscar Actividad</a>
 
 <?php
 
 $resultados = ActividadManager::obtenerActividadPorIdParticipante($id);
 
-foreach ($resultados as $fila) { ?>
-     <div class="actividades">
-       <h4>
-         <a href="detalleActividad.php?participa=true&idActividad=<?=$fila->getId()?>"><?=$fila->getNombre()?></a>
+if (isset($_POST['participar'])) {
 
-       </h4>
+  $db= DWESBaseDatos::obtenerInstancia();
+  ParticipaManager::insert($id,$idActividad);
+  header('Location: actividades2.php');
+  die();
+
+}
+
+
+if (isset($_POST['desapuntarse'])) {
+
+  $db= DWESBaseDatos::obtenerInstancia();
+  ParticipaManager::delete($id,$idActividad);
+  header('Location: actividades2.php');
+  die();
+
+}
+?>
+
+<div class="contenedor_actividades">
+  <h1> Mis actividades </h1>
+<?php
+foreach ($resultados as $fila) {
+  $participantes = ActividadManager::numeroParticipantes($fila->getId());
+  ?>
+     <div class="actividades">
+
+
+         <h5> Actividad <br>
+
+              <span><?=$fila->getNombre()?></span>
+
+        </h5>
+         <h5> Fecha<br> <span><?=$fila->getFecha()?> </span></h5>
+         <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
+         <h5> Participantes <br> <span><?=$participantes?> </span></h5>
+         <h5>
+           <form class="" action="actividades2.php?participa=true&idActividad=<?=$fila->getId()?>" method="post">
+             <?php if($participa == 'false'){ ?>
+                     <input type="submit" name="participar" value="Participar">
+             <?php }else{ ?>
+                     <input type="submit" name="desapuntarse" value="No Participar">
+
+             <?php } ?>
+           </form>
+
+         </h5>
+
      </div>
 
-
-
-
 <?php } ?>
+</div>
