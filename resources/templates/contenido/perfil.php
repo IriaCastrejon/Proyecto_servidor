@@ -65,6 +65,7 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 ?>
 <div class="contenedorPerfilMascota">
   <div class="cabeceraPerfil">
+
       <img  src="<?=$resultados[0]->getFoto()?>" alt="">
       <div class="datosMascota">
         <h2><?=$resultados[0]->getNombre()?></h2><br>
@@ -140,7 +141,7 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 
             <div class="oculto" id="comentarios<?=$fila->getId()?>">
               <div class="comentar">
-                <form class="" action="perfil.php?idPublicacion=<?=$fila->getId()?>" method="post">
+                <form class="" action="perfil.php?idUsuario=<?=$id?>&idPublicacion=<?=$fila->getId()?>" method="post">
                   <textarea name="comentar" rows="8" cols="80" placeholder="Aqui tu comentario"></textarea>
                   <input type="submit" name="enviarComentario" value="Enviar">
                 </form>

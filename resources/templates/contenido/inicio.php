@@ -91,7 +91,7 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
 
             <div class="oculto" id="comentarios<?=$fila->getId()?>">
               <div class="comentar">
-                <form class="" action="inicio.php?idPublicacion=<?=$fila->getId()?>" method="post">
+                <form class="" action="inicio.php?idUsuario=<?=$id?>&idPublicacion=<?=$fila->getId()?>" method="post">
                   <textarea name="comentar" rows="8" cols="80" placeholder="Aqui tu comentario"></textarea>
                   <input type="submit" name="enviarComentario" value="Enviar">
                 </form>
