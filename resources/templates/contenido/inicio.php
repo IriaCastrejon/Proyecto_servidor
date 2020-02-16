@@ -66,10 +66,7 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
       <div class="cuerpoPerfil">
         <div class="publicacionInfo">
           <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
-          <a href="eliminarPublicacion.php?idPub=<?=$fila->getId()?>">
-            Eliminar
-
-          </a>
+          
           <h2><?=$resultados[0]->getNombre() ?></h2><br>
           <h4> <?=$fila->getFecha() ?></h4>
         </div>
