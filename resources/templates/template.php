@@ -21,7 +21,6 @@ Son necesarias las variables
     <div class="contenedor">
       <?php
         ///echo "ruta contenido". $ruta_contenido;
-
           require("$ROOT/resources/templates/header.php");
           require("$ROOT/resources/templates/navegacion.php");
           require("$ROOT/resources/templates/contenido$ruta_contenido");
