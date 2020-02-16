@@ -2,9 +2,7 @@
 
 class ComentarioManager implements IDWESEntidadManager{
 
-  public static function getAll(){
 
-  }
 
   public static function getAllComentariosPublicacion(){
     $db = DWESBaseDatos::obtenerInstancia();
@@ -12,78 +10,57 @@ class ComentarioManager implements IDWESEntidadManager{
     $db -> ejecuta("SELECT *  FROM comentario_publicacion");
 
     return array_map(function($fila){
-      return new Comentario($fila['id'], $fila['usuario_id'],$fila['descripcion'], $fila['fecha'], $fila['lugar']);
+      return new Comentario($fila['id'], $fila['usuario_id'],$fila['publicacion_id'], $fila['texto']);
     }, $db -> obtenDatos());
   }
 
-  public static function getById($id){
+  public static function getAllComentariosActividad(){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT id, nombre,descripcion, fecha, lugar
-                        FROM actividad  WHERE id = ?", $id);
+    $db -> ejecuta("SELECT *  FROM comentario_actividad");
+
+    return array_map(function($fila){
+      return new Comentario($fila['id'], $fila['usuario_id'],$fila['actividad_id'], $fila['texto']);
+    }, $db -> obtenDatos());
+  }
+
+
+
+  public static function getByIdComentarioPublicacion($id){
+    $db = DWESBaseDatos::obtenerInstancia();
+
+    $db -> ejecuta("SELECT *  FROM comentario_publicacion  WHERE id = ?", $id);
 
 
         $datos = $db -> obtenDatos();
         if(count($datos)>0) { // Hay datos
             $fila = $datos[0];
-            return new Actividad($fila['id'], $fila['nombre'], $fila['descripcion'], $fila['fecha'],$fila['lugar']);
+            return new Comentario($fila['id'], $fila['usuario_id'],$fila['publicacion_id'], $fila['texto']);
         }
 
     return null;
   }
 
-  public static function insert(...$campos){
-    echo '<br> dentro del insert ';
-    $insertado=false;
-
-    $db= DWESBaseDatos::obtenerInstancia();
-
-    if (count($campos)=== 4 ) {
-        $db-> ejecuta("INSERT INTO actividad(nombre,descripcion,fecha,lugar) VALUES (?,?,?,?)",$campos);
-        $insertado=true;
-    }
-    return $insertado;
-  }
-
-
-
-  public static function obtenerActividadPorIdParticipante($id){
+  public static function getByIdComentariActividad($id){
     $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT a.id,a.nombre, a.descripcion, a.fecha, a.lugar FROM actividad a WHERE id in
-      (SELECT p.actividad_id FROM participa p WHERE usuario_id = ? )",$id);
+    $db -> ejecuta("SELECT *  FROM comentario_actividad  WHERE id = ?", $id);
 
 
-            return array_map(function($fila){
-                return new Actividad($fila['id'], $fila['nombre'], $fila['descripcion'], $fila['fecha'], $fila['lugar']);
-              },$db -> obtenDatos());
+        $datos = $db -> obtenDatos();
+        if(count($datos)>0) { // Hay datos
+            $fila = $datos[0];
+            return new Comentario($fila['id'], $fila['usuario_id'],$fila['actividad_id'], $fila['texto']);
+        }
 
-  }
-
-  public static function numeroParticipantes($id){
-    $db = DWESBaseDatos::obtenerInstancia();
-
-    $db -> ejecuta("SELECT count(*) as nParticipantes FROM participa WHERE actividad_id = ? GROUP BY actividad_id",$id);
-    $resultado = $db -> obtenDatos();
-    return $resultado[0]['nParticipantes'];
-
+    return null;
   }
 
 
-  public static function obtenerActividadNoParticipa($id){
-    $db = DWESBaseDatos::obtenerInstancia();
 
-    $db -> ejecuta("SELECT a.id,a.nombre, a.descripcion, a.fecha, a.lugar FROM actividad a WHERE id not in
-      (SELECT p.actividad_id FROM participa p WHERE usuario_id = ? )",$id);
-
-
-            return array_map(function($fila){
-                return new Actividad($fila['id'], $fila['nombre'], $fila['descripcion'], $fila['fecha'], $fila['lugar']);
-              },$db -> obtenDatos());
-
-  }
-
-
+  public static function getAll(){}
+  public static function getById($id){}
+  public static function insert(...$campos){}
   public static function update($id, ...$campos){}
   public static function delete($id){}
 
