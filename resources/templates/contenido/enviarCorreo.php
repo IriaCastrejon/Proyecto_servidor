@@ -1,11 +1,4 @@
 <?php
-
-  // require ("/vendor/phpmailer/phpmailer/src/PHPMailer.php");
-  // require ("/vendor/phpmailer/phpmailer/src/SMTP.php");
-  // // require 'path/to/PHPMailer/src/Exception.php';
-  // // ("/resources/templates/header.php");
-  // // Load Composer's autoloader
-  // require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -16,30 +9,27 @@ require 'vendor/autoload.php';
 $tipo_cliente='';
 $email='';
 $errores=[];
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
 if (isset($_POST['enviar'])) {
 
   if (isset($_POST['cliente']) && ($_POST['cliente']== 'mascota' || $_POST['cliente']== 'empresa')){
     $tipo_cliente=$_POST['cliente'];
-    if (isset($_POST['email']) && $_POST['email'] != '') {
+    if (isset($_POST['correo']) && $_POST['email'] != 'correo') {
 
-      $email=clean_input($_POST['email']);
+      $email=clean_input($_POST['correo']);
 
       if (filter_var($email, FILTER_VALIDATE_EMAIL)== false) {
         $errores['correo']='Formato de email no valido';
       }else{
         if ($tipo_cliente== 'mascota') {
-          echo 'es una mascota';
-          echo MascotaManager::existeEmail($email);
+
           if (!MascotaManager::existeEmail($email)) {
-            echo $tipo_cliente;
+            echo 'MascotaManager::existeEmail($email)';
             $errores['correo']='Este correo electronico no está registrado';
           }
         }
         if ($tipo_cliente== 'empresa') {
           if (!EmpresaManager::existeEmail($email)) {
+            echo 'MascotaManager::existeEmail($email)';
             $errores['correo']='Este correo electronico no está registrado';
           }
         }
@@ -49,12 +39,10 @@ if (isset($_POST['enviar'])) {
     }
   }else {
     $errores['tipo_cliente']='No es una opción válida';
-    echo 'dentro del else de cl'.$errores['tipo_cliente'];
   }
 
 
-  if (count($errores)>0) {
-    echo $email;
+  if (count($errores)==0) {
     $token=generaToken();
   //  enviarEmail();
   }
@@ -77,7 +65,7 @@ if (isset($_POST['enviar'])) {
          <p>Si hiciste esta petici&oacuten, haz clic en el siguiente enlace, si no hiciste esta petici&oacuten puedes ignorar este correo.</p>
          <p>
            <strong>Enlace para restablecer tu contrase&ntildea</strong><br>
-           <a href=""> Restablecer contrase&ntildea </a>
+           <a href="login.php"> Restablecer contrase&ntildea </a>
          </p>
        </body>
       </html>';
@@ -104,11 +92,10 @@ if (isset($_POST['enviar'])) {
      }
 
   }
-   echo $tipo_cliente;
  ?>
  <div class="formularioRecuperarContraseña">
    <form class="" action="enviarCorreo.php" method="post">
-     <input type="text" name="correo" value="<?=$email?>"><label for="">Introduce el correo eletronico</label><br>
+     <label for="">Introduce el correo eletronico</label><input type="email" name="correo" value="<?=$email ?>"><br>
      <span class="error"><?=$errores['correo'] ?></span><br>
      <label for="" class="rad_cliente">Soy mascota <input type="radio" name="cliente" value="mascota" <?=($tipo_cliente== 'mascota')?'checked':'' ?> > </label>
      <label for="" class="rad_cliente">Soy empresa <input type="radio" name="cliente" value="empresa" <?=($tipo_cliente== 'empresa')?'checked':'' ?>> </label><br>
