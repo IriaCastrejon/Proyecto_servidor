@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+$_SESSION['buscar']='';
   if($_SESSION['tipo_cliente'] == 'mascota'){ ?>
 
     <nav class="menu">
@@ -11,6 +11,10 @@ session_start();
       <a href="amigos.php">Mis Amigos</a>
       <a href="perfil.php">Mi perfil</a>
       <a href="logout.php">Logout</a>
+      <form class="" action="buscarAmigos.php" method="get" >
+        <input type="text" name="busca" value="<?= $_SESSION['buscar']?>" placeholder="Buscar nuevos amigos">
+        <input type="submit" name="enviar" value="Buscar">
+      </form>
     </nav>
 
   <?php }else if ($_SESSION['tipo_cliente'] == 'empresa'){ ?>

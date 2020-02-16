@@ -27,6 +27,12 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   font-weight: bold;
   border-right: 4px solid white;
 }
+.contenedor nav form{
+  display: inline-block;
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+}
 .contenedor nav a:visited,.contenedor nav a:link{
   color: black;
 }
