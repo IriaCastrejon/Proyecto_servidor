@@ -149,8 +149,6 @@ if(isset($_GET["error"])){
             <input type="checkbox" name="recuerdame" value="si">Recuérdame
         </form>
 
-      <p><a href="enviarCorreo.php">Recuperar contraseña</a></p>
-      <a href="registro.php">
-        <p>Registrarme</p>
-      </a>
+      <a href="enviarCorreo.php"> <p>Recuperar contraseña </p></a>
+      <a href="registro.php"> <p>Registrarme</p> </a>
   </div>

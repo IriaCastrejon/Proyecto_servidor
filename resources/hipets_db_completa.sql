@@ -329,7 +329,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','bigotes','2.jpeg','Madrid',28026,666958459,'Hola','Petunio'),(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','zero','lcdm.png','Madrid',28026,666958459,'Hola','Patricio'),(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','coqui','gatito.png','Madrid',28026,666958459,'Hola','Paty'),(4,'mayra1@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Calcetines','perrito.png','Madrid',28026,627025654,'Es un trasto','Mayra');
+INSERT INTO `usuario` VALUES (1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','bigotes','2.jpeg','Madrid',28026,666958459,'Hola','Petunio'),(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','zero','lcdm.png','Madrid',28026,666958459,'Hola','Patricio'),(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','coqui','gatito.png','Madrid',28026,666958459,'Hola','Paty'),(4,'mayra1@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Calcetines','perrito.png','Madrid',28026,627025654,'Es un trasto','Mayra'),(5,'marbeucv@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Zelda','perro4.png','Madrid',28045,627025654,'Ladrar y comer','Marbe');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
