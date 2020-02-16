@@ -85,14 +85,9 @@ if(isset($_POST["submit"])) {
         }else{
           $errores[] ="El correo electrónico no existe";
         }
-
-
     }// if errores =0
 
 }
-
-
-
 
 if(isset($_COOKIE['recuerdame'])){
   $token = $_COOKIE['recuerdame'];

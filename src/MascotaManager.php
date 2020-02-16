@@ -35,6 +35,13 @@ class MascotaManager implements IDWESEntidadManager{
                     WHERE id= $id", $campos);
 
   }
+  public static function updatePass($id, ...$campos){
+    $db = DWESBaseDatos::obtenerInstancia();
+
+    $db -> ejecuta("UPDATE usuario SET pass=?
+                    WHERE id= $id", $campos);
+
+  }
   public static function delete($id){
     // toDo
   }

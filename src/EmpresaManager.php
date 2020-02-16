@@ -51,7 +51,13 @@ class EmpresaManager implements IDWESEntidadManager{
     $db -> ejecuta("UPDATE cliente SET foto=?
                     WHERE id= $id", $campos);
   }
+  public static function updatePass($id, ...$campos){
+    $db = DWESBaseDatos::obtenerInstancia();
 
+    $db -> ejecuta("UPDATE cliente SET pass=?
+                    WHERE id= $id", $campos);
+
+  }
   public static function delete($id){
     // toDo
   }
