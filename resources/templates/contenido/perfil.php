@@ -65,7 +65,6 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 ?>
 <div class="contenedorPerfilMascota">
   <div class="cabeceraPerfil">
-
       <img  src="<?=$resultados[0]->getFoto()?>" alt="">
       <div class="datosMascota">
         <h2><?=$resultados[0]->getNombre()?></h2><br>
