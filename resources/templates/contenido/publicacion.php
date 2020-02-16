@@ -10,6 +10,7 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
   die();
 }
 
+$id = $_SESSION['id'];
 $errores=[];
 $imagen_nombre='';
 $contenido='';
@@ -101,7 +102,7 @@ if (count($errores)==0) {
           // También podríamos usar transacciones de base de datos
       }
   }
-  header('Location: perfil.php');
+  header("Location: perfil.php?idUsuario=$id");
   die();
 }
 
