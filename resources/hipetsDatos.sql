@@ -131,36 +131,6 @@ INSERT INTO `cliente` VALUES (1,'empresa1','cliente1@gmial.com','$2y$10$2JnNTcrW
 UNLOCK TABLES;
 
 --
--- Table structure for table `comentario_actividad`
---
-
-DROP TABLE IF EXISTS `comentario_actividad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comentario_actividad` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_id` int(10) unsigned NOT NULL,
-  `publicacion_id` int(10) unsigned NOT NULL,
-  `texto` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `usuario_id` (`usuario_id`),
-  KEY `publicacion_id` (`publicacion_id`),
-  CONSTRAINT `comentario_actividad_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `comentario_actividad_ibfk_2` FOREIGN KEY (`publicacion_id`) REFERENCES `publicacion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comentario_actividad`
---
-
-LOCK TABLES `comentario_actividad` WRITE;
-/*!40000 ALTER TABLE `comentario_actividad` DISABLE KEYS */;
-INSERT INTO `comentario_actividad` VALUES (3,1,2,'Comentario3'),(4,3,3,'Comentario4'),(5,1,3,'Comentario5');
-/*!40000 ALTER TABLE `comentario_actividad` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `comentario_publicacion`
 --
 
@@ -170,13 +140,13 @@ DROP TABLE IF EXISTS `comentario_publicacion`;
 CREATE TABLE `comentario_publicacion` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `usuario_id` int(10) unsigned NOT NULL,
-  `actividad_id` int(10) unsigned NOT NULL,
+  `publicacion_id` int(10) unsigned NOT NULL,
   `texto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
-  KEY `actividad_id` (`actividad_id`),
+  KEY `publicacion_id` (`publicacion_id`),
   CONSTRAINT `comentario_publicacion_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `comentario_publicacion_ibfk_2` FOREIGN KEY (`actividad_id`) REFERENCES `actividad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `comentario_publicacion_ibfk_2` FOREIGN KEY (`publicacion_id`) REFERENCES `publicacion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -186,8 +156,38 @@ CREATE TABLE `comentario_publicacion` (
 
 LOCK TABLES `comentario_publicacion` WRITE;
 /*!40000 ALTER TABLE `comentario_publicacion` DISABLE KEYS */;
-INSERT INTO `comentario_publicacion` VALUES (1,1,1,'Comentario1'),(2,2,1,'Comentario2'),(3,1,2,'Comentario3'),(4,3,3,'Comentario4'),(5,1,3,'Comentario5');
+INSERT INTO `comentario_publicacion` VALUES (3,1,2,'Comentario3'),(4,3,3,'Comentario4'),(5,1,3,'Comentario5');
 /*!40000 ALTER TABLE `comentario_publicacion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comentario_actividad`
+--
+
+DROP TABLE IF EXISTS `comentario_actividad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comentario_actividad` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(10) unsigned NOT NULL,
+  `actividad_id` int(10) unsigned NOT NULL,
+  `texto` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`),
+  KEY `actividad_id` (`actividad_id`),
+  CONSTRAINT `comentario_actividad_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `comentario_actividad_ibfk_2` FOREIGN KEY (`actividad_id`) REFERENCES `actividad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentario_actividad`
+--
+
+LOCK TABLES `comentario_actividad` WRITE;
+/*!40000 ALTER TABLE `comentario_actividad` DISABLE KEYS */;
+INSERT INTO `comentario_actividad` VALUES (1,1,1,'Comentario1'),(2,2,1,'Comentario2'),(3,1,2,'Comentario3'),(4,3,3,'Comentario4'),(5,1,3,'Comentario5');
+/*!40000 ALTER TABLE `comentario_actividad` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
