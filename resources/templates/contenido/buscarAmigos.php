@@ -53,7 +53,7 @@ if (isset($_GET['busca']) && $_GET['busca'] != "") {
            <button>Seguir</button>
          </a>
          <?php } ?>
-      </a>
+      </a> <!--Este a SOBRAAAAAAAAAAAAAAA!!!-->
     </div>
    <?php } ?>
 <?php } ?>
