@@ -17,12 +17,22 @@ $ruta='';
 $resultados = EmpresaManager::getAllById($id);
 
 ?>
-<h1>
 
-Inicio epresario: <?= $id ?>
+<div class="contenedorPerfilMascota">
+  <div class="cabeceraPerfil">
 
-</h1>
-<?php foreach ($resultados as $fila) { ?>
+    <img  src="<?=$resultados[0]->getFoto()?>" alt="">
+    <div class="datosMascota">
+    <h2><?=$resultados[0]->getNombre()?></h2><br>
+    <h4><?=$resultados[0]->getLocalidad()?></h4><br>
+    <h4><?=$resultados[0]->getCP()?></h4><br>
+    <h4><?=$resultados[0]->getTelefono()?></h4><br>
 
-<img class="small-img" src="<?=$fila->getFoto()?>" alt="">
-<?php } ?>
+        <a href="editarPerfil.php">
+          <input class="enviar" type="submit" name="editar" value="Editar perfil">
+        </a><br>
+
+      </div>
+
+
+  </div>

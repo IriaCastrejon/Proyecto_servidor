@@ -30,14 +30,6 @@ $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
 
 
    <table>
-     <!--
-     <thead>
-       <tr>
-         <th>SEGUIDORES</th>
-
-       </tr>
-     </thead>
-   -->
 
      <tbody>
        <?php foreach ($resultadosSeguidores as $fila) { ?>

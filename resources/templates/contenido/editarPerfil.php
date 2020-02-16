@@ -25,28 +25,39 @@ if ($_POST['enviar']=="Cambiar") {
   }
 
   if (count($errores)==0) {
+    if($_SESSION['tipo_cliente'] == 'mascota'){
+      MascotaManager::update($_SESSION['id'], $imagen_nombre);
+      $db = DWESBaseDatos::obtenerInstancia();
+      $ultimoId= $db->getLastId();
 
-    MascotaManager::update($_SESSION['id'], $imagen_nombre);
-    $db = DWESBaseDatos::obtenerInstancia();
-    $ultimoId= $db->getLastId();
+      if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino.$imagen_nombre)) {
 
-    if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino.$imagen_nombre)) {
+      } else {
+          $errores[] = "Error moviendo fichero";
 
-    } else {
-        $errores[] = "Error moviendo fichero";
+          $borrado = PublicacionesManager::delete($ultimoId);
 
-        $borrado = PublicacionesManager::delete($ultimoId);
+          if(!$borrado) {
+              // Ha ocurrido un error extraño
+              // Debemos reportarlo y que un admin
+              // Deje la información correcta
+              // Hay un tema sin imagen
+              // También podríamos usar transacciones de base de datos
+          }
+      }
+      header('Location: perfil.php');
+      die();
+    }else{
+      EmpresaManager::update($_SESSION['id'], $imagen_nombre);
+      $db = DWESBaseDatos::obtenerInstancia();
+      $ultimoId= $db->getLastId();
 
-        if(!$borrado) {
-            // Ha ocurrido un error extraño
-            // Debemos reportarlo y que un admin
-            // Deje la información correcta
-            // Hay un tema sin imagen
-            // También podríamos usar transacciones de base de datos
-        }
+
+      
+      header('Location: inicioEmpresario.php');
+      die();
     }
-    header('Location: perfil.php');
-    die();
+
   }
 
 

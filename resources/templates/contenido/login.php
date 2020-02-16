@@ -1,13 +1,12 @@
 <?php
-/*echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
-echo '<br>';*/
+
 $email = "";
 $pass = "";
 $errores = [];
 $passEncriptada;
 $tabla='';
+
+
 
 if(isset($_POST["submit"])) {
 
@@ -21,29 +20,25 @@ if(isset($_POST["submit"])) {
       $errores[]= 'Introduce un email';
     }
 
-
-
-
     if(isset($_POST["password"]) && $_POST["password"] != ''){
         $password = clean_input($_POST["password"]);
     }else{
         $errores[] = "Contraseña inválida";
     }
 
+
+
     //creación del objeto con conexion a la BD
 
     if (count($errores)===0) {
 
       if( MascotaManager::existeEmail($email) ){
-        echo 'entra en mascota <br>';
         $resultados= MascotaManager::getByEmail($email);
         $tabla='mascota';
       }elseif (EmpresaManager::existeEmail($email)) {
-        echo 'etra e epresa';
         $resultados= EmpresaManager::getByEmail($email);
         $tabla='empresa';
       }else {
-        echo 'entra en else';
         $resultados=[];
       }
 
@@ -58,11 +53,25 @@ if(isset($_POST["submit"])) {
             $_SESSION['tipo_cliente']=$tabla;
             $_SESSION['email']=$email;
             $_SESSION['id']=$resultados['id'];
-            echo $_SESSION['email'].' Las claves coinciden y este es el email <br>';
-            echo $_SESSION['id'].' Las id  es <br>';
+
+
+            if(isset($_POST["recuerdame"]) && $_POST['recuerdame']== 'si' ){
+
+              $token = bin2hex(random_bytes(10));
+              echo $token;
+              echo $_SESSION['id'];
+              echo $_SESSION['tipo_cliente'];
+              setCookie("recuerdame",$token,time()+(3600*24*30));
+
+
+              TokenManager::delete($_SESSION['id'],$_SESSION['tipo_cliente']);
+              TokenManager::insert($_SESSION['id'],$token,$_SESSION['tipo_cliente']);
+              //borrar token anterior del mismo Usuario/
+              //insertar token e id y tipo
+            }
 
             if ($tabla=='mascota') {
-              header('Location: actividades.php');
+              header('Location: inicio.php');
               exit;
             }elseif ($tabla=='empresa') {
               header('Location: inicioEmpresario.php');
@@ -80,16 +89,27 @@ if(isset($_POST["submit"])) {
 
     }// if errores =0
 
-    echo count($errores).' errores <br>';
-    var_dump($resultados);
-    echo '<br>';
-    echo count($resultados).' Resultados <br>';
-
-
-
-
 }
 
+
+
+
+if(isset($_COOKIE['recuerdame'])){
+  $token = $_COOKIE['recuerdame'];
+  $resultado_token = TokenManager::getIdyTipo($token);
+
+  session_start();
+  $_SESSION['id']=$resultado_token['usuario_id'];
+  $_SESSION['tipo_cliente'] = $resultado_token['tipo'];
+  if($resultado_token['tipo'] == "mascota"){
+     header('Location: inicio.php');
+       exit;
+  }else{
+    header('Location: inicioEmpresario.php');
+    exit;
+  }
+
+}
 
 if(isset($_GET["error"])){
     $errores[] = $_GET["error"];
@@ -126,6 +146,7 @@ if(isset($_GET["error"])){
               <label for="submit">&nbsp;</label>
               <button type="submit" name="submit" class="login-button">Login</button>
             </p>
+            <input type="checkbox" name="recuerdame" value="si">Recuérdame
         </form>
 
       <p><a href="enviarCorreo.php">Recuperar contraseña</a></p>

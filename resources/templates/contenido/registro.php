@@ -1,11 +1,6 @@
 <?php
 
 
-  /*echo '<pre>';
-  print_r($_POST);
-  print_r($_COOKIE);
-  echo '</pre>';*/
-
 $tipo_cliente='';
 $errores=[];
    // Esto se puede y debe sacar al config
