@@ -16,7 +16,7 @@ $errores=[];
     header("location: procesadorDeRegitros.php");
     die();
   }else {
-    $errores['cliente']='No es ua opción válida';
+    $errores['cliente']='No es una opción válida';
   }
  ?>
 
@@ -31,5 +31,5 @@ $errores=[];
     <?php endif; ?>
   </form>
   <br><br>
-  
+
 </div>

@@ -128,7 +128,7 @@ if(isset($_GET["error"])){
             </p>
         </form>
 
-      <p>Recuperar contraseña</p>
+      <p><a href="enviarCorreo.php">Recuperar contraseña</a></p>
       <a href="registro.php">
         <p>Registrarme</p>
       </a>
