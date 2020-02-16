@@ -2,6 +2,7 @@
 
 $imagen='';
 $errores=[];
+$id = $_SESSION['id'];
 
 if ($_POST['enviar']=="Cambiar") {
   if(count($_FILES)>0) {
@@ -45,7 +46,7 @@ if ($_POST['enviar']=="Cambiar") {
               // También podríamos usar transacciones de base de datos
           }
       }
-      header('Location: perfil.php');
+      header("Location: perfil.php?idUsuario=$id");
       die();
     }else{
       EmpresaManager::update($_SESSION['id'], $imagen_nombre);
@@ -53,7 +54,7 @@ if ($_POST['enviar']=="Cambiar") {
       $ultimoId= $db->getLastId();
 
 
-      
+
       header('Location: inicioEmpresario.php');
       die();
     }
