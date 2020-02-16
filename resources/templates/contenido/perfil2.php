@@ -12,6 +12,8 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 }
 
 $id=$_SESSION['id'];
+$errores = [];
+$comentario='';
 
 if(isset($_GET['meGusta'])) {
   $idPublicacion = $_GET['idPublicacion'];
@@ -25,9 +27,25 @@ if(isset($_GET['noMegusta'])) {
 
 }
 
+if (isset($_POST['enviarComentario'])) {
+    $idPublicacion = $_GET['idPublicacion'];
+
+    if (isset($_POST['comentar']) && $_POST['comentar'] != ''){
+      $comentario = clean_input($_POST['comentar']);
+    }else{
+      $errores['comentar']= true;
+    }
+
+    if(count($errores)==0){
+        $db= DWESBaseDatos::obtenerInstancia();
+        ComentarioManager::insertComentariosPublicacion($id,$idPublicacion,$comentario);
+    }
+
+
+}
+
 $ruta='';
 $resultados = MascotaManager::getById($id);
-$id_publicacion = PublicacionesManager::getById($id);
 $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
 $resultadosSiguiendo = count($resultadosSiguiendo);
 $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
@@ -35,6 +53,11 @@ $resultadosSeguidores = count($resultadosSeguidores);
 
 $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 
+
+
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 ?>
 <div class="contenedorPerfilMascota">
   <div class="cabeceraPerfil">
@@ -97,14 +120,52 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
            </a>
            <?php } ?>
 
-          <a href="#">Comentar</a>
-          <a href="#">Compartir</a>
-          <a href="#">Comentarios</a>
+
+          <a href="javascript:mostrarOcultar(<?=$fila->getId()?>);">Comentarios</a>
+
+            <div class="oculto" id="comentarios<?=$fila->getId()?>">
+              <div class="comentar">
+                <form class="" action="perfil2.php?idPublicacion=<?=$fila->getId()?>" method="post">
+                  <textarea name="comentar" rows="8" cols="80" placeholder="Aqui tu comentario"></textarea>
+                  <input type="submit" name="enviarComentario" value="Enviar">
+                </form>
+
+              </div>
+
+              <div class="comentarios">
+                <?php
+                   foreach ( $fila->getComentarios() as $filaComentario): ?>
+
+                   <div class="">
+                     <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
+                     <?=($filaComentario->getUsuario())->getNombre()?>
+                     <?=$filaComentario->getTexto()?>
+
+                   </div>
+
+
+
+                <?php endforeach; ?>
+              </div>
+            </div>
         </div>
     </div>
     <?php endforeach; ?>
 
 
+
+<script>
+
+function mostrarOcultar(id){
+
+  elemento = document.getElementById('comentarios' + id);
+  elemento.classList.toggle("oculto");
+
+}
+
+
+
+</script>
 
 </div>
 <br><br>

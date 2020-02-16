@@ -8,6 +8,7 @@ class Publicaciones{
      private $imagen;
      private $texto;
      private $fecha;
+     private $comentarios;
 
     function __construct($id, $id_usuario, $imagen, $texto,$fecha) {
       $this->id= $id;
@@ -68,6 +69,9 @@ class Publicaciones{
       return $this;
   }
 
+  public function getComentarios(){
+      return ComentarioManager::getAllComentariosPublicacion($this->id);
+  }
 
 
 }// clase

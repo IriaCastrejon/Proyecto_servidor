@@ -115,6 +115,12 @@ class Comentario {
         return $this;
     }
 
+
+    public function getUsuario()
+    {
+      return MascotaManager::getById($this->usuario_id)[0];
+
+    }
 }
 
  ?>

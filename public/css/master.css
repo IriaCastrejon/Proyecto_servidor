@@ -465,3 +465,11 @@ text-align: center;
     .actividades img{
       width: 100%;
     }
+
+
+
+
+    /*=========COMENTARIOS OCULTOS==========*/
+  .oculto{
+    display: none;
+  }
