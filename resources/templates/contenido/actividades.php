@@ -19,7 +19,7 @@ $participa = $_GET['participa'];
 ?>
 
 <a href="nuevaActividad.php">Crear nueva Actividad</a>
-<a href="buscarActividades2.php">Buscar Actividad</a>
+<a href="buscarActividades.php">Buscar Actividad</a>
 
 <?php
 
@@ -29,7 +29,7 @@ if (isset($_POST['participar'])) {
 
   $db= DWESBaseDatos::obtenerInstancia();
   ParticipaManager::insert($id,$idActividad);
-  header('Location: actividades2.php');
+  header('Location: actividades.php');
   die();
 
 }
@@ -39,7 +39,7 @@ if (isset($_POST['desapuntarse'])) {
 
   $db= DWESBaseDatos::obtenerInstancia();
   ParticipaManager::delete($id,$idActividad);
-  header('Location: actividades2.php');
+  header('Location: actividades.php');
   die();
 
 }
@@ -63,7 +63,7 @@ foreach ($resultados as $fila) {
          <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
          <h5> Participantes <br> <span><?=$participantes?> </span></h5>
          <h5>
-           <form class="" action="actividades2.php?participa=true&idActividad=<?=$fila->getId()?>" method="post">
+           <form class="" action="actividades.php?participa=true&idActividad=<?=$fila->getId()?>" method="post">
              <?php if($participa == 'false'){ ?>
                      <input type="submit" name="participar" value="Participar">
              <?php }else{ ?>

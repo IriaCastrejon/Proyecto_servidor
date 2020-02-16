@@ -13,6 +13,8 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 
 
 $id = $_SESSION['id'];
+$errores = [];
+$comentario='';
 
 
 if(isset($_GET['meGusta'])) {
@@ -26,6 +28,24 @@ if(isset($_GET['noMegusta'])) {
   MegustaManager::delete($id,$idPublicacion);
 
 }
+
+if (isset($_POST['enviarComentario'])) {
+    $idPublicacion = $_GET['idPublicacion'];
+
+    if (isset($_POST['comentar']) && $_POST['comentar'] != ''){
+      $comentario = clean_input($_POST['comentar']);
+    }else{
+      $errores['comentar']= true;
+    }
+
+    if(count($errores)==0){
+        $db= DWESBaseDatos::obtenerInstancia();
+        ComentarioManager::insertComentariosPublicacion($id,$idPublicacion,$comentario);
+    }
+
+
+}
+
 $resActividades = ActividadManager::getAll();
 $resAnuncio = AnuncioManager::getAll();
 $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
@@ -59,18 +79,38 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
           <span><?=$num_megustas ?></span>
           <a href="perfil.php">
             <?php if ($verificar) { ?>
-               <a href="inicio2.php?noMegusta=true&idPublicacion=<?=$fila->getId()?>">
+               <a href="inicio.php?noMegusta=true&idPublicacion=<?=$fila->getId()?>">
                    No me gusta
                </a>
             <?php }else{ ?>
-              <a href="inicio2.php?meGusta=true&idPublicacion=<?=$fila->getId()?>">
+              <a href="inicio.php?meGusta=true&idPublicacion=<?=$fila->getId()?>">
                    Me gusta
              </a>
              <?php } ?>
           </a>
-          <a href="#">Comentar</a>
-          <a href="#">Compartir</a>
-          <a href="#">Comentarios</a>
+
+
+          <a href="javascript:mostrarOcultar(<?=$fila->getId()?>);">Comentarios</a>
+
+            <div class="oculto" id="comentarios<?=$fila->getId()?>">
+              <div class="comentar">
+                <form class="" action="inicio.php?idPublicacion=<?=$fila->getId()?>" method="post">
+                  <textarea name="comentar" rows="8" cols="80" placeholder="Aqui tu comentario"></textarea>
+                  <input type="submit" name="enviarComentario" value="Enviar">
+                </form>
+              </div>
+
+              <div class="comentarios">
+                <?php
+                   foreach ( $fila->getComentarios() as $filaComentario): ?>
+                   <div class="">
+                     <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
+                     <?=($filaComentario->getUsuario())->getNombre()?>
+                     <?=$filaComentario->getTexto()?>
+                   </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
         </div>
     </div>
     <?php endforeach; ?>
@@ -92,6 +132,12 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
     <?php } ?>
 
   </div>
+  <script>
+  function mostrarOcultar(id){
+    elemento = document.getElementById('comentarios' + id);
+    elemento.classList.toggle("oculto");
+  }
+  </script>
   <div class="c_anuncios">
     <p>Publicidad</p>
     <div class="anuncioInicio">

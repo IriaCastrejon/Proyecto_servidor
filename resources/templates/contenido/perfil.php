@@ -55,9 +55,6 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 
 
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
 ?>
 <div class="contenedorPerfilMascota">
   <div class="cabeceraPerfil">
@@ -111,11 +108,11 @@ echo "</pre>";
 
 
           <?php if ($verificar) { ?>
-             <a href="perfil2.php?noMegusta=true&idPublicacion=<?=$fila->getId()?>">
+             <a href="perfil.php?noMegusta=true&idPublicacion=<?=$fila->getId()?>">
                  No me gusta
              </a>
           <?php }else{ ?>
-            <a href="perfil2.php?meGusta=true&idPublicacion=<?=$fila->getId()?>">
+            <a href="perfil.php?meGusta=true&idPublicacion=<?=$fila->getId()?>">
                  Me gusta
            </a>
            <?php } ?>
@@ -125,26 +122,20 @@ echo "</pre>";
 
             <div class="oculto" id="comentarios<?=$fila->getId()?>">
               <div class="comentar">
-                <form class="" action="perfil2.php?idPublicacion=<?=$fila->getId()?>" method="post">
+                <form class="" action="perfil.php?idPublicacion=<?=$fila->getId()?>" method="post">
                   <textarea name="comentar" rows="8" cols="80" placeholder="Aqui tu comentario"></textarea>
                   <input type="submit" name="enviarComentario" value="Enviar">
                 </form>
-
               </div>
 
               <div class="comentarios">
                 <?php
                    foreach ( $fila->getComentarios() as $filaComentario): ?>
-
                    <div class="">
                      <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
                      <?=($filaComentario->getUsuario())->getNombre()?>
                      <?=$filaComentario->getTexto()?>
-
                    </div>
-
-
-
                 <?php endforeach; ?>
               </div>
             </div>
@@ -155,15 +146,10 @@ echo "</pre>";
 
 
 <script>
-
 function mostrarOcultar(id){
-
   elemento = document.getElementById('comentarios' + id);
   elemento.classList.toggle("oculto");
-
 }
-
-
 
 </script>
 

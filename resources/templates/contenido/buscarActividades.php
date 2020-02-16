@@ -27,7 +27,7 @@ foreach ($resultados as $fila) { ?>
        <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
 
        <h5>
-         <form class="" action="actividades2.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
+         <form class="" action="actividades.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
                <input type="submit" name="participar" value="Participar">
          </form>
 
