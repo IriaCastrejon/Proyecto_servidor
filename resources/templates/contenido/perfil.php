@@ -14,6 +14,13 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 $id=$_SESSION['id'];
 $errores = [];
 $comentario='';
+$idInicio = $_GET['idUsuario'];
+$idV = $_SESSION['id'];
+
+
+if($idInicio!==$id){
+  $id=$idInicio;
+}
 
 if(isset($_GET['meGusta'])) {
   $idPublicacion = $_GET['idPublicacion'];
@@ -64,6 +71,8 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
         <h2><?=$resultados[0]->getNombre()?></h2><br>
         <h4><?=$resultados[0]->getDescripcion()?></h4><br>
         <h4><?=$resultados[0]->getNombre_dueno()?></h4><br>
+    <?php if($idInicio==$idV){ ?>
+
         <a href="editarPerfil.php">
           <input class="enviar" type="submit" name="editar" value="Editar perfil">
         </a><br>
@@ -75,11 +84,20 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
         <a href="actividades.php">
           <input class="enviar" type="submit" name="actiidad" value="Actividades">
         </a>
+    <?php } ?>
       </div>
 
       <div class="datosAmigos">
-        <h3><a href="amigos.php">Siguiendo</a> <br> <span><?=$resultadosSiguiendo ?></span> </h3>
-        <h3><a href="seguidores.php">Seguidores</a><br> <span><?=$resultadosSeguidores ?></span> </h3>
+        <?php
+            if($idInicio==$idV){ ?>
+              <h3><a href="amigos.php">Siguiendo</a> <br> <span><?=$resultadosSiguiendo ?></span> </h3>
+              <h3><a href="seguidores.php">Seguidores</a><br> <span><?=$resultadosSeguidores ?></span> </h3>
+        <?php    }else{ ?>
+          <h3><a href="#">Siguiendo</a> <br> <span><?=$resultadosSiguiendo ?></span> </h3>
+          <h3><a href="#">Seguidores</a><br> <span><?=$resultadosSeguidores ?></span> </h3>
+        <?php  }
+         ?>
+
       </div>
 
   </div>
@@ -98,7 +116,7 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
           <h2><?=$resultados[0]->getNombre() ?></h2><br>
           <h4> <?=$fila->getFecha() ?></h4>
           <a href="eliminarPublicacion.php?idPub=<?=$fila->getId()?>">
-        
+
             <img class="small-img" src="imgs/papelera.png" alt="">
           </a>
         </div>

@@ -66,8 +66,8 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
       <div class="cuerpoPerfil">
         <div class="publicacionInfo">
           <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
-          
-          <h2><?=$resultados[0]->getNombre() ?></h2><br>
+          <a href="perfil.php?idUsuario=<?=$fila->getId_usuario()?>"><h2><?=$resultados[0]->getNombre() ?></h2><br></a>
+
           <h4> <?=$fila->getFecha() ?></h4>
         </div>
         <div class="publicacionInfo2">
