@@ -126,11 +126,11 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
 
 
           <?php if ($verificar) { ?>
-             <a href="perfil.php?noMegusta=true&idPublicacion=<?=$fila->getId()?>">
+             <a href="perfil.php?idUsuario=<?=$id?>&noMegusta=true&idPublicacion=<?=$fila->getId()?>">
                  No me gusta
              </a>
           <?php }else{ ?>
-            <a href="perfil.php?meGusta=true&idPublicacion=<?=$fila->getId()?>">
+            <a href="perfil.php?idUsuario=<?=$id?>&meGusta=true&idPublicacion=<?=$fila->getId()?>">
                  Me gusta
            </a>
            <?php } ?>

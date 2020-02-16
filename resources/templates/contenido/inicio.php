@@ -76,11 +76,11 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
           <span><?=$num_megustas ?></span>
           <a href="perfil.php">
             <?php if ($verificar) { ?>
-               <a href="inicio.php?noMegusta=true&idPublicacion=<?=$fila->getId()?>">
+               <a href="inicio.php?idUsuario=<?=$id?>&noMegusta=true&idPublicacion=<?=$fila->getId()?>">
                    No me gusta
                </a>
             <?php }else{ ?>
-              <a href="inicio.php?meGusta=true&idPublicacion=<?=$fila->getId()?>">
+              <a href="inicio.php?idUsuario=<?=$id?>&meGusta=true&idPublicacion=<?=$fila->getId()?>">
                    Me gusta
              </a>
              <?php } ?>
