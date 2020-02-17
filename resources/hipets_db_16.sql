@@ -65,7 +65,7 @@ CREATE TABLE `amigos` (
 
 LOCK TABLES `amigos` WRITE;
 /*!40000 ALTER TABLE `amigos` DISABLE KEYS */;
-INSERT INTO `amigos` VALUES (2,1),(3,1),(3,2),(1,3),(2,3),(1,4);
+INSERT INTO `amigos` VALUES (2,1),(3,1),(3,2),(1,3),(2,3),(1,4),(1,5),(1,6),(1,7),(1,8),(6,4),(5,3),(8,2),(6,5);
 /*!40000 ALTER TABLE `amigos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +329,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Bigotes','gatito.png','Madrid',28026,666958459,'Cariñoso','Petunio'),(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Zero','gato2.png','Madrid',28026,666958459,':)','Patricio'),(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Coqui','juego_bola.png','Madrid',28026,666958459,'Lo mejor del mundo','Paty'),(4,'mayra1@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Calcetines','perrito.png','Madrid',28026,627025654,'Es un trasto','Mayra'),(5,'marbeucv@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Zelda','perro4.png','Madrid',28045,627025654,'Ladrar y comer','Marbe');
+INSERT INTO `usuario` VALUES (1,'bigotes@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Bigotes','gatito.png','Madrid',28026,666958459,'Cariñoso','Petunio'),(2,'zero@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Zero','gato2.png','Madrid',28026,666958459,':)','Patricio'),(3,'coqui@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Coqui','juego_bola.png','Madrid',28026,666958459,'Lo mejor del mundo','Paty'),(4,'mayra1@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Calcetines','perrito.png','Madrid',28026,627025654,'Es un trasto','Mayra'),(5,'marbeucv@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Zelda','perro4.png','Madrid',28045,627025654,'Ladrar y comer','Marbe'),(6,'iria.castrejon@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Pulga','perro3.png','Barcelona',28025,7756842,'Complejo de Leon','Iria'),(7,'mayradmt96@gmail.com','$2y$10$yZSRcyBt.6Wiyh4Kzf7aaO/xxDMTVcJh6ahJ22fQy80V2tMYP3adW','Candy','perro3.png','Madrid',28026,627025654,'Miau Miau','Mayra'),(8,'steven@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Branco','perro2.jpg','Madrid',28026,666958459,'Cariñoso','Steven'),(9,'german@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Lalo','perrito.png','Madrid',28026,666958459,'Cariñoso','German');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 

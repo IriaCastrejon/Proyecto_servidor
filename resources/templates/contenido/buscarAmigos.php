@@ -41,19 +41,26 @@ if (isset($_GET['busca']) && $_GET['busca'] != "") {
   <h1>No hay resultados para su busqueda</h1>
   <h2>Intente nuevamente</h2>
 <?php }else{ ?>
+  <div class="contenedor_amigos">
+    <h1> Buscador </h1>
   <?php foreach ($resultados as $fila) { ?>
-    <div class="amigosParaSeguir">
-      <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
+    <div class="amigos">
+       <h3><?=$fila->getNombre()?></h3>
+
+
         <?php if (AmigoManager::compruebaAmistad($id,$fila->getId())) { ?>
            <a href="buscarAmigos.php?busca=<?=$buscar?>&unfollow=true&idDejar=<?=$fila->getId()?>">
-             <button>Dejar de seguir</button>
+             <button class="boton">Dejar de seguir</button>
            </a>
         <?php }else{ ?>
           <a href="buscarAmigos.php?busca=<?=$buscar?>&seguir=true&idSeguir=<?=$fila->getId()?>">
-           <button>Seguir</button>
+           <button class="boton">Seguir</button>
          </a>
          <?php } ?>
+         
 
+         <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
     </div>
    <?php } ?>
+   </div>
 <?php } ?>

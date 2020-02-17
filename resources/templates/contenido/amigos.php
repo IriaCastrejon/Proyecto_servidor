@@ -35,21 +35,20 @@ if(isset($_GET['seguir'])) {
 $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
 ?>
 
-<div class="amigos">
-  <caption>Mis amigos</caption>
-  <table>
-    <tbody>
-      <?php foreach ($resultadosSiguiendo as $fila) {
-        ?>
-        <tr>
-          <td>
-            <img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?>
-            <a href="amigos.php?unfollow=true&idDejar=<?=$fila->getId()?>">
-              <button >Dejar de Seguir</button>
-            </a>
-          </td>
-        </tr>
-       <?php } ?>
-    </tbody>
-  </table>
+
+
+<div class="contenedor_amigos">
+  <h1> Mis amigos </h1>
+  <?php foreach ($resultadosSiguiendo as $fila) { ?>
+       <div class="amigos">
+         <h3><?=$fila->getNombre()?></h3>
+
+         <a href="amigos.php?unfollow=true&idDejar=<?=$fila->getId()?>">
+           <button class="boton">Dejar de Seguir</button>
+         </a>
+
+         <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
+       </div>
+
+  <?php } ?>
 </div>

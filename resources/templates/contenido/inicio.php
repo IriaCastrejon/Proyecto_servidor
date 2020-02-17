@@ -63,14 +63,15 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
         $verificar = MegustaManager::verificarMeGusta($id, $fila->getId());
 
     ?>
-      <div class="cuerpoPerfil">
-        <div class="publicacionInfo">
+      <div class="contenedor_publi">
+        <div class="publicacion1">
           <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
-          <a href="perfil.php?idUsuario=<?=$fila->getId_usuario()?>"><h2><?=$resultados[0]->getNombre() ?></h2><br></a>
-
+          <a href="perfil.php?idUsuario=<?=$fila->getId_usuario()?>">
+            <h2><?=$resultados[0]->getNombre() ?></h2><br>
+          </a>
           <h4> <?=substr($fila->getFecha(),0,10) ?></h4>
         </div>
-        <div class="publicacionInfo2">
+        <div class="publicacion2">
           <img src="<?=$fila->getImagen() ?>" alt="publicacion">
           <p><?=$fila->getTexto() ?></p>
           <span><?=$num_megustas ?></span>
@@ -97,7 +98,7 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
                 </form>
               </div>
 
-              <div class="comentarios">
+              <div class="">
                 <?php
                    foreach ( $fila->getComentarios() as $filaComentario): ?>
                    <div class="">
@@ -114,6 +115,7 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
   </div>
 
   <div class="c_actividad">
+    <p class="p">Actividades</p>
     <?php
     $resultados = ActividadManager::obtenerActividadPorIdParticipante($id);
 
@@ -121,7 +123,7 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
          <div class="actividadInicio">
            <h4><?=$fila->getNombre()?></h4><br>
            <p>
-             <?=$fila->getFecha()?><br>
+             <?=substr($fila->getFecha(),0,10)?><br>
              <?=$fila->getLugar()?><br>
              <?=$fila->getDescripcion()?><br><br>
            </p>

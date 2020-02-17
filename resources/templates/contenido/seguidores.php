@@ -26,18 +26,13 @@ if(isset($_POST['unfollow'])) {
 $resultadosSeguidores = AmigoManager::obtenerSeguidores($id);
 
 ?>
-<div class="amigos">
+<div class="contenedor_amigos">
+<h1> Seguidores </h1>
+   <?php foreach ($resultadosSeguidores as $fila) { ?>
+      <div class="amigos">
+         <h3><?=$fila->getNombre()?></h3>
+        <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
+      </div>
+    <?php } ?>
 
-
-   <table>
-
-     <tbody>
-       <?php foreach ($resultadosSeguidores as $fila) { ?>
-         <tr>
-           <td><img class="small-img" src="<?=$fila->getFoto()?>" alt=""><?=$fila->getNombre()?></td>
-         </tr>
-        <?php } ?>
-     </tbody>
-
-   </table>
 </div>
