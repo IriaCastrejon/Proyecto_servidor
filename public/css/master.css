@@ -30,12 +30,13 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   color: black;
   font-weight: bold;
   border-right: 4px solid white;
-  width: 150px;
+  /* width: 150px; */
 }
 .contenedor > nav a:nth-of-type(5){
   float: right;
   margin-right: 10px;
   border: none;
+  border-left: solid white 4px;
 }
 .contenedor nav form{
   display: inline-block;

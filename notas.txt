@@ -1,7 +1,8 @@
 cargar bd
 /Escritorio/repositorioLocal/Proyecto_servidor/resources>$
 sudo mysql < permisos.sql
-mysql -u admin -p hipets < hipets_db_completa.sql
+
+mysql - u admin -p1234 hipets < hipets_db_16.sql
 
 
 cargar servicio
