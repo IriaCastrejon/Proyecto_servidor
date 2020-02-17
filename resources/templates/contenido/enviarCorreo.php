@@ -106,7 +106,7 @@ if (isset($_POST['enviar'])) {
       </form>
   </div>
 <?php }else{ ?>
-  <div class="notificacionDeEnvio">
+  <div class="notificaciones">
     <h1>Se ha enviado un correo electrónico para reestablacer su contraseña</h1>
     <img src="imgs/enviarCorreo.jpeg" alt="">
   </div>

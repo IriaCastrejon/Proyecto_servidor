@@ -57,6 +57,8 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
   <br><br>
   <div class="c_publicaciones">
 
+<?php if (count($resPublicaciones)!==0){ ?>
+
     <?php foreach ($resPublicaciones as $fila):
         $resultados = MascotaManager::getById($fila->getId_usuario());
         $num_megustas = MegustaManager::contadorMegustas($fila->getId());
@@ -98,13 +100,13 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
                 </form>
               </div>
 
-              <div class="">
+              <div class="comentarios">
                 <?php
                    foreach ( $fila->getComentarios() as $filaComentario): ?>
-                   <div class="">
+                   <div class="comentarioUnaLinea">
                      <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
-                     <?=($filaComentario->getUsuario())->getNombre()?>
-                     <?=$filaComentario->getTexto()?>
+                    <span><?=($filaComentario->getUsuario())->getNombre()?></span>
+                     <p><?=$filaComentario->getTexto()?></p> 
                    </div>
                 <?php endforeach; ?>
               </div>
@@ -112,6 +114,16 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
         </div>
     </div>
     <?php endforeach; ?>
+
+<?php }else{ ?>
+  <div class="notificaciones">
+    <h1>No tienes publicaciones. </h1>
+    <h2><i>Puedes añadir una nueva publicacion en tu perfil</i></h2>
+    <h1>Añade nuevos amigos</h1>
+    <h2><i>Encuentra a tus amigos usando nuestro buscador.</i></h2>
+  </div>
+<?php } ?>
+
   </div>
 
   <div class="c_actividad">

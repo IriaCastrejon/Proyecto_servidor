@@ -150,10 +150,10 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
               <div class="comentarios">
                 <?php
                    foreach ( $fila->getComentarios() as $filaComentario): ?>
-                   <div class="">
-                     <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
-                     <?=($filaComentario->getUsuario())->getNombre()?>
-                     <?=$filaComentario->getTexto()?>
+                   <div class="comentarioUnaLinea">
+                    <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
+                    <span><?=($filaComentario->getUsuario())->getNombre()?></span>
+                    <p><?=$filaComentario->getTexto()?></p>
                    </div>
                 <?php endforeach; ?>
               </div>

@@ -250,14 +250,23 @@ text-align: center;
   color: #219653;
 }
 
+/*===========Comentarios===========*/
+.comentarioUnaLinea > img{
+width:80px;
+height: 80px;
+vertical-align: middle;
+}
+.comentarioUnaLinea > img{
+margin-bottom: 5px;
+}
 
 /*===============Formularios de recuperar contraseña======================*/
-.notificacionDeEnvio{
+.notificaciones{
   text-align: center;
   width: 50%;
   margin: 20px auto;
 }
-.formCambiarPass h1,.notificacionDeEnvio h1{
+.formCambiarPass h1,.notificaciones h1,.notificaciones h2{
   color: #6a8776;
   text-align: center;
   padding: 20px;
@@ -455,7 +464,7 @@ color:
     }
 
 /*======== INICIO =======*/
-.contendor_inicio div{
+.contendor_inicio >  div{
   /* outline: dotted red; */
   float: left;
 }
@@ -602,7 +611,7 @@ color:
   margin: 1.5em 5%;
 }
 
-.contenedor_publi > .publicacion2 img{
+.contenedor_publi > .publicacion2 > img{
   width: 70%;
   margin: auto;
   display: block;

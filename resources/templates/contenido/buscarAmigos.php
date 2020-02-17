@@ -37,30 +37,35 @@ if (isset($_GET['busca']) && $_GET['busca'] != "") {
   $resultados=MascotaManager::buscar($buscar);
 }
 ?>
-<?php if (count($resultados)<=0){ ?>
-  <h1>No hay resultados para su busqueda</h1>
-  <h2>Intente nuevamente</h2>
+<?php if (count($resultados)<=0 || (count($resultados)==1 && $resultados[0]->getId()==$id)){ ?>
+  <div class="notificaciones">
+    <h1>No hay resultados para su busqueda</h1>
+    <h2>Intente nuevamente</h2>
+  </div>
+
 <?php }else{ ?>
   <div class="contenedor_amigos">
     <h1> Buscador </h1>
   <?php foreach ($resultados as $fila) { ?>
-    <div class="amigos">
-       <h3><?=$fila->getNombre()?></h3>
+      <?php if ($fila->getId()!==$id): ?>
+        <div class="amigos">
+           <h3><?=$fila->getNombre()?></h3>
 
 
-        <?php if (AmigoManager::compruebaAmistad($id,$fila->getId())) { ?>
-           <a href="buscarAmigos.php?busca=<?=$buscar?>&unfollow=true&idDejar=<?=$fila->getId()?>">
-             <button class="boton">Dejar de seguir</button>
-           </a>
-        <?php }else{ ?>
-          <a href="buscarAmigos.php?busca=<?=$buscar?>&seguir=true&idSeguir=<?=$fila->getId()?>">
-           <button class="boton">Seguir</button>
-         </a>
-         <?php } ?>
-         
+            <?php if (AmigoManager::compruebaAmistad($id,$fila->getId())) { ?>
+               <a href="buscarAmigos.php?busca=<?=$buscar?>&unfollow=true&idDejar=<?=$fila->getId()?>">
+                 <button class="boton">Dejar de seguir</button>
+               </a>
+            <?php }else{ ?>
+              <a href="buscarAmigos.php?busca=<?=$buscar?>&seguir=true&idSeguir=<?=$fila->getId()?>">
+               <button class="boton">Seguir</button>
+             </a>
+             <?php } ?>
 
-         <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
-    </div>
+
+             <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
+        </div>
+      <?php endif; ?>
    <?php } ?>
    </div>
 <?php } ?>
