@@ -106,7 +106,7 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
                    <div class="comentarioUnaLinea">
                      <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
                     <span><?=($filaComentario->getUsuario())->getNombre()?></span>
-                     <p><?=$filaComentario->getTexto()?></p> 
+                     <p><?=$filaComentario->getTexto()?></p>
                    </div>
                 <?php endforeach; ?>
               </div>
