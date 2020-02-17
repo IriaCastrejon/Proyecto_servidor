@@ -7,11 +7,15 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 }
 /* header*/
 .contenedor header{
-      background-color: #ff8c00;
-      color:white;
-      overflow: hidden;
+    background-color: #ff8c00;
+    color:white;
+    overflow: hidden;
 }
-.contenedor header > h1,.contenedor header > img{
+.contenedor header a{
+  text-decoration: none;
+  color: white;
+}
+.contenedor header a > h1,.contenedor header a > img{
   float: left;
 }
 /* menu*/
@@ -29,9 +33,10 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 }
 .contenedor nav form{
   display: inline-block;
-  padding: 10px;
-  color: black;
+  padding: 6px;
+  color:black;
   font-weight: bold;
+  border-right: solid white 4px;
 }
 .contenedor nav a:visited,.contenedor nav a:link{
   color: black;
@@ -132,17 +137,11 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   background-color: #fff0c2;
   margin-bottom: 2em;
 }
-.c_publicaciones {
-  width: 73%;
-  /* height: 35em; */
-  background-color: #fff0c2;
-  margin-right: 2%;
-}
 .cuerpoPerfil .publicacionInfo > img{
   display: inline-block;
   float: left;
-  width: 15%;
-  height: 15%;
+  width: 10%;
+  height: 10%;
 }
 .cuerpoPerfil .publicacionInfo h2,h4{
   display: inline-block;
@@ -158,7 +157,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   overflow: hidden;
 }
 .contenedor .contenedorPerfilMascota .cuerpoPerfil .publicacionInfo{
-  width: 70%;
+  width: 100%;
   margin-left: 2em;
   margin-top: 1em;
   text-align: left;
@@ -189,11 +188,8 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 }
 
 /*LOGO PAPELERA*/
-
-
 .cuerpoPerfil .publicacionInfo a:first-of-type {
-
-  margin-left:45%;
+  margin-left:60%;
 }
 /*Perfil cabecera*/
 .cabeceraPerfil{
@@ -269,7 +265,18 @@ text-align: center;
   color: #325541;/*color verde*/
 }
 
-.amigos{
+
+/* .contenedor footer > nav ul li a:last-of-type {
+    margin-left: 23.5%;
+    border-left: solid 4px
+white;
+border-right:
+transparent;
+background-color: #75c5bc;
+color:
+    green;
+} */
+/* .amigos{
 
   width: 300px;
   height: 100%;
@@ -280,11 +287,15 @@ text-align: center;
 
 .actividades{
 
-}
+} */
 
 .small-img {
   width: 60px;
   height: 60px;
+}
+.icon-img {
+  width: 25px;
+  height: 25px;
 }
 
 .tabla{
@@ -302,8 +313,8 @@ text-align: center;
     font-weight: bold;
     width: 35em;
     /* border: solid; */
-    margin: auto;
-    margin-bottom: 5em;
+    margin: 5em auto;
+    /* margin-bottom: 5em; */
     background-color: #E0E0E0; /*gris claro*/
     padding: 4em;
 }
@@ -388,22 +399,61 @@ text-align: center;
     width: 100%;
   }
 
+  /*======== AMIGOS =======*/
+  .contenedor_amigos {
+      width: 90%;
+      /* outline: solid; */
+      margin: 0 auto;
+      overflow: auto;
+      margin-bottom: 3em;
+  }
+    .contenedor_amigos h1 {
+        text-align: center;
+        color: #27AE60; /*verde*/
+    }
+    .amigos {
+      width: 30%;
+      border: solid 0.3em #FF8C00; /*naranja*/
+      float: left;
+      margin: 0 1.6%;
+      margin-bottom: 1em;
+    }
+    .amigos h3 {
+      float: left;
+      /* outline: solid; */
+      margin: 1em;
+    }
+    /* .amigos h5:nth-of-type(2) {
+        padding: 0 0.5em;
+    } */
+    .amigos img{
+      width: 100%;
+    }
+    .amigos_img{
+      width: 100%;
+      height: 15em;
+    }
+
 /*======== INICIO =======*/
 .contendor_inicio div{
   /* outline: dotted red; */
   float: left;
 }
-.c_publicaciones img {
-  width: 56em;
-  margin: 0 1em 0 2em;
-  height: 18em;
-}
+
 .c_actividad{
   width: 25%;
   /* height: 15em; */
   background-color: #E0E0E0; /*gris claro*/
   margin-bottom: 1em;
   overflow: auto;
+}
+
+.c_actividad .p{
+  text-align: center;
+  font-size: 15px;
+  margin: 5% 0 0 0;
+  color: #27ae60; /*COLOR VERDE*/
+  font-weight: bold;
 }
 
   .c_actividad .actividadInicio{
@@ -433,10 +483,13 @@ text-align: center;
   .c_anuncios p{
     text-align: center;
     font-size: 15px;
+    font-weight: bold;
+    color: #27ae60; /*COLOR VERDE*/
   }
   .anuncio_img{
     width: 100%;
     height: 15em;
+    margin-bottom: 3%;
   }
 
   .contenedor_actividades {
@@ -480,3 +533,87 @@ text-align: center;
   .oculto{
     display: none;
   }
+
+
+/*=========PUBLICACIONES DEL INICIO==========*/
+.c_publicaciones {
+	width: 70%;
+	/* height: 35em; */
+	margin-right: 2%;
+	margin-left: 2%;
+}
+/* *{
+  outline: red dotted 1px;
+} */
+.contenedor_publi{
+  background-color: #fff0c2;
+  margin-bottom: 25px;
+}
+.publicacion1{
+  width: 100%;
+  padding: 3% 3% 0;
+}
+.contenedor_publi .publicacion1 > img{
+  display: inline-block;
+  float: left;
+  width: 15%;
+  height: 15%;
+}
+.contenedor_publi .publicacion1 a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+.contenedor_publi .publicacion1 a > h2{
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  margin-left: 0.3em;
+  padding: 0.5em;
+}
+.contenedor_publi .publicacion1 h4{
+  color: #6a8776;
+}
+.contenedor_publi {
+  overflow: hidden;
+}
+.contenedor_publi > .publicacion2{
+  width: 90%;
+  margin: 1.5em 5%;
+}
+
+.contenedor_publi > .publicacion2 img{
+  width: 70%;
+  margin: auto;
+  display: block;
+}
+.contenedor_publi > .publicacion2 a{
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+  color:#ff8c00;
+  padding: 10px;
+}
+
+/*================= BOTON ===============*/
+
+.boton {
+	background-color: #ff8c00;
+	/* border: none; */
+	font-weight: bold;
+	/* font-size: 20px; */
+	color: white;
+	width: 130px;
+	height: 30px;
+  margin: 5% 0 0 0;
+  cursor: pointer;
+}
+.botonActividad{
+  background-color: #27ae60; /*COLOR VERDE*/
+  padding: 0.5em;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  margin: 0.7em 0.1em;
+}

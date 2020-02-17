@@ -6,3 +6,10 @@ mysql -u admin -p hipets < hipets_db_completa.sql
 
 cargar servicio
 bin/ruerver.sh
+
+
+FALTA
+=====
+- Formulario de crear actividad -> css
+- Comentarios -> css
+- Footer en sticky

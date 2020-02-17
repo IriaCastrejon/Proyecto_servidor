@@ -70,7 +70,7 @@ class MascotaManager implements IDWESEntidadManager{
 
   }
   public static function buscar($dato){
-    echo 'dentro de buscar en mascota manager';
+    //echo 'dentro de buscar en mascota manager';
     $dato= "%".$dato."%";
     $db = DWESBaseDatos::obtenerInstancia();
 

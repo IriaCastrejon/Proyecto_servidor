@@ -114,14 +114,14 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
           <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
 
           <h2><?=$resultados[0]->getNombre() ?></h2><br>
-          <h4> <?=$fila->getFecha() ?></h4>
+          <h4> <?=substr($fila->getFecha(),0,10) ?></h4>
           <a href="eliminarPublicacion.php?idPub=<?=$fila->getId()?>">
 
-            <img class="small-img" src="imgs/papelera.png" alt="">
+            <img class="icon-img" src="imgs/x.png" alt="">
           </a>
         </div>
         <div class="publicacionInfo2">
-          <img src="<?=$fila->getImagen() ?>" alt="publicacion">
+          <img  src="<?=$fila->getImagen() ?>" alt="publicacion">
           <p><?=$fila->getTexto() ?></p>
           <span><?=$num_megustas ?></span>
 

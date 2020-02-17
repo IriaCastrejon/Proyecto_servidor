@@ -18,8 +18,8 @@ $participa = $_GET['participa'];
 
 ?>
 
-<a href="nuevaActividad.php">Crear nueva Actividad</a>
-<a href="buscarActividades.php">Buscar Actividad</a>
+<a href="nuevaActividad.php" class="botonActividad">Crear nueva Actividad</a>
+<a href="buscarActividades.php" class="botonActividad">Buscar Actividad</a>
 
 <?php
 
@@ -65,9 +65,9 @@ foreach ($resultados as $fila) {
          <h5>
            <form class="" action="actividades.php?participa=true&idActividad=<?=$fila->getId()?>" method="post">
              <?php if($participa == 'false'){ ?>
-                     <input type="submit" name="participar" value="Participar">
+                     <input type="submit" name="participar" value="Participar" class="boton">
              <?php }else{ ?>
-                     <input type="submit" name="desapuntarse" value="No Participar">
+                     <input type="submit" name="desapuntarse" value="No Participar" class="boton">
 
              <?php } ?>
            </form>

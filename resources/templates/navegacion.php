@@ -5,7 +5,7 @@ $_SESSION['buscar']='';
   if($_SESSION['tipo_cliente'] == 'mascota'){ ?>
 
     <nav class="menu">
-       <a href="inicio.php">Inicio</a>
+      <a href="inicio.php">Inicio</a>
       <a href="actividades.php">Mis actividades</a>
       <a href="amigos.php">Mis Amigos</a>
       <a href="perfil.php?idUsuario=<?=$_SESSION['id']?>">Mi perfil</a>

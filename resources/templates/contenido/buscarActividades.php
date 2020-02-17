@@ -15,10 +15,13 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 $id=$_SESSION['id'];
 
 $resultados = ActividadManager::obtenerActividadNoParticipa($id);
+?>
+<div class="contenedor_anuncios">
+<h1> Actividades disponibles </h1>
 
-
-
+<?php
 foreach ($resultados as $fila) { ?>
+
      <div class="actividades">
       <h5> Actividad <br>
         <span><?=$fila->getNombre()?></span>
@@ -28,10 +31,11 @@ foreach ($resultados as $fila) { ?>
 
        <h5>
          <form class="" action="actividades.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
-               <input type="submit" name="participar" value="Participar">
+               <input type="submit" name="participar" value="Participar" class="boton">
          </form>
 
        </h5>
      </div>
 
 <?php } ?>
+</div>
