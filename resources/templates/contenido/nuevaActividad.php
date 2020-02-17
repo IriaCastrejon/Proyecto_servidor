@@ -97,7 +97,7 @@ define("ERROR_LUGAR_NO", 1);
 
 
 
-     <form class="registro" action="nuevaActividad.php" method="post">
+     <form class="fomulario_registro" action="nuevaActividad.php" method="post">
 
        <?php if (isset($errores['nombre'])){
                 if ($errores['nombre'] == ERROR_NOMBRE_MAYOR ){ ?>

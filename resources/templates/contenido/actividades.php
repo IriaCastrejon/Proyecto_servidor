@@ -59,7 +59,7 @@ foreach ($resultados as $fila) {
               <span><?=$fila->getNombre()?></span>
 
         </h5>
-         <h5> Fecha<br> <span><?=$fila->getFecha()?> </span></h5>
+         <h5> Fecha<br> <span><?=substr($fila->getFecha(),0,10)?> </span></h5>
          <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
          <h5> Participantes <br> <span><?=$participantes?> </span></h5>
          <h5>
