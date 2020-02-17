@@ -9,7 +9,6 @@ $_SESSION['buscar']='';
       <a href="actividades.php">Mis actividades</a>
       <a href="amigos.php">Mis Amigos</a>
       <a href="perfil.php?idUsuario=<?=$_SESSION['id']?>">Mi perfil</a>
-
       <form class="" action="buscarAmigos.php" method="get" >
         <input type="text" name="busca" value="<?= $_SESSION['buscar']?>" placeholder="Buscar nuevos amigos">
         <input type="submit" name="enviar" value="Buscar">

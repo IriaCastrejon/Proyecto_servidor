@@ -19,7 +19,7 @@ if (isset($_GET['token']) && isset($_GET['cliente'])) {
       // $puede_pintar=true;
     }else{
       header("location: enviarCorreo.php");
-      exit;
+      die();
     }
 }
 if ($_POST['enviar']==='Cambiar') {
@@ -33,7 +33,7 @@ if ($_POST['enviar']==='Cambiar') {
   if (isset($_POST['passVer']) && $_POST['passVer'] != '') {
     $contraseña_V=clean_input($_POST['passVer']);
     if($contraseña!= $contraseña_V){
-      echo $contraseña . ' contraseña v: '. $contraseña_V;
+
       $errores['passVer']='Las contraseñas no coinciden';
     }
   }else{
@@ -54,10 +54,11 @@ if ($_POST['enviar']==='Cambiar') {
   }
 }
  ?>
-    <h1>Introduce la nueva contraseña </h1>
 
-  <div class="recuperarContraseña">
-    <form class="" action="cambiarContrasena.php" method="post">
+
+  <div class="formCambiarPass">
+    <h1>Introduce la nueva contraseña </h1>
+    <form class="recuperarPass" action="cambiarContrasena.php" method="post">
       <!-- ocultos -->
       <input type="hidden" name="id" value="<?=$id?>">
       <input type="hidden" name="cliente" value="<?=$tipo_cliente?>">

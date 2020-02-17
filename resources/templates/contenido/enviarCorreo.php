@@ -65,7 +65,8 @@ if (isset($_POST['enviar'])) {
 
       $url='http://'. $_SERVER["SERVER_NAME"].':9000/cambiarContrasena.php?cliente='.$tipo_cliente.'&token='.$token;
       $body = "<p>Hemos recibido una peticion para restablecer el password de su cuenta.</p>
-         <p>Si hiciste esta peticion, haz click en el siguiente enlace: <a href='$url'> Restablecer Password </a></p>";
+         <p>Si hiciste esta peticion, haz click en el siguiente enlace: <a href='$url'> Restablecer Password </a></p>
+         <p>Si no hiciste esta peticion, ignora este mensaje</p>";
       // ---------- datos de la cuenta de Gmail -------------------------------
       $phpmailer->Username = $email_user;
       $phpmailer->Password = $email_password;
@@ -85,7 +86,7 @@ if (isset($_POST['enviar'])) {
       if (!$phpmailer->send()) {
        echo "El mail no pudo ser enviado: {$phpmailer->ErrorInfo}";
      }else {
-        header('Location: enviarCorreo.php?mensajeEnviado=true');
+        header("Location: enviarCorreo.php?mensajeEnviado=true");
         die();
 
      }
@@ -93,9 +94,9 @@ if (isset($_POST['enviar'])) {
   }
  ?>
  <?php if (!$mensajeEnviado){ ?>
-   <div class="formularioRecuperarContraseña">
+   <div class="formCambiarPass">
     <h1>Confirma tu correo electrónico </h1>
-      <form class="" action="enviarCorreo.php" method="post">
+      <form class="recuperarPass" action="enviarCorreo.php" method="post">
         <label for="">Introduce el correo eletronico</label><input type="email" name="correo" value="<?=$email ?>"><br>
         <span class="error"><?=$errores['correo'] ?></span><br>
         <label for="" class="rad_cliente">Soy mascota <input type="radio" name="cliente" value="mascota" <?=($tipo_cliente== 'mascota')?'checked':'' ?> > </label>
@@ -105,5 +106,9 @@ if (isset($_POST['enviar'])) {
       </form>
   </div>
 <?php }else{ ?>
-  <h1>Se ha enviado un correo para reestablacer su contraseña</h1>
+  <div class="notificacionDeEnvio">
+    <h1>Se ha enviado un correo electrónico para reestablacer su contraseña</h1>
+    <img src="imgs/enviarCorreo.jpeg" alt="">
+  </div>
+
 <?php } ?>

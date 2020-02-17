@@ -19,24 +19,30 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   float: left;
 }
 /* menu*/
-.contenedor nav{
+.contenedor > nav{
   background-color: #e0e0e0;
 }
 
-.contenedor nav a{
+.contenedor > nav a{
   text-decoration: none;
   display: inline-block;
   padding: 10px;
   color: black;
   font-weight: bold;
   border-right: 4px solid white;
+  width: 150px;
+}
+.contenedor > nav a:nth-of-type(5){
+  float: right;
+  margin-right: 10px;
+  border: none;
 }
 .contenedor nav form{
   display: inline-block;
   padding: 6px;
   color:black;
   font-weight: bold;
-  border-right: solid white 4px;
+  border-right: 4px solid white;
 }
 .contenedor nav a:visited,.contenedor nav a:link{
   color: black;
@@ -101,7 +107,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 }
 
 /*formulario registro */
-.fomulario_registro .registro_tipo_cliente,.fomulario_registro  .registro{
+.fomulario_registro .registro_tipo_cliente,.fomulario_registro .registro,.formCambiarPass .recuperarPass{
   text-align: center;
   width: 60%;
   margin: auto;
@@ -110,10 +116,10 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   padding: 1em 0;
 }
 
-.fomulario_registro{
+.fomulario_registro,.formCambiarPass{
   margin: 1.5em;
 }
-.fomulario_registro label{
+.fomulario_registro label,.recuperarPass label{
   margin-right: 10px;
 }
 .error{
@@ -243,6 +249,19 @@ text-align: center;
 .cabeceraPerfil > .datosAmigos > h3 > span{
   color: #219653;
 }
+
+
+/*===============Formularios de recuperar contraseña======================*/
+.notificacionDeEnvio{
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+}
+.formCambiarPass h1,.notificacionDeEnvio h1{
+  color: #6a8776;
+  text-align: center;
+  padding: 20px;
+}
 /* footer*/
 .contenedor > footer{
   width: 100%;
@@ -257,6 +276,7 @@ text-align: center;
 }
 .contenedor footer > nav ul li {
   float: left;
+  margin-right: 15px;
 }
 .contenedor footer > nav ul li a {
   text-decoration: none;
