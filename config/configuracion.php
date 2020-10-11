@@ -1,4 +1,11 @@
 <?php
+require_once('vendor/autoload.php');
+$stripe = array(
+    'secret_key' => 'sk_test_51Hb84DE5jBI4r3FCqvXmntT848CiguZH8q5TXdUv0g1p6KN7ueW5NfNpCD60J8Tj3uIG28lIExqs1jqYWchY7xeG00Q2RDIhla',
+    'publishable_key' => 'pk_test_51Hb84DE5jBI4r3FCphqBtyhnhLic8vWF4nWNH7r5aY4NzPo4Bwgrx2Q3L54D9tyWFbTzfbK9rrt0057sRs1x7uk400cMxViLSU',
+);
+
+\Stripe\Stripe::setApiKey($stripe['secret_key']);
 
 $config = [
   'site' => 'hipets',
@@ -53,7 +60,4 @@ function validarFecha($fecha_alta){
   }else	{
     return false;
   }
-
-
-
 }

@@ -15,9 +15,7 @@ if (isset($_GET['token']) && isset($_GET['cliente'])) {
     $id=$resultado_token['usuario_id'];
     $tipo_cliente=$resultado_token['tipo'];
 
-    if($tipo_cliente===$cliente){
-      // $puede_pintar=true;
-    }else{
+    if($tipo_cliente!==$cliente){
       header("location: enviarCorreo.php");
       die();
     }

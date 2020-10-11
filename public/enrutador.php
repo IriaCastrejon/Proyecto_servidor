@@ -29,7 +29,6 @@ if (preg_match('/\.(?:css|js|ico|png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"]))
 }else {
 
 
-
     // Requerir los ficheros necesarios
     require_once("$ROOT/src/db.php");
 

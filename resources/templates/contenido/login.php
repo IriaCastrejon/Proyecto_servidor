@@ -58,9 +58,9 @@ if(isset($_POST["submit"])) {
             if(isset($_POST["recuerdame"]) && $_POST['recuerdame']== 'si' ){
 
               $token = bin2hex(random_bytes(10));
-              echo $token;
-              echo $_SESSION['id'];
-              echo $_SESSION['tipo_cliente'];
+              // echo $token;
+              // echo $_SESSION['id'];
+              // echo $_SESSION['tipo_cliente'];
               setCookie("recuerdame",$token,time()+(3600*24*30));
 
 
