@@ -83,6 +83,7 @@ CREATE TABLE `anuncio` (
   `fecha_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fecha_baja` date DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
+  `costo` int(20) NOT NULL,
   PRIMARY KEY (`id`,`cliente_id`),
   KEY `cliente_id` (`cliente_id`),
   CONSTRAINT `anuncio_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -95,7 +96,12 @@ CREATE TABLE `anuncio` (
 
 LOCK TABLES `anuncio` WRITE;
 /*!40000 ALTER TABLE `anuncio` DISABLE KEYS */;
-INSERT INTO `anuncio` VALUES (1,2,'empresa.png','2020-02-15 20:09:28','2020-03-15','www.anuncio_1.com'),(2,2,'anuncio5.jpeg','2020-02-15 20:09:28','2020-07-23','www.anuncio_2.com'),(3,1,'anuncio2.jpeg','2020-02-15 20:09:28','2020-02-20','www.anuncio_3.com'),(4,1,'anuncio3.jpeg','2020-02-23 23:00:00','2020-02-28','http://www.google.es'),(5,1,'anuncio4.jpeg','2020-02-25 23:00:00','2020-03-06','http://www.google.es');
+INSERT INTO `anuncio` VALUES
+(1,2,'empresa.png','2020-02-15 20:09:28','2020-03-15','www.anuncio_1.com',50),
+(2,2,'anuncio5.jpeg','2020-02-15 20:09:28','2020-07-23','www.anuncio_2.com',60),
+(3,1,'anuncio2.jpeg','2020-02-15 20:09:28','2020-02-20','www.anuncio_3.com',70),
+(4,1,'anuncio3.jpeg','2020-02-23 23:00:00','2020-02-28','http://www.google.es',80),
+(5,1,'anuncio4.jpeg','2020-02-25 23:00:00','2020-03-06','http://www.google.es',90);
 /*!40000 ALTER TABLE `anuncio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +220,7 @@ CREATE TABLE `factura` (
 
 LOCK TABLES `factura` WRITE;
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
-INSERT INTO `factura` VALUES (1,1,20,21),(1,2,40,21);
+INSERT INTO `factura` VALUES (1,1,70,21),(1,2,50,21);
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 UNLOCK TABLES;
 

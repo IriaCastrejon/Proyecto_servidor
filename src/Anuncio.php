@@ -11,15 +11,17 @@ class Anuncio extends Usuarios{
   private $fecha_alta;
   private $fecha_baja;
   private $url;
+  private $costo;
   //PRECIO??
 
-  function __construct($id,$id_cliente, $foto = null, $fecha_alta, $fecha_baja=null, $url) {
+  function __construct($id,$id_cliente, $foto = null, $fecha_alta, $fecha_baja=null, $url,$costo) {
     $this -> id = $id;
     $this -> id_cliente = $id_cliente;
     $this -> foto = $foto;
     $this -> fecha_alta = $fecha_alta;
     $this -> fecha_baja = $fecha_baja;
     $this -> url = $url;
+    $this-> costo = $costo;
   }
 
     /**
@@ -167,6 +169,31 @@ class Anuncio extends Usuarios{
 
         return $this;
     }
+
+    /**
+     * Get the value of Costo
+     *
+     * @return mixed
+     */
+    public function getCosto()
+    {
+      return $this->costo;
+    }
+
+    /**
+     * Set the value of Costo
+     *
+     * @param mixed $costo
+     *
+     * @return self
+     */
+    public function setCosto($costo)
+    {
+        $this->costo = $costo;
+
+        return $this;
+    }
+
 
 }
 

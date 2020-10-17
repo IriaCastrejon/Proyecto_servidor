@@ -1,10 +1,17 @@
 <?php
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+
 $token = $_POST['stripeToken'];
 $email = $_POST['stripeEmail'];
-$cantidad = $_POST['cantidad'];
+
+$valorDuracion = $_POST['amount'];
+$id = $_POST['id'];
+$nombre_real = $_POST['nombre_real'];
+$fecha_alta = $_POST['fecha_alta'];
+$fecha_baja =$_POST['fecha_baja'];
+$url = $_POST['url'];
+
+
+
 $customer = \Stripe\Customer::create([
   'email' => $email,
   'source'  => $token,
@@ -12,9 +19,12 @@ $customer = \Stripe\Customer::create([
 
 $charge = \Stripe\Charge::create([
   'customer' => $customer->id,
-  'amount'   => 1200,
+  'amount'   => $valorDuracion * 100,
   'currency' => 'eur',
 ]);
 
-echo '<h1>Successfully ' + $charge['amount'] + '</h1>';
+$db= DWESBaseDatos::obtenerInstancia();
+AnuncioManager::insert($id,$nombre_real,$fecha_alta, $fecha_baja, $url,$valorDuracion);
+header('Location: anuncio.php');
+die();
 ?>
