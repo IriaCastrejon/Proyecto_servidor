@@ -132,7 +132,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Royal','cliente1@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Royal.png','Madrid',28045,'B847521695',915487458),(2,'Tiendanimal','cliente2@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','empresa2.png','Barcelona',28045,'B85965254',925965147);
+INSERT INTO `cliente` VALUES (1,'Royal','cliente1@gmail.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','Royal.png','Madrid',28045,'B847521695',915487458),(2,'Tiendanimal','cliente2@gmial.com','$2y$10$2JnNTcrWG.9S8Wp/xYgVeOxXMBY/MNx5eqNWqDrbezFS.VmAobXRS','empresa2.png','Barcelona',28045,'B85965254',925965147);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 

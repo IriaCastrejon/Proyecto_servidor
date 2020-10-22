@@ -86,8 +86,9 @@
  ?>
 
 <?php if (!$activarPagar): ?>
+
   <div class="form_anuncio">
-    <!-- <h3> Para calcular el coste introduzca la duración del anuncio </h3> -->
+    <h3> Todos los campos son obligatorios</h3>
    <?php if (isset($_SESSION['id'])): ?>
     <form class="registro" action="anuncioNuevo.php" method="post"  enctype="multipart/form-data" >
       <!-- Duracion-->
