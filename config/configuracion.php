@@ -22,7 +22,7 @@ $config = [
   'MB_2'=>2097152,
   'pagina_inicio'=>'login.php',
 ];
-
+$Api_Key = AIzaSyDLzPVn1olPQjrFAQ-Jub5vMrRrybGuyYQ;
 spl_autoload_register(function ($name){
   global $ROOT;
   $class_file = "$ROOT/src/$name.php";
@@ -40,6 +40,33 @@ function clean_input($data){
 function startsWith ($string, $startString) {
     $len = strlen($startString);
     return (substr($string, 0, $len) === $startString);
+}
+
+function getCoordenadas($direccion) {
+    $direccion = urlencode($direccion);
+    $googleMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=$direccion&key=AIzaSyDLzPVn1olPQjrFAQ-Jub5vMrRrybGuyYQ";
+    $geocodeResponseData = file_get_contents($googleMapUrl);
+    $responseData = json_decode($geocodeResponseData, true);
+    if($responseData['status']=='OK') {
+        $latitude = isset($responseData['results'][0]['geometry']['location']['lat']) ? $responseData['results'][0]['geometry']['location']['lat'] : "";
+        $longitude = isset($responseData['results'][0]['geometry']['location']['lng']) ? $responseData['results'][0]['geometry']['location']['lng'] : "";
+        $formattedAddress = isset($responseData['results'][0]['formatted_address']) ? $responseData['results'][0]['formatted_address'] : "";
+        if($latitude && $longitude && $formattedAddress) {
+            $geocodeData = array();
+            array_push(
+                $geocodeData,
+                $latitude,
+                $longitude,
+                $formattedAddress
+            );
+            return $geocodeData;
+        } else {
+            return false;
+        }
+    } else {
+        echo "ERROR: {$responseData['status']}";
+        return false;
+    }
 }
 
 //Funcion para validar la fecha que sea mayor a la actual

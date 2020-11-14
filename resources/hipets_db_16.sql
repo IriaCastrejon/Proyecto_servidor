@@ -365,6 +365,22 @@ LOCK TABLES `usuario_token` WRITE;
 /*!40000 ALTER TABLE `usuario_token` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuario_token` ENABLE KEYS */;
 UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `coordenadas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coordenadas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(10) unsigned NOT NULL,
+  `longitud` varchar(255) NULL,
+  `latitud` varchar(255) NULL,
+  `direccion` varchar(255) NULL ,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id_coordenadas` (`usuario_id`),
+  CONSTRAINT `coordenadas_fky` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

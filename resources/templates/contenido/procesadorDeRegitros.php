@@ -16,6 +16,9 @@ $empresa=false;
 $tipo_cliente='';
 $errores=[];
 
+// se guardará aqui el array con las cordenadas
+$coordenadas = '';
+
   if (isset($_COOKIE['tipo_cliente'])) {
 
     if ( $_COOKIE['tipo_cliente']== 'mascota' || $_COOKIE['tipo_cliente']== 'empresa' ) {
@@ -72,20 +75,25 @@ if (isset($_POST['enviar'])) {
   if (isset($_POST['passVer']) && $_POST['passVer'] != '') {
     $contraseña_V=clean_input($_POST['passVer']);
     if($contraseña!= $contraseña_V){
-      $errores['passVer']='Las contraseñas no coinciden';
+      $errores['passVer'] = 'Las contraseñas no coinciden';
     }
   }else{
-    $errores['passVer']= 'Introduce la verificacion de la contraseña';
+    $errores['passVer'] = 'Introduce la verificacion de la contraseña';
   }
   // Localidad
   if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
-    $localidad=clean_input($_POST['localidad']);
+    $localidad = clean_input($_POST['localidad']);
+    $coordenadas = getCoordenadas($localidad);
+    if (!$coordenadas) { // si no hay cordenadas  se pinta el error y $ coordenadas se declara vacio
+      $coordenadas = '';
+      $errores['localidad'] = 'La Direccion no es correcta: debe tener este formato: Calle, edificio y ciudad';
+    }
   }
   if (isset($_POST['cp']) && $_POST['cp'] != '') {
     $cp=clean_input($_POST['cp']);
   }
   if (isset($_POST['telefono']) && $_POST['telefono'] != '') {
-    $Telefono=clean_input($_POST['telefono']);
+    $Telefono = clean_input($_POST['telefono']);
   }
 
 
@@ -224,8 +232,11 @@ if (isset($_POST['enviar'])) {
      <?php endif; ?>
      <label for="">Repita contraseña</label><input type="password" name="passVer" value="<?=$contraseña_V ?>"><br><br>
 
+     <?php if (isset($errores['localidad'])): ?>
+       <span class="error"><?=$errores['localidad'] ?></span> <br><br>
+     <?php endif; ?>
+     <label for="">Direccion</label><input type="text" name="localidad" value="<?= $localidad ?>"><br><br>
 
-     <label for="">Localidad</label><input type="text" name="localidad" value="<?= $localidad ?>"><br><br>
      <label for="">Código Postal </label><input type="number" name="cp" value="<?= $cp ?>"><br><br>
      <label for="">Teléfono</label><input type="tel" name="telefono" value="<?= $Telefono ?>"><br><br>
      <?php if (isset($errores['foto'])): ?>

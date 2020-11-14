@@ -11,7 +11,6 @@ $fecha_baja =$_POST['fecha_baja'];
 $url = $_POST['url'];
 
 
-
 $customer = \Stripe\Customer::create([
   'email' => $email,
   'source'  => $token,
