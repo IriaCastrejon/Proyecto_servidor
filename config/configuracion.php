@@ -22,7 +22,7 @@ $config = [
   'MB_2'=>2097152,
   'pagina_inicio'=>'login.php',
 ];
-$Api_Key = AIzaSyDLzPVn1olPQjrFAQ-Jub5vMrRrybGuyYQ;
+
 spl_autoload_register(function ($name){
   global $ROOT;
   $class_file = "$ROOT/src/$name.php";
@@ -50,14 +50,14 @@ function getCoordenadas($direccion) {
     if($responseData['status']=='OK') {
         $latitude = isset($responseData['results'][0]['geometry']['location']['lat']) ? $responseData['results'][0]['geometry']['location']['lat'] : "";
         $longitude = isset($responseData['results'][0]['geometry']['location']['lng']) ? $responseData['results'][0]['geometry']['location']['lng'] : "";
-        $formattedAddress = isset($responseData['results'][0]['formatted_address']) ? $responseData['results'][0]['formatted_address'] : "";
-        if($latitude && $longitude && $formattedAddress) {
+        $direccionFormateada = isset($responseData['results'][0]['formatted_address']) ? $responseData['results'][0]['formatted_address'] : "";
+        if($latitude && $longitude && $direccionFormateada) {
             $geocodeData = array();
             array_push(
                 $geocodeData,
-                $latitude,
                 $longitude,
-                $formattedAddress
+                $latitude,
+                $direccionFormateada
             );
             return $geocodeData;
         } else {
@@ -69,16 +69,6 @@ function getCoordenadas($direccion) {
     }
 }
 
-//Funcion para validar la fecha que sea mayor a la actual
-// function validarFecha($fecha){
-//
-//   $hoy = strtotime(date("d-m-Y H:i:00",time()));
-//   $fecha = strtotime(date($fecha));
-//   if ($fecha > $hoy) {
-//     return true;
-//   }else{
-//     return false;
-//   }
 function validarFecha($fecha_alta){
   $fecha_actual = date("Y-m-d");
 

@@ -39,9 +39,6 @@ $coordenadas = '';
   }//xiste cookie
 
 
-
-
-
 if (isset($_POST['enviar'])) {
 
   // nombree es esto
@@ -83,12 +80,16 @@ if (isset($_POST['enviar'])) {
   // Localidad
   if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
     $localidad = clean_input($_POST['localidad']);
-    $coordenadas = getCoordenadas($localidad);
-    if (!$coordenadas) { // si no hay cordenadas  se pinta el error y $ coordenadas se declara vacio
-      $coordenadas = '';
-      $errores['localidad'] = 'La Direccion no es correcta: debe tener este formato: Calle, edificio y ciudad';
+    if($_COOKIE['tipo_cliente']== 'mascota'){
+       $coordenadas = getCoordenadas($localidad);
+       if (!$coordenadas) { // si no hay cordenadas  se pinta el error y $ coordenadas se declara vacio
+         $coordenadas = '';
+         $errores['localidad'] = 'La Dirección debe tener este formato: Calle, edificio y ciudad';
+       }
     }
+
   }
+  //codigo postal
   if (isset($_POST['cp']) && $_POST['cp'] != '') {
     $cp=clean_input($_POST['cp']);
   }
@@ -96,7 +97,7 @@ if (isset($_POST['enviar'])) {
     $Telefono = clean_input($_POST['telefono']);
   }
 
-
+  // si se ha introducido un fichero
   if(count($_FILES)>0) {
       if($_FILES['imagen']['size'] < $config['MB_2']){
           if($_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/jpg"){
@@ -104,16 +105,6 @@ if (isset($_POST['enviar'])) {
               $fichero_tmp = $_FILES["imagen"]["tmp_name"];
               $nombre_real = basename($_FILES["imagen"]["name"]);
               $ruta_destino = $config['img_path']."/".$nombre_real;
-
-
-
-              /*
-              Si existe lo machacamos. Tener en cuenta
-              if (file_exists($ruta_destino)) {
-                  // Procesar error
-              }
-              */
-
           } else {
               $errores['foto'] = "Fichero no soportado";
           }
@@ -124,18 +115,17 @@ if (isset($_POST['enviar'])) {
       $errores['foto'] = "Sin imagen";
   }
 
-
 // si es una mascota
   if ($mascota) {
     if (isset($_POST['dueño']) && $_POST['dueño'] != '') {
       $nombre_dueno=clean_input($_POST['dueño']);
     }else {
-    $errores['dueño']='Debe rellenar este campo';
+      $errores['dueño']=' Debe rellenar este campo';
     }
     if (isset($_POST['descripcion']) && $_POST['descripcion'] != '') {
       $descripcion=clean_input($_POST['descripcion']);
     }else {
-    $errores['descripcion']='Debe rellenar este campo';
+      $errores['descripcion']='Debe rellenar este campo';
     }
 
   }else {
@@ -148,121 +138,156 @@ if (isset($_POST['enviar'])) {
   }//else $tipo_cliente
 
   //errores
-  if(count($errores)==0){
-
+  if(count($errores) == 0){
     $db= DWESBaseDatos::obtenerInstancia();
     $pass_encriptada= password_hash($contraseña, PASSWORD_DEFAULT);
 
     if ($mascota) {
-
-      echo 'dentro del if de mascota en registro <br>';
-      MascotaManager::insert($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno);
-
-      if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
-      //  header("location: login.php");
-        //exit;
-      } else {
-          $errores[] = "Error moviendo fichero";
-          // Ojo!!!
-          $borrado = MascotaManager::delete($id);
-
-          if(!$borrado) {
-              // Ha ocurrido un error extraño
-              // Debemos reportarlo y que un admin
-              // Deje la información correcta
-              // Hay un tema sin imagen
-              // También podríamos usar transacciones de base de datos
-          }
-      }
+      $insertMascota =insertarUsuario('mascota',$nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno);
+      if ($insertMascota) {  insertarCoordenadas($email,$coordenadas); }
+      moverArchivo($fichero_tmp, $ROOT.$ruta_destino,$id,$errores);
     }
 
     if ($empresa) {
-
-
-      EmpresaManager::insert($email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
-
-      if (move_uploaded_file($fichero_tmp, $ROOT.$ruta_destino)) {
-      //  header("location: login.php");
-        //exit;
-      } else {
-          $errores[] = "Error moviendo fichero";
-          // Ojo!!!
-          $borrado = EmpresaManager::delete($id);
-
-          if(!$borrado) {
-              // Ha ocurrido un error extraño
-              // Debemos reportarlo y que un admin
-              // Deje la información correcta
-              // Hay un tema sin imagen
-              // También podríamos usar transacciones de base de datos
-          }
-      }
+      $insertMascota =insertarUsuario('empresa',$email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
+      moverArchivo($fichero_tmp, $ROOT.$ruta_destino,$id,$errores);
     }
     header("location: login.php");
     exit;
   }// no hay errores
 
-
 }
-//echo $_SESSION['tipo_cliente'];
- ?>
+/*******  Funciones    ****/
+function moverArchivo($fichero_tmp, $destino,$id,$errores){
+  // si da error mover el fichero se borra
+  if (!move_uploaded_file($fichero_tmp, $destino)) {
+      $errores['moverFichero'] = "Error moviendo fichero";
+      $borrado = EmpresaManager::delete($id);
+  }
+}
+function insertarUsuario($tipoUsuario,...$datos){
+  if ($tipoUsuario == 'mascota') {
+    MascotaManager::insert($datos);
+  }
+  if ($tipoUsuario == 'empresa') {
+    EmpresaManager::insert($datos);
+  }
+}
+ function insertarCoordenadas($email,$coordenadas){
+     $mascota = MascotaManager::getByEmail($email);
+     $id = $mascota['id'];
+     echo '<pre>';
+     print_r($mascota);
+     echo '</pre>';
+     echo '<pre>';
+     print_r($coordenadas);
+     echo '</pre>';
+     CoordenadasManager::insert($id,$coordenadas[0],$coordenadas[1],$coordenadas[2]);
+ }
+?>
  <div class="fomulario_registro">
 
    <form class="registro" action="procesadorDeRegitros.php" method="post" enctype="multipart/form-data">
      <h2>Rellena los campos</h2>
+
      <!-- NOMBRE-->
      <?php if (isset($errores['nombre'])): ?>
        <span class="error"><?=$errores['nombre'] ?></span> <br>
      <?php endif; ?>
-     <label for="">Nombre</label><input type="text" name="nombre" value=" <?= $nombre ?>"><br><br>
+     <p>
+       <label for="">Nombre *</label>
+       <input type="text" name="nombre" value=" <?= $nombre ?>">
+     </p>
 
      <!-- EMAIL-->
      <?php if (isset($errores['email'])): ?>
        <span class="error"><?= $errores['email']?> </span> <br>
      <?php endif; ?>
-     <label for="">Email</label><input type="email" name="email" value="<?= $email ?>"><br><br>
+      <p>
+        <label for="">Email *</label>
+         <input type="email" name="email" value="<?= $email ?>">
+      </p>
 
+      <!-- Password -->
      <?php if (isset($errores['pass'])): ?>
        <span class="error"><?=$errores['pass'] ?></span> <br><br>
      <?php endif; ?>
-     <label for="">Contraseña</label><input type="password" name="pass" value="<?=$contraseña?>"><br><br>
+     <p>
+       <label for="">Contraseña *</label>
+       <input type="password" name="pass" value="<?=$contraseña?>">
+     </p>
 
+     <!-- Password verificacion-->
      <?php if (isset($errores['passVer'])): ?>
          <span class="error"><?= $errores['passVer']?> </span> <br><br>
      <?php endif; ?>
-     <label for="">Repita contraseña</label><input type="password" name="passVer" value="<?=$contraseña_V ?>"><br><br>
+     <p>
+        <label for="">Repita contraseña *</label>
+        <input type="password" name="passVer" value="<?=$contraseña_V ?>">
+     </p>
 
+     <!-- Direccion-->
      <?php if (isset($errores['localidad'])): ?>
        <span class="error"><?=$errores['localidad'] ?></span> <br><br>
      <?php endif; ?>
-     <label for="">Direccion</label><input type="text" name="localidad" value="<?= $localidad ?>"><br><br>
+     <p>
+        <label for="">Direccion</label>
+        <input type="text" name="localidad" value="<?= $localidad ?>">
+     </p>
 
-     <label for="">Código Postal </label><input type="number" name="cp" value="<?= $cp ?>"><br><br>
-     <label for="">Teléfono</label><input type="tel" name="telefono" value="<?= $Telefono ?>"><br><br>
+     <!-- Codigo postal-->
+     <p>
+       <label for="">Código Postal </label>
+       <input type="number" name="cp" value="<?= $cp ?>">
+     </p>
+
+     <!-- Teléfono-->
+     <p>
+       <label for="">Teléfono</label>
+       <input type="tel" name="telefono" value="<?= $Telefono ?>">
+     </p>
+
+     <!-- Foto-->
      <?php if (isset($errores['foto'])): ?>
           <span class="error"><?= $errores['foto']?> </span> <br><br>
      <?php endif; ?>
-     <label for="">Foto</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br><br>
+     <p>
+        <label for="">Foto *</label>
+        <input type="file" name="imagen" accept="image/png, image/jpeg">
+     </p>
+
 
      <?php if ($empresa): ?>
-
+       <!-- Cif-->
        <?php if (isset($errores['cif'])): ?>
          <span class="error"><?=$errores['cif'] ?></span> <br>
        <?php endif; ?>
-       <label for=""> CIF</label><input type="text" name="cif" value="<?= $cif ?>"><br>
+       <p>
+         <label for=""> CIF *</label>
+         <input type="text" name="cif" value="<?= $cif ?>">>
+       </p>
 
      <?php endif; ?>
 
      <?php if ($mascota): ?>
+       <!-- Dueño-->
        <?php if (isset($errores['dueño'])): ?>
          <span class="error"> <?= $errores['dueño'] ?></span> <br>
        <?php endif; ?>
-       <label for="">Nombre dueño</label> <input type="text" name="dueño" value="<?= $nombre_dueno ?>"> <br><br>
+       <p>
+         <label for="">Nombre dueño *</label>
+          <input type="text" name="dueño" value="<?= $nombre_dueno ?>">
+       </p>
 
+       <!-- descripción-->
        <?php if (isset($errores['descripcion'])): ?>
          <span class="error"><?=$errores['descripcion'] ?> </span> <br>
        <?php endif; ?>
-       <label for=""> Decripción</label> <input type="textarea" name="descripcion" value="<?= $descripcion ?>"> <br>
+       <p>
+         <label for=""> Decripción *</label>
+         <input type="textarea" name="descripcion" value="<?= $descripcion ?>">
+       </p>
+
      <?php endif; ?>
 
      <br><br> <input type="submit" name="enviar" value="Registrarme">

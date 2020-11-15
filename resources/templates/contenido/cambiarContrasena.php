@@ -61,15 +61,26 @@ if ($_POST['enviar']==='Cambiar') {
       <input type="hidden" name="id" value="<?=$id?>">
       <input type="hidden" name="cliente" value="<?=$tipo_cliente?>">
 
+        <!--pass-->
       <?php if (isset($errores['pass'])): ?>
         <span class="error"><?=$errores['pass'] ?></span> <br><br>
       <?php endif; ?>
-      <label for="">Contraseña</label><input type="password" name="pass" value="<?=$contraseña ?>"><br><br>
+      <p>
+        <label for="">Contraseña</label>
+        <input type="password" name="pass" value="<?=$contraseña ?>">
+      </p>
 
+
+      <!--pass ver-->
       <?php if (isset($errores['passVer'])): ?>
           <span class="error"><?= $errores['passVer']?> </span> <br><br>
       <?php endif; ?>
-      <label for="">Repita contraseña</label><input type="password" name="passVer" value="<?=$contraseña_V ?>"><br><br>
+      <p>
+        <label for="">Repita contraseña</label>
+        <input type="password" name="passVer" value="<?=$contraseña_V ?>">
+      </p>
+
+
       <input type="submit" name="enviar" value="Cambiar">
     </form>
   </div>
