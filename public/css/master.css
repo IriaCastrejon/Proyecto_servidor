@@ -126,6 +126,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   flex: 0 0 40%;
   display: inline-block;
   text-align: left;
+  align-self: center;
 }
 .fomulario_registro .registro p input,.formCambiarPass .recuperarPass p input{
   flex: 0 0 50%;
@@ -133,6 +134,10 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 }
 .error{
   color: red;
+}
+.fomulario_registro .registro p textarea{
+  flex: 0 0 40%;
+  display: inline-block;
 }
 /*pagina editar perfil*//*pagina nuevo anuncio*/
 
@@ -144,7 +149,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 .contenedor .cambiar_foto h2,.contenedor .cambiar_foto h3, .contenedor .nuevaPublicacion h2, .contenedor .nuevaPublicacion h3{
   color:#325541;;
 }
- /*pagina Perfil*/
+ /*================== pagina Perfil ==================*/
 
 .contenedor .contenedorPerfilMascota .cuerpoPerfil{
   width: 80%;
@@ -206,6 +211,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 .cuerpoPerfil .publicacionInfo a:first-of-type {
   margin-left:60%;
 }
+
 /*Perfil cabecera*/
 .cabeceraPerfil{
   margin: 20px;
@@ -355,9 +361,8 @@ color:
     font-size: 1em;
     font-weight: bold;
     width: 35em;
-    /* border: solid; */
+
     margin: 5em auto;
-    /* margin-bottom: 5em; */
     background-color: #E0E0E0; /*gris claro*/
     padding: 4em;
 }
@@ -371,19 +376,12 @@ color:
   .form_anuncio h4, span{
     color: black;
   }
-  /* .form_anuncio input:nth-of-type(3) {
-      background-color: #27AE60;
-      color: white;
-      border: #27AE60 solid;
+  .stripe{
+    text-align: center;
+    background-color: white;
   }
-  .form_anuncio input[type="file"] {
-      background-color: #27AE60;
-      color: white;
-      border: #27AE60 solid;
-  } */
   .botones{
     width: 11.89em;
-    /* border: solid; */
     margin: auto;
   }
   .botones input:first-of-type {
@@ -410,7 +408,6 @@ color:
 /*======== ANUNCIOS =======*/
 .contenedor_anuncios {
     width: 90%;
-    /* outline: solid; */
     margin: 0 auto;
     overflow: auto;
     margin-bottom: 3em;
@@ -428,13 +425,10 @@ color:
   }
   .anuncios h5 {
     float: left;
-    /* outline: solid; */
     margin: 1em;
     text-align: center;
   }
-  /* .anuncios h5:nth-of-type(2) {
-      padding: 0 0.5em;
-  } */
+
   .anuncios span{
     color: gray;
   }
@@ -442,7 +436,7 @@ color:
     width: 100%;
   }
 
-  /*======== AMIGOS =======*/
+  /*======================= AMIGOS =======*/
   .contenedor_amigos {
       width: 90%;
       /* outline: solid; */

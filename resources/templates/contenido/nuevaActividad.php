@@ -95,9 +95,9 @@ define("ERROR_LUGAR_NO", 1);
 }
  ?>
 
+<div class="fomulario_registro">
 
-
-     <form class="fomulario_registro" action="nuevaActividad.php" method="post">
+     <form class="registro" action="nuevaActividad.php" method="post">
 
        <?php if (isset($errores['nombre'])){
                 if ($errores['nombre'] == ERROR_NOMBRE_MAYOR ){ ?>
@@ -106,7 +106,10 @@ define("ERROR_LUGAR_NO", 1);
                   <span class="error"> Introduce un nombre</span> <br>
           <?php }
               } ?>
-              <label for=""> Nombre </label> <input name="nombre" value="<?=$nombre?>"><br><br>
+            <p>
+              <label for=""> Nombre </label>
+             <input name="nombre" value="<?=$nombre?>"><br><br>
+            </p>
 
        <?php if (isset($errores['descripcion'])){
                 if ($errores['descripcion'] == ERROR_DESCRIPCION_MAYOR ){ ?>
@@ -115,7 +118,11 @@ define("ERROR_LUGAR_NO", 1);
                   <span class="error">Debe introducir una descripción</span> <br>
                 <?php }
               } ?>
-       <label for=""> Descripcion </label> <textarea name="descripcion" rows="8" cols="80"><?=$descripcion?></textarea><br><br>
+              <p>
+                <label for=""> Descripcion </label>
+                <textarea name="descripcion" rows="6" cols="55"><?=$descripcion?></textarea>
+              </p>
+
 
 
        <?php if (isset($errores['fecha'])){
@@ -124,8 +131,11 @@ define("ERROR_LUGAR_NO", 1);
                 <?php }else if($errores['fecha'] == ERROR_FECHA_NO){ ?>
                   <span class="error"> Introduce una fecha</span> <br>
           <?php }
-              } ?>
-       <label for=""> Fecha</label><input type="date" name="fecha" value="<?=$fecha?>"><br><br>
+        } ?>
+      <p>
+        <label for=""> Fecha</label>
+         <input type="date" name="fecha" value="<?=$fecha?>">
+      </p>
 
        <?php if (isset($errores['lugar'])){
                if ($errores['lugar'] == ERROR_LUGAR_MAYOR ){ ?>
@@ -134,9 +144,12 @@ define("ERROR_LUGAR_NO", 1);
                  <span class="error">Debe introducir un lugar</span> <br>
                <?php }
             }?>
-         <label for=""> Lugar </label><input type="text" name="lugar" value="<?=$lugar?>"><br><br>
+        <p>
+          <label for=""> Lugar </label>
+          <input type="text" name="lugar" value="<?=$lugar?>">
+        </p>
 
+<p> <input type="submit" name="enviar" class='enviar' value="Enviar"></p>
 
-
-       <input type="submit" name="enviar" value="Enviar">
     </form>
+</div>
