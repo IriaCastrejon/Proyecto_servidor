@@ -139,49 +139,64 @@ if (isset($_POST['enviar'])) {
 
   //errores
   if(count($errores) == 0){
-    $db= DWESBaseDatos::obtenerInstancia();
     $pass_encriptada= password_hash($contraseña, PASSWORD_DEFAULT);
 
     if ($mascota) {
-      $insertMascota =insertarUsuario('mascota',$nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno);
-      if ($insertMascota) {  insertarCoordenadas($email,$coordenadas); }
-      moverArchivo($fichero_tmp, $ROOT.$ruta_destino,$id,$errores);
+      $insertarMascota = insertarMascota($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno);
+      $id = '';
+      if ($insertarMascota = 1) {
+        insertarCoordenadas($email,$coordenadas);
+        $mascota = MascotaManager::getByEmail($email);
+        $id = $mascota['id'];
+        moverArchivo($fichero_tmp, $ROOT.$ruta_destino,$id,$errores,'mascota');
+        header("location: login.php");
+        exit;
+      }
+
     }
 
     if ($empresa) {
-      $insertMascota =insertarUsuario('empresa',$email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
-      moverArchivo($fichero_tmp, $ROOT.$ruta_destino,$id,$errores);
+      $insertEmpresa =insertarEmpresa($email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
+        $id = '';
+        if ($insertEmpresa= 1) {
+          $empresa= EmpresaManager::getByEmail($email);
+          $id = $mascota['id'];
+          moverArchivo($fichero_tmp, $ROOT.$ruta_destino,$id,$errores,'empresa');
+          header("location: login.php");
+          exit;
+        }
     }
-    header("location: login.php");
-    exit;
+
   }// no hay errores
 
 }
 /*******  Funciones    ****/
-function moverArchivo($fichero_tmp, $destino,$id,$errores){
+function moverArchivo($fichero_tmp, $destino,$id,$errores,$usuario){
   // si da error mover el fichero se borra
-  if (!move_uploaded_file($fichero_tmp, $destino)) {
-      $errores['moverFichero'] = "Error moviendo fichero";
-      $borrado = EmpresaManager::delete($id);
+  if ($usuario == 'mascota') {
+    if (!move_uploaded_file($fichero_tmp, $destino)) {
+        $errores['moverFichero'] = "Error moviendo fichero";
+        $borrado = MascotaManager::delete($id);
+    }
+  }else if($usuario == 'empresa'){
+    if (!move_uploaded_file($fichero_tmp, $destino)) {
+        $errores['moverFichero'] = "Error moviendo fichero";
+        $borrado = EmpresaManager::delete($id);
+    }
   }
+
 }
-function insertarUsuario($tipoUsuario,...$datos){
-  if ($tipoUsuario == 'mascota') {
-    MascotaManager::insert($datos);
-  }
-  if ($tipoUsuario == 'empresa') {
-    EmpresaManager::insert($datos);
-  }
+function insertarMascota($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno){
+  $insertado = MascotaManager::insert($nombre,$email,$pass_encriptada,$localidad,$cp,$Telefono,$nombre_real,$descripcion,$nombre_dueno);
+  return $insertado;
+}
+function insertarEmpresa($email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono){
+  $insertado =  EmpresaManager::insert($email,$nombre,$pass_encriptada,$nombre_real,$localidad,$cp,$cif,$Telefono);
+  return $insertado;
 }
  function insertarCoordenadas($email,$coordenadas){
      $mascota = MascotaManager::getByEmail($email);
      $id = $mascota['id'];
-     echo '<pre>';
-     print_r($mascota);
-     echo '</pre>';
-     echo '<pre>';
-     print_r($coordenadas);
-     echo '</pre>';
      CoordenadasManager::insert($id,$coordenadas[0],$coordenadas[1],$coordenadas[2]);
  }
 ?>

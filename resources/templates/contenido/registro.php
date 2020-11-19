@@ -5,13 +5,13 @@ $tipo_cliente='';
 $errores=[];
    // Esto se puede y debe sacar al config
 
-  if (isset($_POST['tipo_cliente']) && ($_POST['cliente']== 'mascota' || $_POST['cliente']== 'empresa')) {
-    setcookie('tipo_cliente',$_POST['cliente']);
-    $tipo_cliente=$_POST['cliente'];
-    header("location: procesadorDeRegitros.php");
-    die();
-  }else {
-    $errores['cliente']='No es una opción válida';
+  if (isset($_POST['tipo_cliente']) ) {
+    if ( $_POST['cliente'] == 'mascota' || $_POST['cliente'] == 'empresa') {
+      setcookie('tipo_cliente',$_POST['cliente']);
+      $tipo_cliente=$_POST['cliente'];
+      header("location: procesadorDeRegitros.php");
+      die();
+    }
   }
  ?>
 

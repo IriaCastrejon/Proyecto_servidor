@@ -71,7 +71,7 @@ function formateaDistancia($distancia){
       $txt =formateaDistancia($fila['distanciaKilometros']);
 
      ?>
-       <?php if ($mascota!= null && $fila['distanciaKilometros'] <= $kms): ?>
+       <?php if ($mascota!= null &&  $fila['distanciaKilometros'] <= $kms && $mascota->getId() != $id): ?>
          <div class="amigos">
             <h3><?=$mascota->getNombre()?></h3>
 

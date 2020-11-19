@@ -16,14 +16,12 @@ class MascotaManager implements IDWESEntidadManager{
 
 
   public static function insert(...$campos){
-    echo '<br> dentro del insert ';
-    $insertado=false;
-
+    $insertado = false;
     $db= DWESBaseDatos::obtenerInstancia();
 
     if (count($campos)=== 9) {
         $db-> ejecuta("INSERT INTO usuario(nombre,email,pass,localidad,cp,telefono,foto_perfil,descripcion,nombre_dueno) VALUES (?,?,?,?,?,?,?,?,?)",$campos);
-        $insertado=true;
+        $insertado = true;
     }
     return $insertado;
   }

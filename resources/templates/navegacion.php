@@ -38,7 +38,6 @@ $_SESSION['buscar']='';
     </nav>
 
   <?php }else{ ?>
-
     <nav class="menu">
     </nav>
   <?php } ?>
