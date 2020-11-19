@@ -25,7 +25,7 @@
      return $insertado;
    }
 
-   public static function getByUsuarioID($usuarioId){
+   public static function getCordenadasByUsuarioID($usuarioId){
      $db = DWESBaseDatos::obtenerInstancia();
 
      $db -> ejecuta("SELECT c.id, c.usuario_id, c.longitud, c.latitud, c.direccion
@@ -35,13 +35,13 @@
       }, $db -> obtenDatos());
    }
 
-   public static function getCercanos($lat, $long){
+   public static function getCercanos($lat, $long,$id){
      $db = DWESBaseDatos::obtenerInstancia();
 
      $db -> ejecuta("SELECT c.usuario_id, (acos(sin(radians($lat)) * sin(radians(c.latitud)) +
                  cos(radians($lat)) * cos(radians(c.latitud)) *
                  cos(radians($long) - radians(c.longitud))) * 6378) as
-                 distanciaKilometros from coordenadas c;" );
+                 distanciaKilometros , c.direccion from coordenadas c where c.id != $id;" );
       return $db -> obtenDatos();
    }
    public static function getById($id){}

@@ -339,7 +339,12 @@ color:
 .tabla{
   text-align: center;
 }
-
+/*============================= Distancia kilometros ============================*/
+.p_kms{
+  text-align: center;
+  font-size: .8em;
+  color:dimgrey;
+}
 /*============================= INICIO ============================*/
 .contendor_inicio{
   overflow: hidden;

@@ -2,7 +2,6 @@
 
 $id=$_SESSION['id'];
 $id_seguir = '';
-session_start();
 
 if( !isset($_SESSION['id']) ){
     header('Location: login.php');
@@ -37,7 +36,8 @@ if (isset($_GET['busca']) && $_GET['busca'] != "") {
   $resultados=MascotaManager::buscar($buscar);
 }
 ?>
-<?php if (count($resultados)<=0 || (count($resultados)==1 && $resultados[0]->getId()==$id)){ ?>
+
+<?php if (count($resultados) <= 0 || (count($resultados)==1 && $resultados[0]->getId()==$id)){ ?>
   <div class="notificaciones">
     <h1>No hay resultados para su busqueda</h1>
     <h2>Intente nuevamente</h2>

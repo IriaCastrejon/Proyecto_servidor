@@ -90,13 +90,6 @@ class MascotaManager implements IDWESEntidadManager{
     $db -> ejecuta("SELECT m.id, m.email, m.pass, m.nombre,m.foto_perfil, m.localidad,m.cp, m.telefono,m.descripcion, m.nombre_dueno
                         FROM usuario m WHERE id = ?", $id);
 
-    /*if($db -> executed ){ // Se pudo ejecutar
-        $datos = $db -> obtenDatos($id);
-        if(count($datos)>0) { // Hay datos
-            $fila = $datos[0];
-            return new Actividad($fila['id'], $fila['descripcion'], $fila['fecha'], $fila['n_participantes'], $fila['lugar']);
-        }
-    }*/
     return array_map(function($fila){
       return new Mascota($fila['id'], $fila['email'], $fila['pass'], $fila['nombre'],$fila['foto_perfil'],$fila['localidad'],$fila['cp'],$fila['telefono'],$fila['descripcion'],$fila['nombre_dueno']);
     }, $db -> obtenDatos());

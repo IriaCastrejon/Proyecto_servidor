@@ -9,71 +9,88 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
   die();
 }
 
+$id_seguir = '';
+$kms=1;
 $id = $_SESSION['id'];
-$cordenadas = CoordenadasManager::getByUsuarioID($id)[0];
-$lat=$cordenadas->getLatitud();
-$long=$cordenadas->getLongitud();
-echo '<pre>';
-print_r($cordenadas);
-echo '</pre>';
-echo $lat;
-echo '</br>';
-echo $long;
-echo '</br>';
-$result= CoordenadasManager::getCercanos($lat, $long);
-echo 'rsultad<pre>';
-print_r($result);
-echo '</pre>';
-/*SELECT (acos(sin(radians(36.720139)) * sin(radians(40.425797)) +
-cos(radians(36.720139)) * cos(radians(40.425797)) *
-cos(radians(-4.419422) - radians(-3.690462))) * 6378) as
-distanciaMalagaMadrid;
 
-SELECT (acos(sin(radians(LATITUD_1)) * sin(radians(LATITUD_2)) +
-cos(radians(LATITUD_1)) * cos(radians(LATITUD_2)) *
-cos(radians(LONGITUD_1) - radians(LONGITUD_2))) * 6378) as
-distanciaPunto1Punto2;*/
-/*
-$lat0 = 45.50;
-$lng0 = 15.47;
-$lat1 = 35.15;
-$lng1 = 16.12;
+// dejar de seguir
+if(isset($_GET['unfollow'])) {
+  $id_dejar = (int)$_GET['idDejar'];
+  AmigoManager::delete($id,$id_dejar);
+  header("Location: cercaDeMi.php");
+  die();
+}
+//seguir
+if(isset($_GET['seguir'])) {
+  $id_seguir = (int)$_GET['idSeguir'];
+  AmigoManager::insert($id,$id_seguir);
+  header("Location: cercaDeMi.php");
+  die();
+}
 
-// se pasan a radiantes
-$rlat0 = deg2rad($lat0);
-$rlng0 = deg2rad($lng0);
-$rlat1 = deg2rad($lat1);
-$rlng1 = deg2rad($lng1);
+if (isset($_GET["kilometros"])) {
+  $kms=$_GET["kilometros"];
+}
 
-// diferencias entre estos valores
-$latDelta = $rlat1 - $rlat0;
-$lonDelta = $rlng1 - $rlng0;
+$obj_cordenadas = CoordenadasManager::getCordenadasByUsuarioID($id)[0];
+$lat=$obj_cordenadas->getLatitud();
+$long=$obj_cordenadas->getLongitud();
 
-// ley esferica de los cosenos
-//6371 raadio de la tierra en kilometros
-$distance = (6371 *
-    acos(
-        cos($rlat0) * cos($rlat1) * cos($lonDelta) +
-        sin($rlat0) * sin($rlat1)
-    )
-);
+$resultados= CoordenadasManager::getCercanos($lat, $long,$id);
 
-echo 'distanct arcosine ' . $distance;*/
+function formateaDistancia($distancia){
+  $txt = '';
+  $arrayKms = explode(".",$distancia);
+  // si hay decimales y son mas de 3
+    if (isset($arrayKms[1])) {
+      // Me quedo con los 3 primeros
+      $arrayKms[1] = substr($arrayKms[1],0,3);
+    }
+  if ($distancia < 1) {
+    $tex = $arrayKms[1] .' metros';
+  }else{
+    $tex = implode(",",$arrayKms).' Kms';
+  }
+  return $tex;
+}
+
  ?>
 
- <div class="contenedor_amigos">
-   <h1> Busca amigos que esten cerca de ti</h1>
-   <form class="" action="cercaDeMi.php" method="post">
-     <label for="">Distacia en kilometros</label>
-     <select class="distancias" name="distancias">
-       <option value="1">1Km</option>
-       <option value="2">2Km</option>
-       <option value="5">5Km</option>
-       <option value="10">10Km</option>
-       <option value="20">20Km</option>
-       <option value="50">50Km</option>
-     </select>
-     <input type="submit" name="Enviar" value="Buscar">
-   </form>
+ <?php if (count($resultados) <= 0 ){ ?>
+   <div class="notificaciones">
+     <h1>No hay Amigos a <?=$kms?>Km</h1>
+     <h2>Intente nuevamente</h2>
+   </div>
 
- </div>
+ <?php }else{ ?>
+   <div class="contenedor_amigos">
+     <h1> Mascotas a <?=$kms?> Kms  </h1>
+   <?php foreach ($resultados as $fila) { ?>
+     <?php
+      $mascota = MascotaManager::getById($fila['usuario_id'])[0];
+      $txt =formateaDistancia($fila['distanciaKilometros']);
+
+     ?>
+       <?php if ($mascota!= null && $fila['distanciaKilometros'] <= $kms): ?>
+         <div class="amigos">
+            <h3><?=$mascota->getNombre()?></h3>
+
+             <?php if (AmigoManager::compruebaAmistad($id,$mascota->getId())) { ?>
+                <a href="cercaDeMi.php?kilometros=<?=$kms?>&unfollow=true&idDejar=<?=$mascota->getId()?>">
+                  <button class="boton">Dejar de seguir</button>
+                </a>
+             <?php }else{ ?>
+               <a href="cercaDeMi.php?kilometros=<?=$kms?>&seguir=true&idSeguir=<?=$mascota->getId()?>">
+                <button class="boton">Seguir</button>
+              </a>
+              <?php } ?>
+
+              <img class="amigos_img" src="<?=$mascota->getFoto()?>" alt="">
+              <p class="p_kms">
+                <span>A <?=$txt?>  cerca de ti</span>
+              </p>
+         </div>
+       <?php endif; ?>
+    <?php } ?>
+    </div>
+ <?php } ?>
