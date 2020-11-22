@@ -1,8 +1,4 @@
-<?php
-session_start();
- ?>
-
-
+<?php session_start(); ?>
 <h3>Acceso no autorizado</h3>
 <?php
 if($_SESSION['tipo_cliente'] == 'mascota'){ ?>

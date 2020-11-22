@@ -1,5 +1,5 @@
 <?php
- session_start();
+session_start();
 
 $_SESSION['buscar']='';
   if($_SESSION['tipo_cliente'] == 'mascota'){ ?>
