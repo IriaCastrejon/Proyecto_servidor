@@ -32,8 +32,8 @@ $_SESSION['buscar']='';
 
     <nav class="menu">
       <a href="anuncio.php">Mis anuncios</a>
-      <a href="anuncioNuevo.php">Anuncio NUEVO</a>
-      <a href="inicioEmpresario.php">Perfil empresario</a>
+      <a href="anuncioNuevo.php">Nuevo anuncio</a>
+      <a href="inicioEmpresario.php">Perfil</a>
       <a href="logout.php">Logout</a>
     </nav>
 
