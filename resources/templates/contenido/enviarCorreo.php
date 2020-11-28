@@ -9,7 +9,10 @@ require 'vendor/autoload.php';
 $tipo_cliente='';
 $email='';
 $errores=[];
-$mensajeEnviado= $_GET['mensajeEnviado'];
+
+if (isset($_GET['mensajeEnviado'])) {
+  $mensajeEnviado= $_GET['mensajeEnviado'];
+}
 if (isset($_POST['enviar'])) {
 
   if (isset($_POST['cliente']) && ($_POST['cliente']== 'mascota' || $_POST['cliente']== 'empresa')){
@@ -58,7 +61,7 @@ if (isset($_POST['enviar'])) {
 
   function enviarEmail($email,$token,$tipo_cliente){
       $email_user="Hipets.enterprise@gmail.com";
-      $email_password = "Hipets1234";
+      $email_password = "hipetsnueva1234";
       $the_subject = "Recuperar cotraseña";
 
       $phpmailer = new PHPMailer();
@@ -71,7 +74,8 @@ if (isset($_POST['enviar'])) {
       $phpmailer->Username = $email_user;
       $phpmailer->Password = $email_password;
       //-----------------------------------------------------------------------
-      // $phpmailer->SMTPDebug = 1;
+      //OJo: fla linea de abajo amuestra todos los detalles del fallo . activarlo cuando ocurran errores para ver detalle
+      //$phpmailer->SMTPDebug = 3;
       $phpmailer->CharSet = 'UTF-8';
       $phpmailer->SMTPSecure = 'ssl';
       $phpmailer->Host = "smtp.gmail.com"; // GMail
@@ -79,7 +83,7 @@ if (isset($_POST['enviar'])) {
       $phpmailer->IsSMTP(); // use SMTP
       $phpmailer->SMTPAuth = true;
       $phpmailer->setFrom($email_user,'Hipets');
-      $phpmailer->AddAddress($email); // recipients email
+      $phpmailer->AddAddress($email); //  email del usuario que quiere recuperar la contraseña
       $phpmailer->Subject = $the_subject;
       $phpmailer->Body = $body;
       $phpmailer->IsHTML(true);
@@ -88,7 +92,6 @@ if (isset($_POST['enviar'])) {
      }else {
         header("Location: enviarCorreo.php?mensajeEnviado=true");
         die();
-
      }
 
   }

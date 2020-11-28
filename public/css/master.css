@@ -106,7 +106,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
 .contenedor_del_login  a {
   text-decoration: none;
 }
-
+#recuerdame{vertical-align: middle;}
 /*formulario registro */
 .fomulario_registro .registro_tipo_cliente,.fomulario_registro .registro,.formCambiarPass .recuperarPass{
   text-align: center;

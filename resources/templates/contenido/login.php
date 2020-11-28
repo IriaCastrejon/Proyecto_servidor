@@ -58,16 +58,10 @@ if(isset($_POST["submit"])) {
             if(isset($_POST["recuerdame"]) && $_POST['recuerdame']== 'si' ){
 
               $token = bin2hex(random_bytes(10));
-              // echo $token;
-              // echo $_SESSION['id'];
-              // echo $_SESSION['tipo_cliente'];
               setCookie("recuerdame",$token,time()+(3600*24*30));
-
 
               TokenManager::delete($_SESSION['id'],$_SESSION['tipo_cliente']);
               TokenManager::insert($_SESSION['id'],$token,$_SESSION['tipo_cliente']);
-              //borrar token anterior del mismo Usuario/
-              //insertar token e id y tipo
             }
 
             if ($tabla=='mascota') {
@@ -141,7 +135,9 @@ if(isset($_GET["error"])){
               <label for="submit">&nbsp;</label>
               <button type="submit" name="submit" class="login-button">Login</button>
             </p>
-            <input type="checkbox" name="recuerdame" value="si">Recuérdame
+
+            <input id="recuerdame" type="checkbox" name="recuerdame" value="si"><label for="recuerdame">Recuérdame</label>
+           </p>
         </form>
 
       <a href="enviarCorreo.php"> <p>Recuperar contraseña </p></a>

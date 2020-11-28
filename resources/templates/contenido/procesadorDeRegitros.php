@@ -279,7 +279,7 @@ function insertarEmpresa($email,$nombre,$pass_encriptada,$nombre_real,$localidad
        <?php endif; ?>
        <p>
          <label for=""> CIF *</label>
-         <input type="text" name="cif" value="<?= $cif ?>">>
+         <input type="text" name="cif" value="<?= $cif ?>">
        </p>
 
      <?php endif; ?>
