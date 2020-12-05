@@ -1,0 +1,73 @@
+/* ------------------------------- CONTENEDOR -------------------------*/
+.contenedor{
+  width: 100%;
+}
+
+/* ------------------------------- HEADER -----------------------------*/
+.contenedor header{
+  background-color: #ff8c00;
+  padding: 10px;
+}
+.contenedor header a{
+  text-decoration: none;
+}
+.contenedor header a > img{
+    width: 90px;
+}
+
+/* ------------------------------- MENÜ -----------------------------*/
+.contenedor > nav{
+  background-color: #e0e0e0;
+}
+
+.contenedor > nav a{
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+  border-right: 4px solid white;
+  /* width: 150px; */
+}
+.contenedor > nav a:nth-of-type(5){
+  float: right;
+  margin-right: 10px;
+  border: none;
+  border-left: solid white 4px;
+}
+.contenedor nav form{
+  display: inline-block;
+  padding: 6px;
+  color:black;
+  font-weight: bold;
+  border-right: 4px solid white;
+}
+.contenedor nav a:visited,.contenedor nav a:link{
+  color: black;
+}
+
+/* ------------------------------- FOOTER -----------------------------*/
+
+.contenedor > footer{
+  background-color: #c4c4c4;
+}
+.contenedor footer ul {
+  width: 50%;
+  margin: auto;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contenedor footer >  ul li{flex: 0 0 30%;}
+
+.contenedor footer >  ul li a {
+  text-decoration: none;
+  padding: 0.5em;
+  color: #325541;/*color verde*/
+}
+
+.error{
+  color: red;
+}

@@ -115,7 +115,15 @@ if(isset($_GET["error"])){
       <h1>Conoce a las mascotas que están cerca de ti</h1>
 
 
-        <form action="login.php" method="post" class="login" >
+        <form action="login.php" method="post" class="form_login" >
+            <?php if (count($errores)>0) { ?>
+              <p>
+                <?php foreach($errores as $error) { ?>
+                  <span class="error"><?= $error ?></span></br>
+                <?php } ?>
+              </p>
+            <?php }?>
+
             <p>
               <input type="text" name="email" id="email" value="<?=$email?>" placeholder="Usuario">
             </p>
@@ -123,23 +131,18 @@ if(isset($_GET["error"])){
               <input type="password" name="password" id="password" value="<?=$pass ?>" placeholder="Contraseña">
             </p>
 
-            <?php if (count($errores)>0) { ?>
             <p>
-              <?php foreach($errores as $error) { ?>
-                <div class="error"><?= $error ?></div>
-              <?php } ?>
-            </p>
-            <?php }?>
-
-            <p class="login-submit">
-              <label for="submit">&nbsp;</label>
-              <button type="submit" name="submit" class="login-button">Login</button>
+              <input type="submit" name="submit" id="submit_btn" value="Acceder">
             </p>
 
-            <input id="recuerdame" type="checkbox" name="recuerdame" value="si"><label for="recuerdame">Recuérdame</label>
+            <p class="recuerdame">
+              <input id="recuerdame" type="checkbox" name="recuerdame" value="si">
+              <label for="recuerdame">Recuérdame</label>
            </p>
         </form>
+      <div class="Registro_RecuperaPass">
+        <a href="enviarCorreo.php">Recuperar contraseña</a>
+        <a href="registro.php"> Registrarme </a>
+      </div>
 
-      <a href="enviarCorreo.php"> <p>Recuperar contraseña </p></a>
-      <a href="registro.php"> <p>Registrarme</p> </a>
   </div>

@@ -1,53 +1,5 @@
-h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
-  box-sizing: border-box;
-}
-.contenedor{
-  width: 100%;
-  margin: auto;
-}
-/* header*/
-.contenedor header{
-    background-color: #ff8c00;
-    color:white;
-    overflow: hidden;
-}
-.contenedor header a{
-  text-decoration: none;
-  color: white;
-}
-.contenedor header a > h1,.contenedor header a > img{
-  float: left;
-}
-/* menu*/
-.contenedor > nav{
-  background-color: #e0e0e0;
-}
-
-.contenedor > nav a{
-  text-decoration: none;
-  display: inline-block;
-  padding: 10px;
-  color: black;
-  font-weight: bold;
-  border-right: 4px solid white;
-  /* width: 150px; */
-}
-.contenedor > nav a:nth-of-type(5){
-  float: right;
-  margin-right: 10px;
-  border: none;
-  border-left: solid white 4px;
-}
-.contenedor nav form{
-  display: inline-block;
-  padding: 6px;
-  color:black;
-  font-weight: bold;
-  border-right: 4px solid white;
-}
-.contenedor nav a:visited,.contenedor nav a:link{
-  color: black;
-}
+@import "reset.css";
+@import "general.css";
 
 /*contenedor del login*/
 .contenedor .contenedor_del_login h1{
@@ -74,23 +26,32 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   font-size: 38px;
   text-align: right;
 }
+
 /*Formulario Login*/
-.contenedor_del_login .login {
-  width: 40%;
+.contenedor_del_login .form_login {
+  width: 50%;
   margin: auto;
+  border: solid 1px blue;
+}
+.form_login p{
+  margin-top: 15px;
   text-align: center;
 }
-.login input{
+.form_login input{
   text-align: center;
   border: 2px solid #219653;
-  height: 30px;
+  height: 35px;
+  width: 280px;
+
 }
-.login ::placeholder{
+.form_login ::placeholder{
   color:#ff8c00;
   font-weight: bold;
   font-size: 25px;
 }
-.login .login-submit .login-button, .enviar{
+
+#submit_btn, .enviar{
+  display: inline-block;
   background-color:#ff8c00;
   border: none;
   font-weight: bold;
@@ -99,14 +60,16 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   width:100px;
   height: 30px;
 }
-.contenedor_del_login p {
-  color:#023116;
-  text-align: center;
-}
-.contenedor_del_login  a {
+#recuerdame{width: 30px;text-align: center;vertical-align: middle;height: auto;}
+
+.contenedor_del_login .Registro_RecuperaPass  a {
   text-decoration: none;
+  color:#023116;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
 }
-#recuerdame{vertical-align: middle;}
+
 /*formulario registro */
 .fomulario_registro .registro_tipo_cliente,.fomulario_registro .registro,.formCambiarPass .recuperarPass{
   text-align: center;
@@ -132,9 +95,7 @@ h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo{
   flex: 0 0 50%;
   display: inline-block;
 }
-.error{
-  color: red;
-}
+
 .fomulario_registro .registro p textarea{
   flex: 0 0 40%;
   display: inline-block;
@@ -286,52 +247,8 @@ margin-bottom: 5px;
   text-align: center;
   padding: 20px;
 }
-/* footer*/
-.contenedor > footer{
-  width: 100%;
-  background-color: #c4c4c4;
-  clear: both;
-}
-.contenedor footer > nav ul {
-  width: 60%;
-  margin: auto;
-  list-style: none;
-  overflow: hidden;
-}
-.contenedor footer > nav ul li {
-  float: left;
-  margin-right: 15px;
-}
-.contenedor footer > nav ul li a {
-  text-decoration: none;
-  padding: 0.5em;
-  float: left;
-  color: #325541;/*color verde*/
-}
 
 
-/* .contenedor footer > nav ul li a:last-of-type {
-    margin-left: 23.5%;
-    border-left: solid 4px
-white;
-border-right:
-transparent;
-background-color: #75c5bc;
-color:
-    green;
-} */
-/* .amigos{
-
-  width: 300px;
-  height: 100%;
-
-  margin:5px;
-  padding: 10px;
-}
-
-.actividades{
-
-} */
 
 .small-img {
   width: 60px;
