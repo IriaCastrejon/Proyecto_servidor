@@ -6,43 +6,41 @@
 /* ------------------------------- HEADER -----------------------------*/
 .contenedor header{
   background-color: #ff8c00;
-  padding: 10px;
+  padding: 5px;
 }
 .contenedor header a{
   text-decoration: none;
 }
 .contenedor header a > img{
-    width: 90px;
+    width: 60px;
 }
 
 /* ------------------------------- MENÜ -----------------------------*/
-.contenedor > nav{
-  background-color: #e0e0e0;
+
+.contenedor > .menu{background-color: #f0f2f5;}
+.contenedor > .menu > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+  width: 70%;
 }
 
-.contenedor > nav a{
+.contenedor > .menu ul li a{
   text-decoration: none;
-  display: inline-block;
+  width: 100%;
   padding: 10px;
-  color: black;
+  color: #ff8c00;
   font-weight: bold;
-  border-right: 4px solid white;
-  /* width: 150px; */
 }
-.contenedor > nav a:nth-of-type(5){
-  float: right;
-  margin-right: 10px;
-  border: none;
-  border-left: solid white 4px;
-}
-.contenedor nav form{
+.contenedor .menu form{
   display: inline-block;
   padding: 6px;
   color:black;
   font-weight: bold;
-  border-right: 4px solid white;
 }
-.contenedor nav a:visited,.contenedor nav a:link{
+
+.contenedor .menu a:visited,.contenedor .menu a:link{
   color: black;
 }
 
@@ -50,6 +48,10 @@
 
 .contenedor > footer{
   background-color: #c4c4c4;
+  position: fixed;
+  left: 0;
+  bottom:0;
+  width: 100%;
 }
 .contenedor footer ul {
   width: 50%;

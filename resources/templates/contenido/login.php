@@ -108,41 +108,40 @@ if(isset($_GET["error"])){
 
 
   <div class="contenedor_del_login">
-      <img src="../imgs/InicioFondo1.png" alt="Perritos abrazados">
-      <div class="titulo">
-        <p>La red social de mascotas más grande del mundo</p>
-      </div>
-      <h1>Conoce a las mascotas que están cerca de ti</h1>
 
+    <section class="lateralFotoPerros">
+      <img src="../imgs/perritosLogo.png" alt="Perritos abrazados">
+    </section>
 
-        <form action="login.php" method="post" class="form_login" >
-            <?php if (count($errores)>0) { ?>
-              <p>
-                <?php foreach($errores as $error) { ?>
-                  <span class="error"><?= $error ?></span></br>
-                <?php } ?>
-              </p>
-            <?php }?>
-
+    <section class="lateralFormLogin">
+        <h1>Conoce a las mascotas que están cerca de ti</h1>
+      <form action="login.php" method="post" class="form_login" >
+          <?php if (count($errores)>0) { ?>
             <p>
-              <input type="text" name="email" id="email" value="<?=$email?>" placeholder="Usuario">
+              <?php foreach($errores as $error) { ?>
+                <span class="error"><?= $error ?></span></br>
+              <?php } ?>
             </p>
-            <p>
-              <input type="password" name="password" id="password" value="<?=$pass ?>" placeholder="Contraseña">
-            </p>
+          <?php }?>
 
-            <p>
-              <input type="submit" name="submit" id="submit_btn" value="Acceder">
-            </p>
+          <p>
+            <input type="text" name="email" id="email" value="<?=$email?>" placeholder="Usuario">
+          </p>
+          <p>
+            <input type="password" name="password" id="password" value="<?=$pass ?>" placeholder="Contraseña">
+          </p>
 
-            <p class="recuerdame">
-              <input id="recuerdame" type="checkbox" name="recuerdame" value="si">
-              <label for="recuerdame">Recuérdame</label>
-           </p>
-        </form>
-      <div class="Registro_RecuperaPass">
-        <a href="enviarCorreo.php">Recuperar contraseña</a>
-        <a href="registro.php"> Registrarme </a>
-      </div>
-
+          <p>
+              <button type="submit" id="submit_btn" name="submit">Acceder</button>
+          </p>
+          <p class="recuerdame">
+            <input id="recuerdame" type="checkbox" name="recuerdame" value="si">
+            <label for="recuerdame">Recuérdame</label>
+         </p>
+      </form>
+    <div class="Registro_RecuperaPass">
+      <a href="enviarCorreo.php">Recuperar contraseña</a>
+      <a href="registro.php"> Registrarme </a>
+    </div>
+    </section>
   </div>
