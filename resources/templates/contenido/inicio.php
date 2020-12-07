@@ -1,5 +1,5 @@
 <?php
-session_start();
+
   //echo $_SESSION['id'].' Las id  es <br>';
 if( !isset($_SESSION['id']) ){
     header('Location: login.php');
@@ -57,74 +57,83 @@ $resPublicaciones = PublicacionesManager::getAllPublicaciones($id);
   <br><br>
   <div class="c_publicaciones">
 
-<?php if (count($resPublicaciones)!==0){ ?>
+      <?php if (count($resPublicaciones)!==0){ ?>
 
-    <?php foreach ($resPublicaciones as $fila):
-        $resultados = MascotaManager::getById($fila->getId_usuario());
-        $num_megustas = MegustaManager::contadorMegustas($fila->getId());
-        $verificar = MegustaManager::verificarMeGusta($id, $fila->getId());
+          <?php foreach ($resPublicaciones as $fila):
+              $resultados = MascotaManager::getById($fila->getId_usuario());
+              $num_megustas = MegustaManager::contadorMegustas($fila->getId());
+              $verificar = MegustaManager::verificarMeGusta($id, $fila->getId());
 
-    ?>
-      <div class="contenedor_publi">
-        <div class="publicacion1">
-          <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
-          <a href="perfil.php?idUsuario=<?=$fila->getId_usuario()?>">
-            <h2><?=$resultados[0]->getNombre() ?></h2><br>
-          </a>
-          <h4> <?=substr($fila->getFecha(),0,10) ?></h4>
-        </div>
-        <div class="publicacion2">
-          <img src="<?=$fila->getImagen() ?>" alt="publicacion">
-          <p><?=$fila->getTexto() ?></p>
-          <span><?=$num_megustas ?></span>
-          <a href="perfil.php">
-            <?php if ($verificar) { ?>
-               <a href="inicio.php?idUsuario=<?=$id?>&noMegusta=true&idPublicacion=<?=$fila->getId()?>">
-                   No me gusta
-               </a>
-            <?php }else{ ?>
-              <a href="inicio.php?idUsuario=<?=$id?>&meGusta=true&idPublicacion=<?=$fila->getId()?>">
-                   Me gusta
-             </a>
-             <?php } ?>
-          </a>
+          ?>
+            <div class="contenedorPublicaciones">
+                <div class="publicacion">
+                  <div class="publicacionCabecera">
+                    <div >
+                        <img class="small-img" src="<?=$resultados[0]->getFoto() ?>" alt="">
+                        <a href="perfil.php?idUsuario=<?=$fila->getId_usuario()?>">
+                          <span><?=$resultados[0]->getNombre() ?></span>
+                        </a>
+                        <p> <?=substr($fila->getFecha(),0,10) ?></p>
+                        <a></a>
+                    </div>
+                  </div><!--publicacionCabecera-->
 
+                    <div class="publicacionCuerpo">
+                      <p><?=$fila->getTexto() ?></p>
+                      <img src="<?=$fila->getImagen() ?>" alt="publicacion">
+                    </div><!--publicacionCuerpo-->
+                      <div class="publicacionFooter">
+                        <div >
+                          <span><?=$num_megustas ?></span>
+                          <a href="perfil.php">
+                            <?php if ($verificar) { ?>
+                               <a href="inicio.php?idUsuario=<?=$id?>&noMegusta=true&idPublicacion=<?=$fila->getId()?>">
+                                   No me gusta
+                               </a>
+                            <?php }else{ ?>
+                              <a href="inicio.php?idUsuario=<?=$id?>&meGusta=true&idPublicacion=<?=$fila->getId()?>">
+                                   Me gusta
+                             </a>
+                             <?php } ?>
+                          </a>
+                        </div>
+                        <a href="javascript:mostrarOcultar(<?=$fila->getId()?>);">Comentarios</a>
+                      </div><!--publicacionFooter-->
+                      <div class="oculto" id="comentarios<?=$fila->getId()?>">
+                        <div class="comentar">
+                          <form class="" action="inicio.php?idUsuario=<?=$id?>&idPublicacion=<?=$fila->getId()?>" method="post">
+                            <textarea name="comentar" rows="8" cols="80" placeholder="Aqui tu comentario"></textarea>
+                            <input type="submit" name="enviarComentario" value="Enviar">
+                          </form>
+                        </div>
 
-          <a href="javascript:mostrarOcultar(<?=$fila->getId()?>);">Comentarios</a>
+                        <div class="comentarios">
+                          <?php
+                             foreach ( $fila->getComentarios() as $filaComentario): ?>
+                             <div class="comentarioUnaLinea">
+                               <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
+                              <span><?=($filaComentario->getUsuario())->getNombre()?></span>
+                               <p><?=$filaComentario->getTexto()?></p>
+                             </div>
+                          <?php endforeach; ?>
+                        </div>
+                      </div>
+                </div>
 
-            <div class="oculto" id="comentarios<?=$fila->getId()?>">
-              <div class="comentar">
-                <form class="" action="inicio.php?idUsuario=<?=$id?>&idPublicacion=<?=$fila->getId()?>" method="post">
-                  <textarea name="comentar" rows="8" cols="80" placeholder="Aqui tu comentario"></textarea>
-                  <input type="submit" name="enviarComentario" value="Enviar">
-                </form>
               </div>
 
-              <div class="comentarios">
-                <?php
-                   foreach ( $fila->getComentarios() as $filaComentario): ?>
-                   <div class="comentarioUnaLinea">
-                     <img class="small-img" src="<?=($filaComentario->getUsuario())->getFoto()?>" alt="">
-                    <span><?=($filaComentario->getUsuario())->getNombre()?></span>
-                     <p><?=$filaComentario->getTexto()?></p>
-                   </div>
-                <?php endforeach; ?>
-              </div>
-            </div>
+          <?php endforeach; ?>
+
+      <?php }else{ ?>
+        <div class="notificaciones">
+          <h1>No tienes publicaciones. </h1>
+          <h2><i>Puedes añadir una nueva publicacion en tu perfil</i></h2>
+          <h1>Añade nuevos amigos</h1>
+          <h2><i>Encuentra a tus amigos usando nuestro buscador.</i></h2>
         </div>
-    </div>
-    <?php endforeach; ?>
+      <?php } ?>
 
-<?php }else{ ?>
-  <div class="notificaciones">
-    <h1>No tienes publicaciones. </h1>
-    <h2><i>Puedes añadir una nueva publicacion en tu perfil</i></h2>
-    <h1>Añade nuevos amigos</h1>
-    <h2><i>Encuentra a tus amigos usando nuestro buscador.</i></h2>
-  </div>
-<?php } ?>
-
-  </div>
+  </div><!--fin contenedor publicaciones-->
 
   <div class="c_actividad">
     <p class="p">Actividades</p>

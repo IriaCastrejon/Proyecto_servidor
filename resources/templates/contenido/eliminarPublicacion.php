@@ -6,9 +6,9 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 }
 
 $id_pub = $_GET['idPub'];
-
+$id=$_SESSION['id'];
 PublicacionesManager::delete($id_pub);
-header('Location: perfil.php');
+header("Location: perfil.php?idUsuario=<?=$id?>");
 die();
 
 ?>

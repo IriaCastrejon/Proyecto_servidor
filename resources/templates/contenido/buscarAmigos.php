@@ -49,21 +49,22 @@ if (isset($_GET['busca']) && $_GET['busca'] != "") {
   <?php foreach ($resultados as $fila) { ?>
       <?php if ($fila->getId()!==$id): ?>
         <div class="amigos">
-           <h3><?=$fila->getNombre()?></h3>
+          <div class="amigosCabecera">
+            <p><?=$fila->getNombre()?></p>
 
-
-            <?php if (AmigoManager::compruebaAmistad($id,$fila->getId())) { ?>
-               <a href="buscarAmigos.php?busca=<?=$buscar?>&unfollow=true&idDejar=<?=$fila->getId()?>">
-                 <button class="boton">Dejar de seguir</button>
-               </a>
-            <?php }else{ ?>
-              <a href="buscarAmigos.php?busca=<?=$buscar?>&seguir=true&idSeguir=<?=$fila->getId()?>">
-               <button class="boton">Seguir</button>
-             </a>
-             <?php } ?>
-
-
+             <?php if (AmigoManager::compruebaAmistad($id,$fila->getId())) { ?>
+                <a href="buscarAmigos.php?busca=<?=$buscar?>&unfollow=true&idDejar=<?=$fila->getId()?>">
+                  <button class="boton">No seguir</button>
+                </a>
+             <?php }else{ ?>
+               <a href="buscarAmigos.php?busca=<?=$buscar?>&seguir=true&idSeguir=<?=$fila->getId()?>">
+                <button class="boton">Seguir</button>
+              </a>
+              <?php } ?>
+          </div>
+          <div class="amigosImagen">
              <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
+          </div>
         </div>
       <?php endif; ?>
    <?php } ?>

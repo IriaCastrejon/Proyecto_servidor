@@ -67,13 +67,22 @@ if (count($errores)==0) {
  ?>
  <div class="nuevaPublicacion">
 
-   <form  action="publicacion.php" method="post" enctype="multipart/form-data">
+   <form  action="publicacion.php" method="post" enctype="multipart/form-data" class="formulario">
     <h2>Comparte lo que piensas</h2>
-     <input type="textarea" name="contenido" value="<?= $contenido ?>"> <br>
-      <h3>Agrega una imagen</h3><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
+    <p>
+      <label>¿Qué piensas?</label>
+       <input type="textarea" name="contenido" value="<?= $contenido ?>"> <br>
+    </p>
+    <p>
+      <label>Agrega una imagen</label><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
+    </p>
      <?php foreach ($errores as $key => $value): ?>
        <span class="error"><?=$value ?></span>
      <?php endforeach; ?>
-     <br><br><input class="enviar" type="submit" name="enviar" value="Publicar"><br><br>
+    <p>
+      <label></label>
+      <input class="enviar" type="submit" name="enviar" value="Publicar">
+    </p>
+
    </form>
  </div>

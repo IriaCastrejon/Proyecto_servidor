@@ -75,7 +75,7 @@ if (isset($_POST['enviar'])) {
       $errores['passVer'] = 'Las contraseñas no coinciden';
     }
   }else{
-    $errores['passVer'] = 'Introduce la verificacion de la contraseña';
+    $errores['passVer'] = 'Introduce la verificación de la contraseña';
   }
   // Localidad
   if (isset($_POST['localidad']) && $_POST['localidad'] != '') {
@@ -202,7 +202,7 @@ function insertarEmpresa($email,$nombre,$pass_encriptada,$nombre_real,$localidad
 ?>
  <div class="fomulario_registro">
 
-   <form class="registro" action="procesadorDeRegitros.php" method="post" enctype="multipart/form-data">
+   <form class="formulario" action="procesadorDeRegitros.php" method="post" enctype="multipart/form-data">
      <h2>Rellena los campos</h2>
 
      <!-- NOMBRE-->
@@ -305,7 +305,8 @@ function insertarEmpresa($email,$nombre,$pass_encriptada,$nombre_real,$localidad
 
      <?php endif; ?>
 
-     <br><br> <input type="submit" name="enviar" value="Registrarme">
+      <p><label for=""></label>
+        <input type="submit" name="enviar" value="Registrarme"></p>
 
     </form>
  </div>

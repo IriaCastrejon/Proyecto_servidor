@@ -6,3 +6,6 @@ body, h1,h2,h3,p,h3, div, header, nav, ul, li,.titulo, footer, h4{
 img , a, span {
   display: inline-block;
 }
+body{
+  font-family: 'Roboto', sans-serif;
+}

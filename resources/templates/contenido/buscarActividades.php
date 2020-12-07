@@ -17,25 +17,25 @@ $id=$_SESSION['id'];
 $resultados = ActividadManager::obtenerActividadNoParticipa($id);
 ?>
 <div class="contenedor_anuncios">
-<h1> Actividades disponibles </h1>
+  <h1> Actividades disponibles </h1>
 
-<?php
-foreach ($resultados as $fila) { ?>
+  <?php
+  foreach ($resultados as $fila) { ?>
 
-     <div class="actividades">
-      <h5> Actividad <br>
-        <span><?=$fila->getNombre()?></span>
-      </h5>
-       <h5> Fecha<br> <span><?=$fila->getFecha()?> </span></h5>
-       <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
+       <div class="actividades">
+        <h5> Actividad <br>
+          <span><?=$fila->getNombre()?></span>
+        </h5>
+         <h5> Fecha<br> <span><?=$fila->getFecha()?> </span></h5>
+         <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
 
-       <h5>
-         <form class="" action="actividades.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
-               <input type="submit" name="participar" value="Participar" class="boton">
-         </form>
+         <h5>
+           <form class="" action="actividades.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
+                 <input type="submit" name="participar" value="Participar" class="boton">
+           </form>
 
-       </h5>
-     </div>
+         </h5>
+       </div>
 
-<?php } ?>
+  <?php } ?>
 </div>

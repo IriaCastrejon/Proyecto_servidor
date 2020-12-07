@@ -73,19 +73,24 @@ function formateaDistancia($distancia){
      ?>
        <?php if ($mascota!= null &&  $fila['distanciaKilometros'] <= $kms && $mascota->getId() != $id): ?>
          <div class="amigos">
-            <h3><?=$mascota->getNombre()?></h3>
+           <div class="amigosCabecera">
+             <p><?=$mascota->getNombre()?></p>
 
-             <?php if (AmigoManager::compruebaAmistad($id,$mascota->getId())) { ?>
-                <a href="cercaDeMi.php?kilometros=<?=$kms?>&unfollow=true&idDejar=<?=$mascota->getId()?>">
-                  <button class="boton">Dejar de seguir</button>
-                </a>
-             <?php }else{ ?>
-               <a href="cercaDeMi.php?kilometros=<?=$kms?>&seguir=true&idSeguir=<?=$mascota->getId()?>">
-                <button class="boton">Seguir</button>
-              </a>
-              <?php } ?>
+              <?php if (AmigoManager::compruebaAmistad($id,$mascota->getId())) { ?>
+                 <a href="cercaDeMi.php?kilometros=<?=$kms?>&unfollow=true&idDejar=<?=$mascota->getId()?>">
+                   <button >No seguir</button>
+                 </a>
+              <?php }else{ ?>
+                <a href="cercaDeMi.php?kilometros=<?=$kms?>&seguir=true&idSeguir=<?=$mascota->getId()?>">
+                 <button >Seguir</button>
+               </a>
+               <?php } ?>
+           </div>
 
+           <div class="amigosImagen">
               <img class="amigos_img" src="<?=$mascota->getFoto()?>" alt="">
+           </div>
+
               <p class="p_kms">
                 <span>A <?=$txt?>  cerca de ti</span>
               </p>

@@ -18,9 +18,15 @@ $errores=[];
  <div class="fomulario_registro">
 
   <form class="registro_tipo_cliente" action="registro.php" method="post">
-     <label for="soyMascota" class="rad_cliente"><input id="soyMascota" type="radio" name="cliente" value="mascota" <?=($tipo_cliente== 'mascota')?'checked':'' ?> > Soy mascota </label>
-     <label for="soyCliente" class="rad_cliente"><input id="soyCliente" type="radio" name="cliente" value="empresa" <?=($tipo_cliente== 'empresa')?'checked':'' ?>>  Soy empresa </label>
-     <br> <br><input type="submit" name="tipo_cliente" value="Enviar">
+    <p>
+      <label for="soyMascota" class="rad_cliente"><input id="soyMascota" type="radio" name="cliente" value="mascota" <?=($tipo_cliente== 'mascota')?'checked':'' ?> > Soy mascota </label>
+      <label for="soyCliente" class="rad_cliente"><input id="soyCliente" type="radio" name="cliente" value="empresa" <?=($tipo_cliente== 'empresa')?'checked':'' ?>>  Soy empresa </label>
+    </p>
+
+     <p>
+       <label for=""></label>
+       <input type="submit" name="tipo_cliente" value="Enviar">
+     </p>
     <?php if (isset($errores['cliente'])): ?>
       <span><?=$errores['cliente'] ?></span>
     <?php endif; ?>

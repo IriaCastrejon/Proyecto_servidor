@@ -17,40 +17,42 @@
 
 /* ------------------------------- MENÜ -----------------------------*/
 
-.contenedor > .menu{background-color: #f0f2f5;}
+.contenedor > .menu{background-color: #f0f2f5;padding: 0 10px;}
 .contenedor > .menu > ul{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   list-style: none;
-  width: 70%;
+  width: 100%;
 }
-
+.contenedor > .menu ul li:hover{border-bottom: solid 2px #ff8c00;}
 .contenedor > .menu ul li a{
   text-decoration: none;
   width: 100%;
   padding: 10px;
-  color: #ff8c00;
+  color: #6a8776;
   font-weight: bold;
 }
 .contenedor .menu form{
   display: inline-block;
   padding: 6px;
-  color:black;
+  color: #6a8776;
   font-weight: bold;
 }
 
 .contenedor .menu a:visited,.contenedor .menu a:link{
-  color: black;
+  color: #6a8776;
 }
-
+.contenedor > .menu ul .logout{
+  margin-left:  auto;
+}
 /* ------------------------------- FOOTER -----------------------------*/
 
 .contenedor > footer{
   background-color: #c4c4c4;
-  position: fixed;
+  /* position: fixed;
   left: 0;
-  bottom:0;
+  bottom:0; */
   width: 100%;
 }
 .contenedor footer ul {

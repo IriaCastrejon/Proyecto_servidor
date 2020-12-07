@@ -40,7 +40,7 @@ $_SESSION['buscar']='';
         <li>  <a href="anuncio.php">Mis anuncios</a></li>
         <li>  <a href="anuncioNuevo.php">Nuevo anuncio</a></li>
         <li>  <a href="inicioEmpresario.php">Perfil</a></li>
-        <li>  <a href="logout.php">Logout</a></li>
+        <li class="logout">  <a href="logout.php">Logout</a></li>
       </ul>
     </nav>
 

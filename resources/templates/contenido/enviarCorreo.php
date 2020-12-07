@@ -98,19 +98,28 @@ if (isset($_POST['enviar'])) {
  ?>
  <?php if (!$mensajeEnviado){ ?>
    <div class="formCambiarPass">
-    <h1>Confirma tu correo electrónico </h1>
-      <form class="recuperarPass" action="enviarCorreo.php" method="post">
-        <label for="">Introduce el correo eletronico</label><input type="email" name="correo" value="<?=$email ?>"><br>
+
+      <form class="formulario" action="enviarCorreo.php" method="post">
+        <h2>Confirma tu correo electrónico </h2>
+        <p>
+              <label>Introduce el correo eletronico</label><input type="email" name="correo" value="<?=$email ?>">
+        </p>
         <span class="error"><?=$errores['correo'] ?></span><br>
-        <label for="" class="rad_cliente">Soy mascota <input type="radio" name="cliente" value="mascota" <?=($tipo_cliente== 'mascota')?'checked':'' ?> > </label>
-        <label for="" class="rad_cliente">Soy empresa <input type="radio" name="cliente" value="empresa" <?=($tipo_cliente== 'empresa')?'checked':'' ?>> </label><br>
-        <span class="error"><?=$errores['tipo_cliente'] ?></span><br>
-        <input type="submit" name="enviar" value="Enviar">
+        <div class="divRadios">
+            <input id="radioMascota_RC" type="radio" name="cliente" value="mascota" <?=($tipo_cliente== 'mascota')?'checked':'' ?> ><label for="radioMascota_RC" class="rad_cliente">Soy mascota  </label>
+             <input id="radioCliente_RC"  type="radio" name="cliente" value="empresa" <?=($tipo_cliente== 'empresa')?'checked':'' ?>>  <label for="radioCliente_RC" class="rad_cliente">Soy empresa </label>
+        </div>
+        <span class="error"><?=$errores['tipo_cliente'] ?></span>
+        <p>
+          <label for=""></label>
+          <input type="submit" name="enviar" value="Enviar">
+        </p>
+
       </form>
   </div>
 <?php }else{ ?>
   <div class="notificaciones">
-    <h1>Se ha enviado un correo electrónico para reestablacer su contraseña</h1>
+    <h2>Se ha enviado un correo electrónico para reestablacer su contraseña</h2>
     <img src="imgs/enviarCorreo.jpeg" alt="">
   </div>
 

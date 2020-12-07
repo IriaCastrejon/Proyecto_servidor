@@ -97,8 +97,8 @@ define("ERROR_LUGAR_NO", 1);
 
 <div class="fomulario_registro">
 
-     <form class="registro" action="nuevaActividad.php" method="post">
-
+     <form class="formulario" action="nuevaActividad.php" method="post">
+       <h2>Rellena los campos</h2>
        <?php if (isset($errores['nombre'])){
                 if ($errores['nombre'] == ERROR_NOMBRE_MAYOR ){ ?>
                   <span class="error"> El nombre no puede ser mayor de 15 caracteres</span> <br>
@@ -149,7 +149,10 @@ define("ERROR_LUGAR_NO", 1);
           <input type="text" name="lugar" value="<?=$lugar?>">
         </p>
 
-<p> <input type="submit" name="enviar" class='enviar' value="Enviar"></p>
+<p>
+  <label for=""></label>
+  <input type="submit" name="enviar" class='enviar' value="Enviar">
+</p>
 
     </form>
 </div>

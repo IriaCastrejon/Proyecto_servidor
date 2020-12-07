@@ -41,13 +41,16 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
   <h1> Mis amigos </h1>
   <?php foreach ($resultadosSiguiendo as $fila) { ?>
        <div class="amigos">
-         <h3><?=$fila->getNombre()?></h3>
+           <div class="amigosCabecera">
+             <p><?=$fila->getNombre()?></p>
+             <a href="amigos.php?unfollow=true&idDejar=<?=$fila->getId()?>">
+               <button>No Seguir</button>
+             </a>
+           </div>
 
-         <a href="amigos.php?unfollow=true&idDejar=<?=$fila->getId()?>">
-           <button class="boton">Dejar de Seguir</button>
-         </a>
-
-         <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
+           <div class="amigosImagen">
+            <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
+           </div>
        </div>
 
   <?php } ?>

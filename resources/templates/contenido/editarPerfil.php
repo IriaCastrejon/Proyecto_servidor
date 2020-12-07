@@ -38,13 +38,7 @@ if ($_POST['enviar']=="Cambiar") {
 
           $borrado = PublicacionesManager::delete($ultimoId);
 
-          if(!$borrado) {
-              // Ha ocurrido un error extraño
-              // Debemos reportarlo y que un admin
-              // Deje la información correcta
-              // Hay un tema sin imagen
-              // También podríamos usar transacciones de base de datos
-          }
+
       }
       header("Location: perfil.php?idUsuario=$id");
       die();
@@ -68,8 +62,16 @@ if ($_POST['enviar']=="Cambiar") {
 
  <div class="cambiar_foto">
    <h2>Modificar foto de perfil </h2>
-   <form class="" action="editarPerfil.php" method="post" enctype="multipart/form-data">
-     <h3>Subir nueva foto</h3><input type="file" name="imagen" value=""><br><br>
-     <input class="enviar" type="submit" name="enviar" value="Cambiar"><br><br>
+   <form class="formulario" action="editarPerfil.php" method="post" enctype="multipart/form-data">
+     <p>
+       <label>Subir nueva foto</label>
+       <input type="file" name="imagen" value="">
+     </p>
+     
+     <p>
+       <label></label>
+       <input class="enviar" type="submit" name="enviar" value="Cambiar">
+     </p>
+
    </form>
  </div>
