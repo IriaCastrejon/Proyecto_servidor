@@ -1,6 +1,5 @@
 <?php
 
-
   //echo $_SESSION['id'].' Las id  es <br>';
 if( !isset($_SESSION['id']) ){
     header('Location: login.php');
@@ -28,14 +27,15 @@ $precioDia = PRECIO_DIA;
 
 ?>
 
-
+<h1 class="anuncioH1"> Mis anuncios </h1>
 <div class="contenedor_anuncios">
-  <h1> Mis anuncios </h1>
   <?php foreach ($resultados as $fila) { ?>
        <div class="anuncios">
-         <h5> Fecha alta <br> <span><?=substr($fila->getFechaAlta(),0,10) ?></span></h5>
-         <h5> Fecha baja <br> <span><?=$fila->getFechaBaja()?> </span></h5>
-         <h5> Precio <br> <span><?php echo dias_pasados($fila->getFechaBaja(),$fila->getFechaAlta()) * $precioDia . ' €'?> </span></h5>
+         <div class="">
+           <h5> Fecha alta <br> <span><?=substr($fila->getFechaAlta(),0,10) ?></span></h5>
+           <h5> Fecha baja <br> <span><?=$fila->getFechaBaja()?> </span></h5>
+           <h5> Precio <br> <span><?php echo dias_pasados($fila->getFechaBaja(),$fila->getFechaAlta()) * $precioDia . ' €'?> </span></h5>
+         </div>
          <img class="anuncio_img" src="<?=$fila->getFoto()?>" alt="">
        </div>
 

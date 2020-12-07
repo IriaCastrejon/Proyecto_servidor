@@ -227,10 +227,6 @@
   font-size: .8em;
   color:dimgrey;
 }
-/*============================= INICIO ============================*/
-.contendor_inicio{
-  overflow: hidden;
-}
 
 /* ------------------------------- Nuevo anuncio formulario -------------------------*/
 .totalAPagar{
@@ -240,37 +236,35 @@
 }
 .totalAPagar span{color:#FF8C00;}
 
-
-/*======== ANUNCIOS =======*/
+/* ------------------------------- ANUNCIOS-------------------------*/
+.anuncioH1{text-align: center;color:   color:#023116;}
 .contenedor_anuncios {
-    width: 90%;
-    margin: 0 auto;
-    overflow: auto;
-    margin-bottom: 3em;
+    width: 80%;
+    margin: 1.5em auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .contenedor_anuncios h1 {
     text-align: center;
     color: color:#023116; /*verde*/
-    margin: 1em 0;
 }
   .anuncios {
-    width: 30%;
+    flex: 0 0 22%;
     border: solid 0.3em #FF8C00; /*naranja*/
-    float: left;
-    margin: 0 1.6%;
-    margin-bottom: 1em;
+    text-align: center;
   }
   .anuncios h5 {
-    float: left;
+    display: inline-block;
     margin: 1em;
-    text-align: center;
   }
 
   .anuncios span{
     color: gray;
   }
   .anuncios img{
-    width: 100%;
+    width: 50%;
+    margin: auto;
   }
 /* ------------------------------- PERFIL CLIENTE -----------------------------*/
 .contenedorPerfilCliente{
