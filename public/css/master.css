@@ -119,18 +119,8 @@
 .notificaciones{  width: 50%;  margin:4em auto;}
 .notificaciones h2{color: #6a8776;}
 
-/*pagina editar perfil*//*pagina nuevo anuncio*/
-.contenedor .cambiar_foto, .contenedor .nuevaPublicacion{
-  width: 80%;
-  margin: auto;
-  text-align: center;
-}
-.contenedor .cambiar_foto h2,.contenedor .cambiar_foto h3, .contenedor .nuevaPublicacion h2, .contenedor .nuevaPublicacion h3{
-  color:#325541;;
-}
 
-
- /*================== pagina Perfil ==================*/
+/* ------------------------------- FERFIL MASCOTA -------------------------*/
 
 .contenedorPerfilMascota{  width: 60%;  margin:2em auto;}
 
@@ -144,7 +134,7 @@
 .contenedorPerfilMascota .cabeceraPerfil .fotosYseguidores img{
   width: 100px;
   height: 100px;
-  border: solid 2px;
+  border: solid 2px white;
   border-radius: 50%;
 }
 .contenedorPerfilMascota .cabeceraPerfil .fotosYseguidores h3{  text-align: center;  align-self: center;}
@@ -180,7 +170,7 @@
   font-size: 1em;
   background-color: grey;
 }
-
+/* ------------------------------- PUBLICACIONES-------------------------*/
 .contenedorPublicaciones{  margin:2em auto;width: 60%;border: solid 1px grey; background-color: #f0f2f5;border-radius: 5px;}
 
 .publicacion .publicacionCabecera{
@@ -194,7 +184,7 @@
 .publicacion .publicacionCabecera > div > img{
   width: 80px;
   height: 80px;
-  border:solid 2px black;
+  border:solid 2px white;
   border-radius: 50%;
   vertical-align: middle;
 }
@@ -205,7 +195,7 @@
 }
 .publicacion .publicacionCabecera > div > p{  color:#023116;  font-size: 1em;}
 .publicacion .publicacionCabecera > a {  align-self: center;}
-.publicacion .publicacionCabecera > a img{  width:35px;  height: 35px; }
+.publicacion .publicacionCabecera > a img{  width:30px;  height: 25px; }
 .publicacion .publicacionCuerpo{  text-align: justify;  padding: 20px;}
 
 .publicacion .publicacionCuerpo p{font-size: 1em;}
@@ -221,18 +211,15 @@
    padding: 20px 0;
 }
 .publicacion  .publicacionFooter a{text-decoration: none;color:#023116;}
-/*==tex
+.publicacion  .publicacionFooter span{text-decoration: none;color:#023116;}
+
 /*===========Comentarios===========*/
 .comentarioUnaLinea > img{
-width:80px;
-height: 80px;
-vertical-align: middle;
+  width:80px;
+  height: 80px;
+  vertical-align: middle;
 }
-.comentarioUnaLinea > img{
-margin-bottom: 5px;
-}
-
-
+.comentarioUnaLinea > img{  margin-bottom: 5px;}
 
 /*============================= Distancia kilometros ============================*/
 .p_kms{
@@ -244,54 +231,14 @@ margin-bottom: 5px;
 .contendor_inicio{
   overflow: hidden;
 }
-/*======== ANUNCIO NUEVO - FORMULARIO =======*/
-.form_anuncio {
-    color: #FF8C00; /*naranja*/
-    font-size: 1em;
-    font-weight: bold;
-    width: 35em;
 
-    margin: 5em auto;
-    background-color: #E0E0E0; /*gris claro*/
-    padding: 4em;
+/* ------------------------------- Nuevo anuncio formulario -------------------------*/
+.totalAPagar{
+  text-align: center;
+  width: 50%;
+  margin:1.5em auto;
 }
-  .form_anuncio input {
-      border: 0.15em solid #27AE60; /*verde*/
-  }
-  .form_anuncio input:last-of-type {
-      border: 0.15em solid transparent; /*verde*/
-  }
-
-  .form_anuncio h4, span{
-    color: black;
-  }
-  .stripe{
-    text-align: center;
-    background-color: white;
-  }
-  .botones{
-    width: 11.89em;
-    margin: auto;
-  }
-  .botones input:first-of-type {
-      background-color: #FF8C00; /*verde*/
-      color: white;
-      border-color: #FF8C00 ;
-      border-radius: 3px;
-      padding: 5px 15px;
-  }
-  .botones input:last-of-type{
-      background-color: #27AE60; /*verde*/
-      color: white;
-      border-color: #27AE60 ;
-      border-radius: 3px;
-      padding: 5px 15px;
-  }
-
-::-webkit-input-placeholder { color: green; }
-:-ms-input-placeholder { color: green; }
-:-moz-placeholder { /* Firefox 18- */ color: green; }
-::-moz-placeholder { /* Firefox 19+ */ color: green; }
+.totalAPagar span{color:#FF8C00;}
 
 
 /*======== ANUNCIOS =======*/
@@ -301,11 +248,11 @@ margin-bottom: 5px;
     overflow: auto;
     margin-bottom: 3em;
 }
-  .contenedor_anuncios h1 {
-      text-align: center;
-      color: #6a8776; /*verde*/
-      margin: 1em 0;
-  }
+.contenedor_anuncios h1 {
+    text-align: center;
+    color: color:#023116; /*verde*/
+    margin: 1em 0;
+}
   .anuncios {
     width: 30%;
     border: solid 0.3em #FF8C00; /*naranja*/
@@ -325,7 +272,22 @@ margin-bottom: 5px;
   .anuncios img{
     width: 100%;
   }
-
+/* ------------------------------- PERFIL CLIENTE -----------------------------*/
+.contenedorPerfilCliente{
+  width: 50%;
+  margin: 1.5em auto;
+  text-align: center;
+}
+.contenedorPerfilCliente img{width: 120px; border: solid 2px white; border-radius: 50%;}
+.contenedorPerfilCliente input{
+  border: 1px solid #219653;
+  height: 35px;
+  border-radius:3px;
+  font-weight: bold;
+  color:white;
+  font-size: 1em;
+  background-color: grey;
+}
 /* ------------------------------- AMIGOS -----------------------------*/
   .contenedor_amigos {
       width: 90%;
@@ -374,117 +336,37 @@ margin-bottom: 5px;
 
  }
 
-/*======== INICIO =======*/
-.contendor_inicio >  div{
-  /* outline: dotted red; */
-  float: left;
+/* ------------------------------- INICIO -----------------------------*/
+.contendor_inicio{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-
-.c_actividad{
-  width: 25%;
-  /* height: 15em; */
-  background-color: #E0E0E0; /*gris claro*/
-  margin-bottom: 1em;
-  overflow: auto;
+.contendor_inicio .c_actividad,.contendor_inicio .c_anuncios{
+  flex: 0 0 20%;
+  margin-top: 2em;
+  padding: 10px;
 }
+/*inicio publicaciones*/
+.contendor_inicio .c_publicaciones {	flex: 0 0 56%;}
+.contendor_inicio .c_publicaciones .contenedorPublicaciones{width: 75%;}
+/*inicio actividades*/
+.contendor_inicio .p {color:#023116;text-align: center;font-size: 1.3em;font-weight: bolder;}
+.c_actividad .actividad  H4{color: #ff8c00;}
+.c_actividad .actividad{border-bottom: solid 2px #023116;text-align: center;font-size: 1em;margin: 10px 0;}
+.c_actividad .actividad  P{text-align: left;}
+.c_actividad .actividad P span{color:#023116;font-size: 1em;font-weight: bolder;}
 
-.c_actividad .p{
+/*inicio publicidad*/
+.contendor_inicio .c_anuncios .publicidad{border-bottom: solid 2px #023116;text-align: center;font-size: .8em;margin: 10px 0;}
+.contendor_inicio .c_anuncios .publicidad img{width: 60%;border:solid;margin: 10px 0;}
+.contendor_inicio .c_anuncios .publicidad span{color:#023116;font-size: 1em;font-weight: bolder;}
+/* ------------------------------- ACTIVIDADES -----------------------------*/
+
+/*Botones*/
+.btnsActividad{
   text-align: center;
-  font-size: 15px;
-  margin: 5% 0 0 0;
-  color: #27ae60; /*COLOR VERDE*/
-  font-weight: bold;
 }
-
-  .c_actividad .actividadInicio{
-    width: 90%;
-    margin: 0 auto;
-    margin-left: 5%;
-  }
-  .c_actividad h4{ margin: 1em; padding: 0;}
-  .c_actividad p{
-    text-align: center;
-    font-size: 15px;
-  }
-  .c_actividad p{
-    text-align: justify;
-    margin: 0 1em 1em;
-  }
-.c_anuncios{
-  width: 25%;
-  background-color: #E0E0E0; /*gris claro*/
-}
-  .c_anuncios img{ width: 100%; }
-  .c_anuncios .anuncioInicio{
-    width: 90%;
-    margin: 0 auto;
-    margin-left: 5%;
-  }
-  .c_anuncios p{
-    text-align: center;
-    font-size: 15px;
-    font-weight: bold;
-    color: #27ae60; /*COLOR VERDE*/
-  }
-  .anuncio_img{
-    width: 100%;
-    height: 15em;
-    margin-bottom: 3%;
-  }
-
-  .contenedor_actividades {
-      width: 90%;
-      /* outline: solid; */
-      margin: 0 auto;
-      overflow: auto;
-      margin-bottom: 3em;
-  }
-    .contenedor_actividades h1 {
-        text-align: center;
-        color: #27AE60; /*verde*/
-    }
-    .actividades {
-      width: 30%;
-      border: solid 0.3em #FF8C00; /*naranja*/
-      float: left;
-      margin: 0 1.6%;
-      margin-bottom: 1em;
-    }
-    .actividades h5 {
-      float: left;
-      /* outline: solid; */
-      margin: 1em;
-      text-align: center;
-    }
-    /* .anuncios h5:nth-of-type(2) {
-        padding: 0 0.5em;
-    } */
-    .actividades span{
-      color: gray;
-    }
-    .actividades img{
-      width: 100%;
-    }
-
-
-
-
-    /*=========COMENTARIOS OCULTOS==========*/
-  .oculto{
-    display: none;
-  }
-
-
-/*=========PUBLICACIONES DEL INICIO==========*/
-.c_publicaciones {
-	width: 70%;
-	margin-right: 2%;
-	margin-left: 2%;
-}
-
-
-/*================= BOTON ===============*/
-
 .botonActividad{
   background-color: #27ae60; /*COLOR VERDE*/
   padding: 0.5em;
@@ -492,4 +374,31 @@ margin-bottom: 5px;
   color: white;
   display: inline-block;
   margin: 0.7em 0.1em;
+  border-radius: 5px;
 }
+
+.contenedor_actividades { width: 80%;margin: auto;}
+.contenedor_actividades h1{text-align: center;color:#325541;}
+.contenedor_actividades > .c_actividad {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.contenedor_actividades > .c_actividad .actividad{
+  border: solid 2px #ff8c00;
+  border-radius: 5px;
+  flex: 0 0 14em;
+  padding: 10px;
+}
+.contenedor_actividades > .c_actividad .actividad h4{color:#325541;}
+.contenedor_actividades > .c_actividad .actividad form input{
+  border: 1px solid #219653;
+  height: 35px;
+  border-radius:3px;
+  font-weight: bold;
+  color:white;
+  font-size: 1em;
+  background-color: grey;
+}
+/* ------------------------------- COMENTARIOS OCULTOS -----------------------------*/
+.oculto{  display: none;}

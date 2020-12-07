@@ -1,8 +1,6 @@
 <?php
 
 
-
-session_start();
 TokenManager::delete($_SESSION['id'],$_SESSION['tipo_cliente']);
 session_destroy();
 

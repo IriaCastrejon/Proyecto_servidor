@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 
 if( !isset($_SESSION['id']) ){
     header('Location: login.php');
@@ -16,26 +16,26 @@ $id=$_SESSION['id'];
 
 $resultados = ActividadManager::obtenerActividadNoParticipa($id);
 ?>
-<div class="contenedor_anuncios">
-  <h1> Actividades disponibles </h1>
+<div class="contenedor_actividades">
+    <h1> Actividades disponibles </h1>
+    <div class="c_actividad">
+        <?php
+          foreach ($resultados as $fila) { ?>
+          <div class="actividad">
+            <h4><?=$fila->getNombre()?></h4><br><br>
+            <p>
+            <span>Día: </span>  <?=substr($fila->getFecha(),0,10)?><br><br>
+            <span>Lugar: </span>  <?=$fila->getLugar()?><br><br>
+            <span>Descripción: </span><?=$fila->getDescripcion()?><br><br>
+            </p>
+          <form class="" action="actividades.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
+            <input type="submit" name="participar" value="Participar" class="boton">
+          </form>
 
-  <?php
-  foreach ($resultados as $fila) { ?>
+          </h5>
+          </div>
 
-       <div class="actividades">
-        <h5> Actividad <br>
-          <span><?=$fila->getNombre()?></span>
-        </h5>
-         <h5> Fecha<br> <span><?=$fila->getFecha()?> </span></h5>
-         <h5> Descripción <br> <span><?=$fila->getDescripcion()?> </span></h5>
+      <?php } ?>
+    </div>
 
-         <h5>
-           <form class="" action="actividades.php?participa=false&idActividad=<?=$fila->getId()?>" method="post">
-                 <input type="submit" name="participar" value="Participar" class="boton">
-           </form>
-
-         </h5>
-       </div>
-
-  <?php } ?>
 </div>

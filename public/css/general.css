@@ -1,61 +1,65 @@
+body{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+}
 /* ------------------------------- CONTENEDOR -------------------------*/
 .contenedor{
   width: 100%;
+  flex: 1;
 }
 
 /* ------------------------------- HEADER -----------------------------*/
-.contenedor header{
+ header{
   background-color: #ff8c00;
   padding: 5px;
 }
-.contenedor header a{
+header a{
   text-decoration: none;
 }
-.contenedor header a > img{
+header a > img{
     width: 60px;
 }
 
 /* ------------------------------- MENÜ -----------------------------*/
 
-.contenedor > .menu{background-color: #f0f2f5;padding: 0 10px;}
-.contenedor > .menu > ul{
+.menu{background-color: #f0f2f5;padding: 0 10px;}
+.menu > ul{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   list-style: none;
   width: 100%;
 }
-.contenedor > .menu ul li:hover{border-bottom: solid 2px #ff8c00;}
-.contenedor > .menu ul li a{
+.menu ul li:hover{border-bottom: solid 2px #ff8c00;}
+.menu ul li a{
   text-decoration: none;
   width: 100%;
   padding: 10px;
   color: #6a8776;
   font-weight: bold;
 }
-.contenedor .menu form{
+.menu form{
   display: inline-block;
   padding: 6px;
-  color: #6a8776;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
-.contenedor .menu a:visited,.contenedor .menu a:link{
-  color: #6a8776;
+.menu a:visited,.contenedor .menu a:link{
+  color: black;
 }
-.contenedor > .menu ul .logout{
+.menu ul .logout{
   margin-left:  auto;
 }
 /* ------------------------------- FOOTER -----------------------------*/
 
-.contenedor > footer{
+footer{
   background-color: #c4c4c4;
-  /* position: fixed;
-  left: 0;
-  bottom:0; */
   width: 100%;
+
 }
-.contenedor footer ul {
+footer ul {
   width: 50%;
   margin: auto;
   list-style: none;
@@ -64,9 +68,9 @@
   justify-content: center;
 }
 
-.contenedor footer >  ul li{flex: 0 0 30%;}
+footer >  ul li{flex: 0 0 30%;}
 
-.contenedor footer >  ul li a {
+footer >  ul li a {
   text-decoration: none;
   padding: 0.5em;
   color: #325541;/*color verde*/

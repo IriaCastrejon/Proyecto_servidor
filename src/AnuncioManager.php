@@ -31,7 +31,7 @@ class AnuncioManager implements IDWESEntidadManager{
 
   public static function insert(...$campos){
     echo '<br> dentro del insert <br>';
-  
+
     $insertado=false;
 
     $db= DWESBaseDatos::obtenerInstancia();
@@ -50,15 +50,9 @@ class AnuncioManager implements IDWESEntidadManager{
                     FROM anuncio a
                     WHERE cliente_id = ?",$id);
 
-//    if($db -> executed ){ // Se pudo ejecutar
-//        $datos = $db -> obtenDatos();
-//        if(count($datos)>0) { // Hay datos
             return array_map(function($fila){
                 return new Anuncio($fila['id'],$fila['id_cliente'], $fila['imagen'], $fila['fecha_alta'], $fila['fecha_baja'], $fila['url'],$fila['costo']);
             },$db -> obtenDatos());
-//        }
-//    }
-//    return null;
   }
 
   public static function update($id, ...$campos){}

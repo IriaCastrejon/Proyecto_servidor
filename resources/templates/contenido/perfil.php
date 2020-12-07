@@ -12,6 +12,7 @@ if($_SESSION['tipo_cliente'] == 'empresa'){
 }
 
 $id=$_SESSION['id'];
+$id_sesion=$id;
 $errores = [];
 $comentario='';
 $idInicio = $_GET['idUsuario'];
@@ -122,9 +123,14 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
               <span><?=$resultados[0]->getNombre() ?></span>
               <p> <?=substr($fila->getFecha(),0,10) ?></span>
             </div>
-            <a href="eliminarPublicacion.php?idPub=<?=$fila->getId()?>&idUsuario=<?=$id?>">
-              <img class="icon-img" src="imgs/x.png" alt="">
-            </a>
+            <?php if ($id_sesion != $id){ ?>
+              <a></a>
+            <?php }else{ ?>
+              <a href="eliminarPublicacion.php?idPub=<?=$fila->getId()?>&idUsuario=<?=$id?>">
+                <img class="icon-img" src="imgs/borrar.png" alt="">
+              </a>
+            <?php } ?>
+
           </div><!--publicacionCabecera-->
 
           <div class="publicacionCuerpo">
@@ -133,8 +139,8 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
           </div><!--publicacionCuerpo-->
 
           <div class="publicacionFooter">
-            <div>
-              <span><?=$num_megustas ?></span>
+            <span>Likes <?=$num_megustas ?></span>
+
               <?php if ($verificar) { ?>
                  <a href="perfil.php?idUsuario=<?=$id?>&noMegusta=true&idPublicacion=<?=$fila->getId()?>">
                      No me gusta
@@ -144,7 +150,7 @@ $publicaciones=PublicacionesManager::getByIdDeMascota($id);
                      Me gusta
                </a>
                <?php } ?>
-            </div>
+          
 
               <a href="javascript:mostrarOcultar(<?=$fila->getId()?>);">Comentarios</a>
           </div>

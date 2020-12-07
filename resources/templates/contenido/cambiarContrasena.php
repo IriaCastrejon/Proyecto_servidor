@@ -55,8 +55,9 @@ if ($_POST['enviar']==='Cambiar') {
 
 
   <div class="formCambiarPass">
-    <h1>Introduce la nueva contraseña </h1>
-    <form class="recuperarPass" action="cambiarContrasena.php" method="post">
+
+    <form class="formulario" action="cambiarContrasena.php" method="post">
+      <h2>Introduce la nueva contraseña </h2>
       <!-- ocultos -->
       <input type="hidden" name="id" value="<?=$id?>">
       <input type="hidden" name="cliente" value="<?=$tipo_cliente?>">
@@ -80,7 +81,10 @@ if ($_POST['enviar']==='Cambiar') {
         <input type="password" name="passVer" value="<?=$contraseña_V ?>">
       </p>
 
+      <p>
+          <label for=""></label>
+          <input type="submit" name="enviar" value="Cambiar">
+      </p>
 
-      <input type="submit" name="enviar" value="Cambiar">
     </form>
   </div>

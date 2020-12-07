@@ -17,18 +17,20 @@ Son necesarias las variables
     <title><?=$titulo?></title>
     <link rel="stylesheet" href="/css/master.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="contenedor">
-      <?php
-        ///echo "ruta contenido". $ruta_contenido;
-          require("$ROOT/resources/templates/header.php");
-          require("$ROOT/resources/templates/navegacion.php");
+    <?php
+      require("$ROOT/resources/templates/header.php");
+      require("$ROOT/resources/templates/navegacion.php");
+     ?>
+    <main class="contenedor">
+      <?php      
           require("$ROOT/resources/templates/contenido$ruta_contenido");
-          require("$ROOT/resources/templates/pie.php");
        ?>
-    </div>
-
+    </main>
+    <?php
+      require("$ROOT/resources/templates/pie.php");
+    ?>
   </body>
 </html>

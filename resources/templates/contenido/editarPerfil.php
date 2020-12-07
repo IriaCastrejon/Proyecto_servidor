@@ -61,13 +61,14 @@ if ($_POST['enviar']=="Cambiar") {
  ?>
 
  <div class="cambiar_foto">
-   <h2>Modificar foto de perfil </h2>
+
    <form class="formulario" action="editarPerfil.php" method="post" enctype="multipart/form-data">
+     <h2>Modificar foto de perfil </h2>
      <p>
        <label>Subir nueva foto</label>
        <input type="file" name="imagen" value="">
      </p>
-     
+
      <p>
        <label></label>
        <input class="enviar" type="submit" name="enviar" value="Cambiar">

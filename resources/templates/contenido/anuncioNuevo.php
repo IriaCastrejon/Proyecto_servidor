@@ -1,6 +1,6 @@
 <?php
 
-  session_start();
+
   if( !isset($_SESSION['id']) && $_SESSION['tipo_cliente']!='Empresa'){
       header('Location: login.php');
       die();
@@ -88,45 +88,61 @@
 <?php if (!$activarPagar): ?>
 
   <div class="form_anuncio">
-    <h3> Todos los campos son obligatorios</h3>
+
    <?php if (isset($_SESSION['id'])): ?>
-    <form class="registro" action="anuncioNuevo.php" method="post"  enctype="multipart/form-data" >
-      <!-- Duracion-->
+    <form class="formulario" action="anuncioNuevo.php" method="post"  enctype="multipart/form-data" >
+        <h2> Todos los campos son obligatorios</h2>
 
-      <?php if (isset($errores['duracion'])): ?>
-        <span class="error">Debe introducir una duración</span> <br>
-      <?php endif; ?>
-      <label for=""> Duración </label><input type="number" name="duracion" value="<?=$duracion?>" min="1" placeholder='Número de días'><br><br>
-      <h4> Total a pagar: <span id="precio"> <?=$valorDuracion?> €</span> </h4>
-     <input type="hidden" name="valorDuracion" value="<?=$valorDuracion?>">
-     <div id="form_anuncio_Datos" class="form_anuncio_Datos">
-      <!-- URL-->
-      <?php if (isset($errores['url'])): ?>
-        <span class="error">Debe introducir la URL de su empresa</span> <br>
-      <?php endif; ?>
-     <label for=""> Url </label><input type="url" name="url" value="<?= $url ?>" placeholder='http://www.ejemplo.com'><br><br>
+        <!-- Duracion-->
+        <?php if (isset($errores['duracion'])): ?>
+          <span class="error">Debe introducir una duración</span> <br>
+        <?php endif; ?>
+        <p>
+          <label for=""> Duración </label>
+          <input type="number" name="duracion" value="<?=$duracion?>" min="1" placeholder='Número de días'>
+        </p>
 
+        <!-- URL-->
+        <?php if (isset($errores['url'])): ?>
+          <span class="error">Debe introducir la URL de su empresa</span> <br>
+        <?php endif; ?>
+        <p>
+          <label for=""> Url </label>
+          <input type="url" name="url" value="<?= $url ?>" placeholder='http://www.ejemplo.com'><br><br>
+        </p>
 
-      <!-- FECHA ALTA-->
-      <?php if (isset($errores['fecha_alta'])){
-              if ($errores['fecha_alta'] == ERROR_FECHA_MAYOR ){ ?>
-                <span class="error"> Introduce una fecha mayor a la actual </span> <br>
-              <?php }else if($errores['fecha_alta'] == ERROR_FECHA_NO){ ?>
-                <span class="error"> Introduce una fecha</span> <br>
-       <?php  } ?>
-     <?php } ?>
-      <label for=""> Fecha de alta </label><input type="date" name="fecha_alta" value="<?=$fecha_alta?>"><br><br>
+        <!-- FECHA ALTA-->
+        <?php if (isset($errores['fecha_alta'])){
+          if ($errores['fecha_alta'] == ERROR_FECHA_MAYOR ){ ?>
+            <span class="error"> Introduce una fecha mayor a la actual </span>
+          <?php }else if($errores['fecha_alta'] == ERROR_FECHA_NO){ ?>
+            <span class="error"> Introduce una fecha</span>
+          <?php  } ?>
+        <?php } ?>
+        <p>
+          <label for=""> Fecha de alta </label>
+          <input type="date" name="fecha_alta" value="<?=$fecha_alta?>">
+        </p>
 
-      <?php if (isset($errores['foto'])): ?>
-           <span class="error"><?= $errores['foto']?> </span> <br><br>
-      <?php endif; ?>
-      <label for=""> Foto </label><input type="file" name="imagen" accept="image/png, image/jpeg"><br>
+        <!-- Foto-->
+        <?php if (isset($errores['foto'])): ?>
+          <span class="error"><?= $errores['foto']?> </span> <br><br>
+        <?php endif; ?>
+        <p>
+          <label for=""> Foto </label>
+          <input type="file" name="imagen" accept="image/png, image/jpeg">
+        </p>
 
-     </div>
-     <br><br>
-     <div class="botones">
-         <input  type="submit" name="comprar" value="Comprar">
-       </div>
+        <div class="totalAPagar">
+          <h4> Total a pagar: <span id="precio"> <?=$valorDuracion?> €</span> </h4>
+          <input type="hidden" name="valorDuracion" value="<?=$valorDuracion?>">
+        </div>
+
+        <!-- Enviar-->
+        <p>
+          <label ></label>
+          <input  type="submit" name="comprar" value="Comprar">
+        </p>
 
      </form>
    <?php endif; ?>

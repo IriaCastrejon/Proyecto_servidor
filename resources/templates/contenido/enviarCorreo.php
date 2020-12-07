@@ -50,10 +50,7 @@ if (isset($_POST['enviar'])) {
     $id = MascotaManager::getByEmail($email)['id'];
     TokenManager::delete($id,$tipo_cliente);
     TokenManager::insert($id,$token,$tipo_cliente);
-    // TokenManager::delete($_SESSION['id'],$_SESSION['tipo_cliente']);
-    // TokenManager::insert($_SESSION['id'],$token,$_SESSION['tipo_cliente']);
-    //borrar token anterior del mismo Usuario/
-    //insertar token e id y tipo
+
     enviarEmail($email,$token,$tipo_cliente);
   }
 
@@ -67,8 +64,8 @@ if (isset($_POST['enviar'])) {
       $phpmailer = new PHPMailer();
 
       $url='http://'. $_SERVER["SERVER_NAME"].':9000/cambiarContrasena.php?cliente='.$tipo_cliente.'&token='.$token;
-      $body = "<p>Hemos recibido una peticion para restablecer el password de su cuenta.</p>
-         <p>Si hiciste esta peticion, haz click en el siguiente enlace: <a href='$url'> Restablecer Password </a></p>
+      $body = "<p>Hemos recibido una petición para restablecer el password de su cuenta.</p>
+         <p>Si hiciste esta petición, haz click en el siguiente enlace: <a href='$url'> Restablecer Password </a></p>
          <p>Si no hiciste esta peticion, ignora este mensaje</p>";
       // ---------- datos de la cuenta de Gmail -------------------------------
       $phpmailer->Username = $email_user;

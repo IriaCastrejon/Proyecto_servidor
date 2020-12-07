@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 if( !isset($_SESSION['id']) ){
     header('Location: login.php');
     die();
@@ -49,7 +49,7 @@ $resultadosSiguiendo = AmigoManager::obtenerAmigos($id);
            </div>
 
            <div class="amigosImagen">
-            <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
+             <img class="amigos_img" src="<?=$fila->getFoto()?>" alt="">
            </div>
        </div>
 
